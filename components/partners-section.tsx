@@ -28,7 +28,7 @@ export function PartnersSection() {
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-teal font-medium uppercase tracking-wider text-sm">For Partners</span>
           <h2 className="mt-4 text-3xl md:text-4xl font-bold text-navy leading-tight text-balance">
-            We Partner With the Professionals Your Clients Trust
+            We Partner With Lawyers, Public Adjusters, and Contractors
           </h2>
           <p className="mt-4 text-navy/70">
             Contents inventory is the most time-consuming part of a property claim. We take it off your plate with

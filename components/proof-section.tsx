@@ -12,7 +12,7 @@ const caseStudies = [
   },
   {
     location: "The Palisades",
-    detail: "1,960 sq ft home",
+    detail: "2,160 sq ft home",
     items: "3,812",
     initial: "$320,000",
     documented: "$465,200",

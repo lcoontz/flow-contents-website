@@ -185,9 +185,9 @@ export function HeroSection() {
                 }`}
               >
                 <div className="px-2 py-2 border-r border-gray-200 text-center">#</div>
-                <div className="px-2 sm:px-3 py-2 border-r border-gray-200">Item Description</div>
+                <div className="px-2 sm:px-3 py-2 border-r border-gray-200">Item Name</div>
                 {showEnhanced && (
-                  <div className="px-2 sm:px-3 py-2 text-teal animate-in fade-in duration-500">Features</div>
+                  <div className="px-2 sm:px-3 py-2 text-teal animate-in fade-in duration-500">Details</div>
                 )}
               </div>
 
@@ -231,7 +231,7 @@ export function HeroSection() {
               >
                 <div className="px-2 py-2.5 sm:py-3 border-r border-gray-200"></div>
                 <div className="px-2 sm:px-3 py-2.5 sm:py-3 border-r border-gray-200 text-gray-700 text-xs sm:text-sm">
-                  {showEnhanced ? "16 items · 16 features detected" : "16 items"}
+                  {showEnhanced ? "16 items · 16 details captured" : "16 items"}
                 </div>
                 {showEnhanced && (
                   <div className="px-2 sm:px-3 py-2.5 sm:py-3 text-teal font-semibold text-xs sm:text-sm animate-in fade-in duration-500">
