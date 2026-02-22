@@ -114,7 +114,7 @@ export function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="max-w-xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-navy leading-tight text-balance">
-              We Handle the List So You Can Focus on Rebuilding.
+              Precise Contents Inventory for Insurance Claims.
             </h1>
             <p className="mt-6 text-lg text-navy/70 leading-relaxed">
               After a fire, the last thing you need is a spreadsheet. We photograph, identify, and price every item in
