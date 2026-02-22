@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   title: "Flow Contents | Precision in Recovery",
   description:
     "We turn the chaos of a contents claim into an audit-proof report. Forensic photography and expert analysis for maximum insurance claim recovery.",
-  generator: "v0.app",
   icons: {
     icon: [
       {
