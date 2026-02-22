@@ -74,7 +74,7 @@ export function FooterSection() {
             </div>
             <span className="text-white/80 font-medium">Flow Contents</span>
           </div>
-          <p className="text-white/50 text-sm">© 2025 Flow Contents. All Rights Reserved.</p>
+          <p className="text-white/50 text-sm">© 2026 Flow Contents. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

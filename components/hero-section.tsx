@@ -95,14 +95,14 @@ export function HeroSection() {
           <span className="text-navy font-semibold text-xl">Flow Contents</span>
         </div>
         <div className="hidden md:flex items-center gap-8">
-          <Link href="#philosophy" className="text-navy/70 hover:text-navy transition-colors">
-            Philosophy
-          </Link>
           <Link href="#process" className="text-navy/70 hover:text-navy transition-colors">
-            Process
+            How It Works
           </Link>
           <Link href="#proof" className="text-navy/70 hover:text-navy transition-colors">
-            Proof
+            Results
+          </Link>
+          <Link href="#partners" className="text-navy/70 hover:text-navy transition-colors">
+            Partners
           </Link>
           <Link href="#contact" className="text-navy/70 hover:text-navy transition-colors">
             Contact
@@ -118,11 +118,12 @@ export function HeroSection() {
             </h1>
             <p className="mt-6 text-lg text-navy/70 leading-relaxed">
               After a fire, the last thing you need is a spreadsheet. We photograph, identify, and price every item in
-              your home — and deliver a report built to hold up under adjuster scrutiny.
+              your home — and deliver a report built to hold up under adjuster scrutiny. We've recovered over $1M in
+              additional value for homeowners across LA.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="bg-navy hover:bg-navy/90 text-white px-8" asChild>
-                <Link href="#contact">Book a Call</Link>
+                <Link href="#contact">Free Consultation Call</Link>
               </Button>
               <Button
                 variant="outline"
