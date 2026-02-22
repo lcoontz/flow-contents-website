@@ -114,11 +114,11 @@ export function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="max-w-xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-navy leading-tight text-balance">
-              Maximize Your Home Insurance Inventory List.
+              We Handle the List So You Can Focus on Rebuilding.
             </h1>
             <p className="mt-6 text-lg text-navy/70 leading-relaxed">
-              Don't let insurers minimize your contents reimbursement. We turn your generic list into a forensic,
-              audit-proof report that forces the software to pay 'Like Kind and Quality' prices.
+              After a fire, the last thing you need is a spreadsheet. We photograph, identify, and price every item in
+              your home — and deliver a report built to hold up under adjuster scrutiny.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="bg-navy hover:bg-navy/90 text-white px-8" asChild>
