@@ -6,70 +6,86 @@ import { useEffect, useState } from "react"
 
 const inventoryItems = [
   {
-    generic: "Toaster",
-    genericPrice: 4.88,
-    enhanced: "Breville Die-Cast Smart Toaster, 4-Slice, Motorized Lift",
-    enhancedPrice: 183.47,
+    generic: "Mug",
+    enhanced: "White coffee mug with printed image",
+    features: "Photo-printed design, curved D-handle",
   },
   {
-    generic: "Bicycle",
-    genericPrice: 147.23,
-    enhanced: "Road Bike, Carbon Fiber Frame, Shimano 105 Groupset",
-    enhancedPrice: 1847.65,
+    generic: "Candle holder",
+    enhanced: "Leaf-Pattern Metal Candle Lantern",
+    features: "Metal cylinder, laser-cut leaf design, holds candle",
   },
   {
-    generic: "Dining Table",
-    genericPrice: 203.91,
-    enhanced: "Solid Cherry Dining Table, Hand-Carved Legs, 8-Seater",
-    enhancedPrice: 2534.28,
+    generic: "Area rug",
+    enhanced: "Persian-style patterned area rug",
+    features: "Oriental-style pattern, covers a substantial floor area",
   },
   {
-    generic: "Laptop",
-    genericPrice: 394.76,
-    enhanced: "Gaming Laptop, Intel i9, 32GB RAM, RTX 4070, 240Hz",
-    enhancedPrice: 2187.43,
+    generic: "Side table",
+    enhanced: "Antique Wooden Two-Tier Side Table",
+    features: "Two-tier shelving, decorative turned legs, lower shelf",
   },
   {
-    generic: "Sofa",
-    genericPrice: 512.88,
-    enhanced: "Sectional, 8-Way Hand-Tied Springs, Top-Grain Italian Leather",
-    enhancedPrice: 3542.19,
+    generic: "Desk",
+    enhanced: "Wooden roll-top secretary desk",
+    features: "Roll-top; three upper drawers; cubby compartments; turned legs",
   },
   {
-    generic: "Men's Suit",
-    genericPrice: 96.54,
-    enhanced: "100% Merino Wool, Full Canvas Construction, Made in Italy",
-    enhancedPrice: 1189.67,
+    generic: "Book",
+    enhanced: "Atlas of Ancient Indian History",
+    features: "Hardback, green cover, scholarly title",
   },
   {
-    generic: "Blender",
-    genericPrice: 22.73,
-    enhanced: "Vitamix Professional Series, 2.2 HP Motor, Stainless Blades",
-    enhancedPrice: 457.82,
+    generic: "Book",
+    enhanced: "Concise History of Ancient India Vol I",
+    features: "Black and white spine with red center, volume I visible",
   },
   {
-    generic: "Area Rug",
-    genericPrice: 108.42,
-    enhanced: "Hand-Knotted Wool & Silk Blend, High-Density Pile",
-    enhancedPrice: 1614.91,
+    generic: "Board game",
+    enhanced: "Scrabble Crossword Game classic edition",
+    features: "100 wooden letter tiles, four tile racks, board game",
   },
   {
-    generic: "TV",
-    genericPrice: 346.19,
-    enhanced: "55-inch OLED Display, 120Hz Native Refresh Rate",
-    enhancedPrice: 1423.56,
+    generic: "Coffee table",
+    enhanced: "Dark Wood Rectangular Coffee Table",
+    features: "Two-tier design, carved table legs, dark wood finish",
   },
   {
-    generic: "Cordless Drill",
-    genericPrice: 31.67,
-    enhanced: "20V Max Brushless Hammer Drill, Heavy Duty, 2 Batteries",
-    enhancedPrice: 247.38,
+    generic: "Vase",
+    enhanced: "Artificial pink peony flower arrangement in glass vase",
+    features: "Clear glass, large full-bloom faux peonies in pink/white",
+  },
+  {
+    generic: "Chair",
+    enhanced: "Tufted velvet accent chair",
+    features: "Button tufting; wooden cabriole legs; curved arms",
+  },
+  {
+    generic: "Pen",
+    enhanced: "Parker Jotter Originals Magenta Ballpoint Pen",
+    features: "Retractable click, metal clip",
+  },
+  {
+    generic: "Binder clips",
+    enhanced: "Office Depot Brand Binder Clips, Medium",
+    features: "Medium, approx 19 mm width",
+  },
+  {
+    generic: "Sheet music",
+    enhanced: "El Arriero Va Lyrics Sheet Music",
+    features: "Black-and-white, pink paper-clip top left",
+  },
+  {
+    generic: "File sorter",
+    enhanced: "Onyx Mesh Desk Organizer with Three Sections",
+    features: "Metal mesh construction, freestanding",
+  },
+  {
+    generic: "Desk organizer",
+    enhanced: "Safco Onyx Mesh Desk Organizer with Five Sections",
+    features: "Powder-coated steel mesh; open front; side handles",
   },
 ]
-
-const genericTotal = 335980
-const enhancedTotal = 767809
-const valueDifference = enhancedTotal - genericTotal
 
 export function HeroSection() {
   const [showEnhanced, setShowEnhanced] = useState(false)
@@ -136,17 +152,8 @@ export function HeroSection() {
             </div>
           </div>
 
-          <div className="relative overflow-visible py-6 pr-8">
-            <div className="relative bg-white rounded-xl shadow-2xl border border-gray-200 overflow-visible">
-              {/* Value sticker - positioned outside container with overflow-visible */}
-              <div
-                className={`absolute -right-6 -top-6 z-20 bg-green-500 text-white text-xs sm:text-sm font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-xl transition-all duration-700 ${
-                  showEnhanced ? "opacity-100 scale-100" : "opacity-0 scale-75"
-                }`}
-              >
-                +${valueDifference.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
-              </div>
-
+          <div className="relative overflow-visible py-6">
+            <div className="relative bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden">
               {/* Spreadsheet Header */}
               <div className="bg-gray-100 border-b border-gray-200 px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between rounded-t-xl">
                 <div className="flex items-center gap-2">
@@ -159,7 +166,6 @@ export function HeroSection() {
                     contents_inventory.xlsx
                   </span>
                 </div>
-                {/* State indicator - made more prominent and responsive */}
                 <span
                   className={`text-xs sm:text-sm font-semibold px-2 sm:px-3 py-1 rounded transition-all duration-700 ${
                     showEnhanced ? "bg-navy text-white shadow-md" : "bg-gray-300 text-gray-600"
@@ -170,65 +176,68 @@ export function HeroSection() {
                 </span>
               </div>
 
-              {/* Spreadsheet Content */}
-              <div className="relative">
-                {/* Column Headers */}
-                <div className="grid grid-cols-[40px_1fr_100px] sm:grid-cols-[50px_1fr_140px] border-b border-gray-200 bg-gray-50 text-xs sm:text-sm font-semibold text-gray-600">
-                  <div className="px-2 sm:px-3 py-2 sm:py-2.5 border-r border-gray-200 text-center">#</div>
-                  <div className="px-2 sm:px-4 py-2 sm:py-2.5 border-r border-gray-200">Item Description</div>
-                  <div className="px-2 sm:px-4 py-2 sm:py-2.5 text-right">Value</div>
-                </div>
+              {/* Column Headers */}
+              <div
+                className={`grid border-b border-gray-200 bg-gray-50 text-[10px] sm:text-xs font-semibold text-gray-600 transition-all duration-700 ${
+                  showEnhanced
+                    ? "grid-cols-[32px_1fr_1fr] sm:grid-cols-[40px_1fr_1fr]"
+                    : "grid-cols-[32px_1fr] sm:grid-cols-[40px_1fr]"
+                }`}
+              >
+                <div className="px-2 py-2 border-r border-gray-200 text-center">#</div>
+                <div className="px-2 sm:px-3 py-2 border-r border-gray-200">Item Description</div>
+                {showEnhanced && (
+                  <div className="px-2 sm:px-3 py-2 text-teal animate-in fade-in duration-500">Features</div>
+                )}
+              </div>
 
-                {/* Data Rows */}
-                <div className="max-h-[280px] sm:max-h-[340px] overflow-hidden">
-                  {inventoryItems.map((item, index) => (
+              {/* Data Rows */}
+              <div className="max-h-[360px] sm:max-h-[420px] overflow-hidden">
+                {inventoryItems.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`grid border-b border-gray-100 text-[10px] sm:text-xs transition-all duration-700 ${
+                      showEnhanced
+                        ? "grid-cols-[32px_1fr_1fr] sm:grid-cols-[40px_1fr_1fr]"
+                        : "grid-cols-[32px_1fr] sm:grid-cols-[40px_1fr]"
+                    } ${showEnhanced ? "bg-white" : "bg-gray-50/50"}`}
+                  >
+                    <div className="px-2 py-1.5 sm:py-2 border-r border-gray-100 text-center text-gray-400">
+                      {String(index + 1).padStart(2, "0")}
+                    </div>
                     <div
-                      key={index}
-                      className={`grid grid-cols-[40px_1fr_100px] sm:grid-cols-[50px_1fr_140px] border-b border-gray-100 text-xs sm:text-sm transition-all duration-700 ${
-                        showEnhanced ? "bg-white" : "bg-gray-50/50"
+                      className={`px-2 sm:px-3 py-1.5 sm:py-2 border-r border-gray-100 transition-all duration-700 leading-snug ${
+                        showEnhanced ? "text-navy font-medium" : "text-gray-400"
                       }`}
                     >
-                      <div className="px-2 sm:px-3 py-2 sm:py-2.5 border-r border-gray-100 text-center text-gray-400">
-                        {String(index + 1).padStart(2, "0")}
-                      </div>
-                      <div
-                        className={`px-2 sm:px-4 py-2 sm:py-2.5 border-r border-gray-100 transition-all duration-700 leading-snug ${
-                          showEnhanced ? "text-navy font-medium" : "text-gray-400"
-                        }`}
-                      >
-                        {showEnhanced ? item.enhanced : item.generic}
-                      </div>
-                      <div
-                        className={`px-2 sm:px-4 py-2 sm:py-2.5 text-right transition-all duration-700 ${
-                          showEnhanced ? "text-navy font-bold" : "text-gray-400"
-                        }`}
-                      >
-                        $
-                        {showEnhanced
-                          ? item.enhancedPrice.toLocaleString("en-US", { minimumFractionDigits: 2 })
-                          : item.genericPrice.toLocaleString("en-US", { minimumFractionDigits: 2 })}
-                      </div>
+                      {showEnhanced ? item.enhanced : item.generic}
                     </div>
-                  ))}
-                </div>
+                    {showEnhanced && (
+                      <div className="px-2 sm:px-3 py-1.5 sm:py-2 text-navy/60 leading-snug animate-in fade-in duration-500">
+                        {item.features}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
 
-                {/* Total Row - made more prominent and responsive */}
-                <div className="grid grid-cols-[40px_1fr_100px] sm:grid-cols-[50px_1fr_140px] bg-gray-100 text-xs sm:text-sm font-bold border-t-2 border-gray-300 rounded-b-xl">
-                  <div className="px-2 sm:px-3 py-2.5 sm:py-3.5 border-r border-gray-200"></div>
-                  <div className="px-2 sm:px-4 py-2.5 sm:py-3.5 border-r border-gray-200 text-gray-700 text-sm sm:text-base">
-                    Total Claim Value
-                  </div>
-                  <div
-                    className={`px-2 sm:px-4 py-2.5 sm:py-3.5 text-right transition-all duration-700 text-sm sm:text-base ${
-                      showEnhanced ? "text-green-600 font-extrabold" : "text-gray-500"
-                    }`}
-                  >
-                    $
-                    {showEnhanced
-                      ? enhancedTotal.toLocaleString("en-US", { minimumFractionDigits: 2 })
-                      : genericTotal.toLocaleString("en-US", { minimumFractionDigits: 2 })}
-                  </div>
+              {/* Summary Row */}
+              <div
+                className={`grid bg-gray-100 text-[10px] sm:text-xs font-bold border-t-2 border-gray-300 transition-all duration-700 ${
+                  showEnhanced
+                    ? "grid-cols-[32px_1fr_1fr] sm:grid-cols-[40px_1fr_1fr]"
+                    : "grid-cols-[32px_1fr] sm:grid-cols-[40px_1fr]"
+                }`}
+              >
+                <div className="px-2 py-2.5 sm:py-3 border-r border-gray-200"></div>
+                <div className="px-2 sm:px-3 py-2.5 sm:py-3 border-r border-gray-200 text-gray-700 text-xs sm:text-sm">
+                  {showEnhanced ? "16 items · 16 features detected" : "16 items"}
                 </div>
+                {showEnhanced && (
+                  <div className="px-2 sm:px-3 py-2.5 sm:py-3 text-teal font-semibold text-xs sm:text-sm animate-in fade-in duration-500">
+                    Audit-ready
+                  </div>
+                )}
               </div>
             </div>
           </div>

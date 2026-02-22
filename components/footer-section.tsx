@@ -60,7 +60,7 @@ export function FooterSection() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Book a Call
+                Schedule a Call
               </a>
             </Button>
           </div>

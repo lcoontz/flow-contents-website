@@ -3,7 +3,7 @@ import { Quote } from "lucide-react"
 const testimonials = [
   {
     quote:
-      "We searched everywhere and found that all the other vendors were not delivering a good quality service, nor did they seem to care about the results. We're so happy to have found Flow. They walked us through the process from beginning to end and delivered results far beyond what we could have expected. With Flow, we felt like we were taken care of.",
+      "We searched everywhere — other vendors just don't compare. Flow walked us through the process from beginning to end and delivered results far beyond what we expected. We felt completely taken care of.",
     name: "Homeowner",
     detail: "The Palisades, CA",
     type: "Client",

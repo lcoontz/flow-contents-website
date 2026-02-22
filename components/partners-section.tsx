@@ -15,7 +15,7 @@ const partnerTypes = [
   },
   {
     icon: Wrench,
-    title: "Contractors",
+    title: "Remediation Contractors",
     description:
       "Your clients need contents help alongside reconstruction. We take the inventory burden off their plate so they can focus on rebuilding — and you can focus on the build.",
   },
@@ -51,7 +51,7 @@ export function PartnersSection() {
                 href="#contact"
                 className="inline-flex items-center gap-2 text-teal font-medium text-sm hover:gap-3 transition-all"
               >
-                Refer a Client <ArrowRight className="w-4 h-4" />
+                Work With Us <ArrowRight className="w-4 h-4" />
               </a>
             </div>
           ))}
