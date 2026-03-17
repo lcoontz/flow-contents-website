@@ -89,6 +89,11 @@ const inventoryItems = [
 
 export function HeroSection() {
   const [showEnhanced, setShowEnhanced] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const interval = setInterval(
@@ -101,7 +106,7 @@ export function HeroSection() {
   }, [showEnhanced])
 
   return (
-    <section className="relative min-h-screen flex items-center bg-background">
+    <section className="relative min-h-screen flex items-center bg-background hero-grain">
       {/* Navigation */}
       <nav className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between px-6 py-6 md:px-12 lg:px-20">
         <div className="flex items-center gap-2">
@@ -111,16 +116,16 @@ export function HeroSection() {
           <span className="text-navy font-semibold text-xl">Flow Contents</span>
         </div>
         <div className="hidden md:flex items-center gap-8">
-          <Link href="#process" className="text-navy/70 hover:text-navy transition-colors">
+          <Link href="#process" className="text-navy/70 hover:text-navy transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-teal after:transition-all hover:after:w-full">
             How It Works
           </Link>
-          <Link href="#proof" className="text-navy/70 hover:text-navy transition-colors">
+          <Link href="#proof" className="text-navy/70 hover:text-navy transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-teal after:transition-all hover:after:w-full">
             Results
           </Link>
-          <Link href="#partners" className="text-navy/70 hover:text-navy transition-colors">
+          <Link href="#partners" className="text-navy/70 hover:text-navy transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-teal after:transition-all hover:after:w-full">
             Partners
           </Link>
-          <Link href="#contact" className="text-navy/70 hover:text-navy transition-colors">
+          <Link href="#contact" className="text-navy/70 hover:text-navy transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-teal after:transition-all hover:after:w-full">
             Contact
           </Link>
         </div>
@@ -128,16 +133,16 @@ export function HeroSection() {
 
       <div className="container mx-auto px-6 md:px-12 lg:px-20 pt-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="max-w-xl">
+          <div className={`max-w-xl transition-all duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-navy leading-tight text-balance">
               Precise Contents Inventory for Insurance Claims.
             </h1>
-            <p className="mt-6 text-lg text-navy/70 leading-relaxed">
+            <p className={`mt-6 text-lg text-navy/70 leading-relaxed transition-all duration-700 delay-200 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
               After a fire, the last thing you need is a spreadsheet. We photograph, identify, and price every item in
               your home — and deliver a report built to hold up under adjuster scrutiny. We've recovered over $1M in
               additional value for homeowners across LA.
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+            <div className={`mt-8 flex flex-col sm:flex-row gap-4 transition-all duration-700 delay-400 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
               <Button size="lg" className="bg-navy hover:bg-navy/90 text-white px-8" asChild>
                 <Link href="#contact">Free Consultation Call</Link>
               </Button>
@@ -152,7 +157,7 @@ export function HeroSection() {
             </div>
           </div>
 
-          <div className="relative overflow-visible py-6">
+          <div className={`relative overflow-visible py-6 transition-all duration-700 delay-300 ${mounted ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}>
             <div className="relative bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden">
               {/* Spreadsheet Header */}
               <div className="bg-gray-100 border-b border-gray-200 px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between rounded-t-xl">

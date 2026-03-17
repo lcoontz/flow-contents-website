@@ -1,22 +1,30 @@
+"use client"
+
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Mail, Phone } from "lucide-react"
+import { useReveal } from "./use-reveal"
 
 export function FooterSection() {
+  const headerRef = useReveal()
+  const cardRef = useReveal(200)
+
   return (
     <footer id="contact" className="bg-navy py-24">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight text-balance">
-            Secure Your Full Recovery
-          </h2>
-          <p className="mt-6 text-white/70 max-w-2xl mx-auto leading-relaxed">
-            Because of the forensic, high-touch nature of this work, we can only accept 2–3 new clients per month. We
-            are currently forming a waiting list.
-          </p>
+          <div ref={headerRef} className="reveal">
+            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight text-balance">
+              Secure Your Full Recovery
+            </h2>
+            <p className="mt-6 text-white/70 max-w-2xl mx-auto leading-relaxed">
+              Because of the forensic, high-touch nature of this work, we can only accept 2&ndash;3 new clients per month. We
+              are currently forming a waiting list.
+            </p>
+          </div>
 
           {/* Contact Card */}
-          <div className="mt-12 bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10 inline-block">
+          <div ref={cardRef} className="reveal-scale mt-12 bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10 inline-block">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               {/* Profile Picture */}
               <div className="relative">
@@ -54,7 +62,7 @@ export function FooterSection() {
               </div>
             </div>
 
-            <Button size="lg" className="mt-8 bg-teal hover:bg-teal/90 text-white px-8 w-full sm:w-auto" asChild>
+            <Button size="lg" className="mt-8 bg-teal hover:bg-teal/90 text-white px-10 py-6 text-base w-full sm:w-auto cta-glow" asChild>
               <a
                 href="https://tidycal.com/leland/intro-call-flow-contents-ai-w-leland"
                 target="_blank"
@@ -74,7 +82,7 @@ export function FooterSection() {
             </div>
             <span className="text-white/80 font-medium">Flow Contents</span>
           </div>
-          <p className="text-white/50 text-sm">© 2026 Flow Contents. All Rights Reserved.</p>
+          <p className="text-white/50 text-sm">&copy; 2026 Flow Contents. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

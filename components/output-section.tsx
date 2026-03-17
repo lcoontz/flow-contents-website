@@ -1,5 +1,8 @@
+"use client"
+
 import Image from "next/image"
 import { FileText, Tags, ShoppingCart, Link as LinkIcon } from "lucide-react"
+import { useReveal } from "./use-reveal"
 
 const columns = [
   {
@@ -40,22 +43,31 @@ const comparisons = [
 ]
 
 export function OutputSection() {
+  const headerRef = useReveal()
+  const screenshotRef = useReveal(100)
+  const col1Ref = useReveal(100)
+  const col2Ref = useReveal(200)
+  const col3Ref = useReveal(300)
+  const col4Ref = useReveal(400)
+  const colRefs = [col1Ref, col2Ref, col3Ref, col4Ref]
+  const tableRef = useReveal(200)
+
   return (
     <section className="py-24 bg-slate-50">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div ref={headerRef} className="reveal text-center max-w-2xl mx-auto mb-16">
           <span className="text-teal font-medium uppercase tracking-wider text-sm">What You Get</span>
           <h2 className="mt-4 text-3xl md:text-4xl font-bold text-navy leading-tight text-balance">
             A Report Built for Approval, Not Argument
           </h2>
           <p className="mt-4 text-navy/70">
-            Every item in your home documented with the specificity that forces fair valuations. Here's what's in every
+            Every item in your home documented with the specificity that forces fair valuations. Here&apos;s what&apos;s in every
             row of your report.
           </p>
         </div>
 
         {/* Screenshot */}
-        <div className="mb-12">
+        <div ref={screenshotRef} className="reveal-scale mb-12">
           <div className="bg-white rounded-xl shadow-lg border border-navy/10 overflow-hidden">
             <div className="bg-navy/5 px-4 py-2 border-b border-navy/10">
               <div className="flex gap-2">
@@ -82,7 +94,7 @@ export function OutputSection() {
         {/* Column callouts */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {columns.map((col, index) => (
-            <div key={index} className="bg-white rounded-xl p-6 border-t-2 border-navy shadow-sm">
+            <div key={index} ref={colRefs[index]} className="reveal bg-white rounded-xl p-6 border-t-2 border-navy shadow-sm">
               <div className="w-10 h-10 rounded-lg bg-navy/5 flex items-center justify-center mb-4">
                 <col.icon className="w-5 h-5 text-navy" />
               </div>
@@ -93,7 +105,7 @@ export function OutputSection() {
         </div>
 
         {/* Generic vs Flow comparison */}
-        <div className="max-w-4xl mx-auto">
+        <div ref={tableRef} className="reveal max-w-4xl mx-auto">
           <h3 className="text-xl font-bold text-navy mb-6 text-center">Why Detail Drives Value</h3>
           <div className="bg-white rounded-2xl shadow-sm border border-navy/10 overflow-hidden">
             <div className="grid grid-cols-[1fr_1fr_auto_auto] text-xs sm:text-sm font-semibold border-b border-navy/10">

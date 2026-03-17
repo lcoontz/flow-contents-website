@@ -1,4 +1,7 @@
+"use client"
+
 import { Quote } from "lucide-react"
+import { useReveal } from "./use-reveal"
 
 const testimonials = [
   {
@@ -18,10 +21,15 @@ const testimonials = [
 ]
 
 export function TestimonialsSection() {
+  const headerRef = useReveal()
+  const card1Ref = useReveal(150)
+  const card2Ref = useReveal(300)
+  const cardRefs = [card1Ref, card2Ref]
+
   return (
     <section className="py-24 bg-navy">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div ref={headerRef} className="reveal text-center max-w-2xl mx-auto mb-16">
           <span className="text-teal font-medium uppercase tracking-wider text-sm">What They Say</span>
           <h2 className="mt-4 text-3xl md:text-4xl font-bold text-white leading-tight text-balance">
             Trusted by Homeowners and Partners
@@ -32,10 +40,11 @@ export function TestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+              ref={cardRefs[index]}
+              className="reveal bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
             >
               <Quote className="w-8 h-8 text-teal/40 mb-4" />
-              <blockquote className="text-white/80 leading-relaxed mb-6">{testimonial.quote}</blockquote>
+              <blockquote className="text-white/80 leading-relaxed mb-6 italic">{testimonial.quote}</blockquote>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-teal/20 flex items-center justify-center">
                   <span className="text-teal font-semibold text-sm">{testimonial.type[0]}</span>
