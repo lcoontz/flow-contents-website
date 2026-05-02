@@ -56,7 +56,7 @@ export function HeroSection() {
 
             <p className="fc-lead mx-auto mt-6 max-w-2xl">
               You want the maximum settlement and the no-hassle list to back it up. Our
-              in-house contents specialists plus our AI inventory engine returns 5,000–7,000
+              in-house contents specialists plus our AI inventory engine return 5,000–7,000
               line items, each with replacement product link, RCV, ACV, guaranteed in 72
               hours, or your money back.
             </p>
