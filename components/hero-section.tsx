@@ -55,11 +55,10 @@ export function HeroSection() {
             </h1>
 
             <p className="fc-lead mx-auto mt-6 max-w-2xl">
-              Built for public adjusters who promise their clients the maximum settlement —
-              and need the no-hassle list to back it up. Send us the photos. Our trained
-              in-house team plus our AI inventory engine return 5,000–7,000 line items,
-              every one with replacement product, purchase link, ACV, and RCV — guaranteed
-              in 72 hours, or your money back.
+              You want the maximum settlement and the no-hassle list to back it up. Our
+              in-house contents specialists plus our AI inventory engine returns 5,000–7,000
+              line items, each with replacement product link, RCV, ACV, guaranteed in 72
+              hours, or your money back.
             </p>
 
             <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
