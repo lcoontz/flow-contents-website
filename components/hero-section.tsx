@@ -85,11 +85,11 @@ export function HeroSection() {
 
             {/* proof strip */}
             <div className="mx-auto mt-12 flex max-w-3xl flex-wrap items-center justify-center gap-x-10 gap-y-3 border-t border-slate-200 pt-8 text-[13px] text-slate-600">
-              <Stat value="$1M+" label="additional value recovered" />
+              <Stat value="$5.7M" label="additional value recovered" />
               <Divider />
-              <Stat value="79%" label="avg payout increase" />
+              <Stat value="117K" label="items documented" />
               <Divider />
-              <Stat value="15K+" label="items documented" />
+              <Stat value="65%" label="avg payout increase" />
               <Divider />
               <Stat value="72hr" label="guaranteed turnaround" />
             </div>
