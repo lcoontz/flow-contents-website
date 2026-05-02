@@ -1,7 +1,10 @@
 // Production hero background — promoted from /playground/concept-10.
-// Single layer using both effects: gentle (random per-cell timing) + horizontal
-// (left-to-right translateX drift). CSS-only animations, deterministic layout
-// for SSR/CSR parity.
+// Two parallel CSS animations per cell:
+//   1. fc-hero-fade: opacity + horizontal drift (gentle bell, no pop-offs)
+//   2. fc-hero-type: clip-path reveal (typewriter — chars wipe in left-to-right,
+//      out right-to-left, in sync with the fade)
+// Both share the same per-cell duration + delay so type-in completes as the
+// cell finishes fading in, and type-out completes as it finishes fading out.
 
 import { cellClass, isBlank, pickCell } from "@/lib/matrix-content"
 
@@ -11,9 +14,10 @@ const ROWS = 26
 function combinedTiming(c: number, r: number) {
   const seed = Math.sin(c * 17.31 + r * 9.71) * 43758.5453
   const frac = seed - Math.floor(seed)
-  const cycle = 10 + frac * 8 // 10–18s per cell
-  const colStagger = (c / COLS) * 5
-  const jitter = ((seed * 1.7) % 1) * 6
+  // Slightly longer cycles than C10 so transitions read as gentler.
+  const cycle = 13 + frac * 9 // 13–22s per cell
+  const colStagger = (c / COLS) * 6
+  const jitter = ((seed * 1.7) % 1) * 7
   return { cycle, delay: -(colStagger + jitter) }
 }
 
@@ -29,15 +33,33 @@ export function HeroMatrixBg() {
   return (
     <>
       <style>{`
-        @keyframes fc-hero-bg {
-          0%   { opacity: 0;   transform: translateX(-7px); }
-          18%  { opacity: 1;   transform: translateX(-2px); }
-          55%  { opacity: 1;   transform: translateX(2px); }
-          85%  { opacity: 0;   transform: translateX(7px); }
-          100% { opacity: 0;   transform: translateX(7px); }
+        /* Symmetric bell — opacity ramps in, holds, ramps out. No abrupt
+           transitions; the start-of-cycle opacity 0 connects seamlessly to
+           the end-of-cycle opacity 0 of the previous loop. */
+        @keyframes fc-hero-fade {
+          0%   { opacity: 0; transform: translateX(-6px); }
+          32%  { opacity: 1; transform: translateX(0); }
+          68%  { opacity: 1; transform: translateX(0); }
+          100% { opacity: 0; transform: translateX(6px); }
+        }
+        /* Typewriter wipe via clip-path. inset(0 100% 0 0) clips everything
+           from the right edge → invisible. Receding the right inset reveals
+           text left-to-right (typing in). Re-extending it hides the text
+           right-to-left (backspacing). Same shape as the fade so they stay
+           perfectly synced. */
+        @keyframes fc-hero-type {
+          0%   { clip-path: inset(0 100% 0 0); }
+          32%  { clip-path: inset(0 0% 0 0); }
+          68%  { clip-path: inset(0 0% 0 0); }
+          100% { clip-path: inset(0 100% 0 0); }
         }
         @media (prefers-reduced-motion: reduce) {
-          .fc-hero-bg-cell { animation: none !important; opacity: 0.5 !important; transform: none !important; }
+          .fc-hero-bg-cell {
+            animation: none !important;
+            opacity: 0.5 !important;
+            transform: none !important;
+            clip-path: none !important;
+          }
         }
       `}</style>
 
@@ -67,8 +89,8 @@ export function HeroMatrixBg() {
               style={{
                 animation: c.blank
                   ? "none"
-                  : `fc-hero-bg ${c.timing.cycle}s ease-in-out ${c.timing.delay}s infinite`,
-                willChange: "opacity, transform",
+                  : `fc-hero-fade ${c.timing.cycle}s ease-in-out ${c.timing.delay}s infinite, fc-hero-type ${c.timing.cycle}s ease-in-out ${c.timing.delay}s infinite`,
+                willChange: "opacity, transform, clip-path",
               }}
             >
               {c.blank ? "" : c.cell.text}

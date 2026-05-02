@@ -41,15 +41,18 @@ export function PlaygroundFrame({
 export function HeroCopy() {
   return (
     <div className="relative mx-auto max-w-[860px] text-center">
-      <div className="fc-eyebrow">For Public Adjusters</div>
-      <h1 className="fc-hero-title mt-5">
-        The contents list your clients <em>deserve</em>, in 72 hours.
+      <p className="text-[20px] font-semibold tracking-tight text-blue-700 sm:text-[22px]">
+        We generate contents lists for public adjusters.
+      </p>
+      <h1 className="fc-hero-title mt-4">
+        Every dollar in every photo. <em>Defensible.</em> In 72 hours.
       </h1>
       <p className="fc-lead mx-auto mt-6 max-w-2xl">
-        Send us the photos. Our trained in-house team plus our AI inventory engine
-        turn them into a forensic, Xactimate-ready report — 5,000 to 7,000 line items,
-        every one with replacement product, purchase link, ACV, and RCV. Built for public
-        adjusters. Guaranteed in 72 hours, or your money back.
+        Built for public adjusters who promise their clients the maximum settlement —
+        and need the no-hassle list to back it up. Send us the photos. Our trained
+        in-house team plus our AI inventory engine return 5,000–7,000 line items,
+        every one with replacement product, purchase link, ACV, and RCV — guaranteed
+        in 72 hours, or your money back.
       </p>
       <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
         <button
