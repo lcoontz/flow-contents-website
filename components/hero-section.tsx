@@ -47,11 +47,11 @@ export function HeroSection() {
         <div className="relative mx-auto max-w-[1320px] px-6 pb-24 pt-24 lg:pb-32 lg:pt-32">
           <div className="mx-auto max-w-[860px] text-center">
             <p className="text-[20px] font-semibold tracking-tight text-blue-700 sm:text-[22px]">
-              We generate contents lists for public adjusters.
+              72-hour contents list for public adjusters
             </p>
 
             <h1 className="fc-hero-title mt-4">
-              Every dollar in every photo. <em>Defensible.</em> In 72 hours.
+              Every dollar in every photo. <em>Defensible.</em>
             </h1>
 
             <p className="fc-lead mx-auto mt-6 max-w-2xl">
