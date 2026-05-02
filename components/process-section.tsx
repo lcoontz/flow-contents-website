@@ -1,76 +1,61 @@
-"use client"
-
-import { Camera, Cpu, FileCheck, ArrowRight } from "lucide-react"
-import { useReveal } from "./use-reveal"
-
 const steps = [
   {
-    icon: Camera,
-    step: "01",
-    title: "Forensic Photography",
-    description:
-      "Every item in your home is individually photographed at macro detail. We capture brand labels, materials, construction, serial numbers, and distinguishing features — the data that proves value.",
+    n: "Hour 0",
+    title: "You upload the photos",
+    body: "Drag-and-drop or shared drive link. Phone photos, video stills, walk-through footage — whatever your team or your client captured. We ingest the full set in minutes.",
   },
   {
-    icon: Cpu,
-    step: "02",
-    title: "AI Feature Extraction",
-    description:
-      "Our AI analyzes each photo and extracts specific attributes: material, brand, design, dimensions, and condition. These features trigger premium-grade matches in valuation software.",
+    n: "Hour 0–48",
+    title: "AI drafts every line",
+    body: "Our inventory engine detects every visible item, extracts feature attributes from photo metadata, matches to a replacement product, and computes ACV / RCV against current vendor pricing.",
   },
   {
-    icon: FileCheck,
-    step: "03",
-    title: "Verified Inventory Report",
-    description:
-      "Every item is matched to a specific replacement product with a verified purchase link. The report is formatted for direct import into adjuster workflows — audit-proof and submission-ready.",
+    n: "Hour 24–60",
+    title: "Reviewers finalize",
+    body: "A trained Flow Contents reviewer walks every line — correcting wrong matches, adding the items the AI missed, locking in Xactimate codes, and confirming age and condition.",
+  },
+  {
+    n: "Hour 72",
+    title: "Carrier-ready report delivered",
+    body: "You receive a single spreadsheet — every line with the full 9 fields, formatted to drop straight into your claim file. No rekeying. No reformatting. Filed the same day.",
   },
 ]
 
 export function ProcessSection() {
-  const headerRef = useReveal()
-  const step1Ref = useReveal(100)
-  const step2Ref = useReveal(250)
-  const step3Ref = useReveal(400)
-  const stepRefs = [step1Ref, step2Ref, step3Ref]
-
   return (
-    <section id="process" className="py-24 bg-navy">
-      <div className="container mx-auto px-6 md:px-12 lg:px-20">
-        <div ref={headerRef} className="reveal text-center max-w-2xl mx-auto mb-16">
-          <span className="text-teal font-medium uppercase tracking-wider text-sm">How It Works</span>
-          <h2 className="mt-4 text-3xl md:text-4xl font-bold text-white leading-tight text-balance">
-            From Photos to Audit-Proof Report
+    <section id="process" className="border-t border-slate-200 bg-slate-50">
+      <div className="mx-auto max-w-[1180px] px-6 py-24">
+        <div className="mx-auto max-w-2xl text-center">
+          <div className="fc-eyebrow">The 72-hour Process</div>
+          <h2 className="fc-section-title mt-4">
+            From photos to filed in 72 hours.
           </h2>
+          <p className="fc-lead mt-5">
+            One handoff. One delivery. The hours between are ours to manage.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 relative">
-          {steps.map((item, index) => (
-            <div
-              key={index}
-              ref={stepRefs[index]}
-              className={`reveal bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-teal/50 transition-colors relative ${index < steps.length - 1 ? "step-connector" : ""}`}
+        <ol className="mt-14 grid gap-5 lg:grid-cols-4">
+          {steps.map((s, i) => (
+            <li
+              key={s.title}
+              className="relative rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
             >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-xl bg-teal/20 flex items-center justify-center">
-                  <item.icon className="w-7 h-7 text-teal" />
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-teal font-mono font-bold text-2xl">{item.step}</span>
-                </div>
+              <div className="flex items-baseline justify-between">
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-blue-700">
+                  {s.n}
+                </span>
+                <span className="font-mono text-[11px] font-semibold tabular-nums text-slate-300">
+                  0{i + 1}
+                </span>
               </div>
-              <h3 className="text-xl font-semibold text-white mb-4">{item.title}</h3>
-              <p className="text-white/70 leading-relaxed">{item.description}</p>
-
-              {/* Arrow connector on mobile */}
-              {index < steps.length - 1 && (
-                <div className="md:hidden flex justify-center mt-6">
-                  <ArrowRight className="w-5 h-5 text-teal/40 rotate-90" />
-                </div>
-              )}
-            </div>
+              <h3 className="mt-3 text-[16px] font-semibold tracking-tight text-slate-900">
+                {s.title}
+              </h3>
+              <p className="mt-2 text-[13px] leading-relaxed text-slate-600">{s.body}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   )

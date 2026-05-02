@@ -2,33 +2,25 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { Providers } from "@/components/providers"
 import "./globals.css"
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
-
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+  display: "swap",
+})
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
-  title: "Flow Contents | Precision in Recovery",
+  title: "Flow Contents | 72-Hour Contents Lists for Public Adjusters",
   description:
-    "We turn the chaos of a contents claim into an audit-proof report. Forensic photography and expert analysis for maximum insurance claim recovery.",
-  icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
-  },
+    "AI-powered forensic contents documentation for public adjusters. Send us photos. Get a Xactimate-ready report in 72 hours — guaranteed better than any list you've seen, or your money back.",
+  // Icons are picked up automatically from app/icon.svg + public/apple-icon.png
 }
 
 export default function RootLayout({
@@ -37,9 +29,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`font-sans antialiased`}>
-        {children}
+    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
+      <body className="font-sans antialiased">
+        <Providers>{children}</Providers>
         <Analytics />
       </body>
     </html>
