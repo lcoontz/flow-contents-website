@@ -1,7 +1,6 @@
 import Link from "next/link"
 
-// TODO: replace with the real Calendly link once it's set up.
-const CALENDLY_URL = "https://calendly.com/leland-coontz/15min"
+const BOOKING_URL = "https://tidycal.com/leland/intro-call-flow-contents-ai-w-leland"
 
 export function CtaSection() {
   return (
@@ -21,7 +20,7 @@ export function CtaSection() {
 
           <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
             <Link
-              href={CALENDLY_URL}
+              href={BOOKING_URL}
               target="_blank"
               rel="noopener"
               className="inline-flex items-center justify-center gap-2 rounded-md bg-blue-600 px-7 py-4 text-[15px] font-semibold text-white shadow-md transition-all hover:bg-blue-500"
