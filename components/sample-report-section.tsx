@@ -1,33 +1,37 @@
 "use client"
 
 import { useState } from "react"
-import { useSampleReport } from "@/components/providers"
 
 export function SampleReportSection() {
-  const { open: openReport } = useSampleReport()
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setSubmitting(true)
+    setError(null)
     const formData = new FormData(e.currentTarget)
     try {
-      await fetch("/api/lead", {
+      const res = await fetch("/api/lead", {
         method: "POST",
         body: JSON.stringify({
           source: "sample-report",
           name: formData.get("name"),
           email: formData.get("email"),
-          firm: formData.get("firm"),
         }),
         headers: { "Content-Type": "application/json" },
       })
+      if (!res.ok) {
+        const body = (await res.json().catch(() => ({}))) as { error?: string }
+        throw new Error(body.error || "send_failed")
+      }
+      setSubmitted(true)
     } catch {
-      // non-fatal
+      setError("Something went wrong. Try again, or email leland.coontz.iv@gmail.com directly.")
+    } finally {
+      setSubmitting(false)
     }
-    setSubmitted(true)
-    setSubmitting(false)
   }
 
   return (
@@ -36,40 +40,18 @@ export function SampleReportSection() {
         <div className="mx-auto max-w-2xl text-center">
           <div className="fc-eyebrow">Sample Report</div>
           <h2 className="fc-section-title mt-4">
-            See what your client's report will look like.
+            See what your client&apos;s report will look like.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-[18px] font-semibold leading-snug text-slate-900">
-            1,000 items. 10 rooms. 72 hours. Every item priced, sourced, and depreciated.
+            ~3,000 items. Every line priced, sourced, and depreciated. Audited by humans.
           </p>
-          <p className="fc-lead mt-4">
-            An anonymized excerpt — every line with the full nine fields, every link live.
-            Browse it in your browser. We'll generate the real file for your specific claim.
-          </p>
-        </div>
-
-        <div className="mt-12 flex flex-col items-center justify-center gap-6">
-          {/* Primary: open the report */}
-          <button
-            type="button"
-            onClick={openReport}
-            className="group inline-flex items-center gap-3 rounded-md bg-blue-600 px-8 py-4 text-[16px] font-semibold text-white shadow-md transition-all hover:bg-blue-700 hover:shadow-lg"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
-              <circle cx="12" cy="12" r="3" />
-            </svg>
-            View the Sample Report
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-0.5">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </button>
-          <p className="text-[13px] text-slate-500">
-            Browse the spreadsheet in-browser · the full file is generated per claim
+          <p className="fc-lead mx-auto mt-4 max-w-xl">
+            Drop your name and email and we&apos;ll send you the live spreadsheet plus the
+            PDF. Same format your clients will receive.
           </p>
         </div>
 
-        {/* Lead capture: have us follow up */}
-        <div className="mx-auto mt-16 max-w-xl rounded-xl border border-slate-200 bg-slate-50 p-7 sm:p-8">
+        <div className="mx-auto mt-12 max-w-xl rounded-xl border border-slate-200 bg-slate-50 p-7 sm:p-8">
           {submitted ? (
             <div className="text-center">
               <div className="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
@@ -78,28 +60,40 @@ export function SampleReportSection() {
                 </svg>
               </div>
               <h3 className="mt-3 text-[16px] font-semibold tracking-tight text-slate-900">
-                Got it. We'll be in touch.
+                Check your inbox.
               </h3>
               <p className="mt-2 text-[13px] leading-relaxed text-slate-600">
-                Leland will reach out personally within one business day. If you have an
-                active claim, mention it in your reply.
+                The sample report is on its way. If it doesn&apos;t arrive in a few minutes,
+                check spam or email{" "}
+                <a href="mailto:leland.coontz.iv@gmail.com" className="font-medium text-blue-700 underline-offset-2 hover:underline">
+                  leland.coontz.iv@gmail.com
+                </a>
+                .
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
-              <Input name="name" label="Name" placeholder="Your name" required />
-              <Input name="email" type="email" label="Work email" placeholder="you@firm.com" required />
+            <form onSubmit={handleSubmit} className="grid gap-4">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <Input name="name" label="Name" placeholder="Your name" required />
+                <Input name="email" type="email" label="Work email" placeholder="you@firm.com" required />
+              </div>
               <button
                 type="submit"
                 disabled={submitting}
-                className="inline-flex h-[42px] items-center justify-center gap-1.5 rounded-md border border-slate-300 bg-white px-5 text-[13px] font-semibold text-slate-900 transition-colors hover:border-slate-400 hover:bg-slate-100 disabled:opacity-60"
+                className="inline-flex h-[44px] w-full items-center justify-center gap-2 rounded-md bg-blue-600 px-5 text-[14px] font-semibold text-white shadow-sm transition-colors hover:bg-blue-700 disabled:opacity-60"
               >
-                {submitting ? "Sending..." : "Have us follow up"}
+                {submitting ? "Sending..." : "Send me the sample report"}
+                {!submitting && (
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                )}
               </button>
-              <input type="hidden" name="firm" value="" />
-              <p className="text-[11px] text-slate-500 sm:col-span-3">
-                Have a live claim or want a tailored walkthrough? Drop your email and we'll
-                reach out within one business day.
+              {error && (
+                <p className="text-center text-[12px] text-red-600">{error}</p>
+              )}
+              <p className="text-center text-[11px] text-slate-500">
+                We&apos;ll email it within seconds. No spam — just the sample and a brief note.
               </p>
             </form>
           )}

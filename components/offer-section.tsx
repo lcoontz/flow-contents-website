@@ -67,7 +67,7 @@ export function OfferSection() {
               </p>
               <ul className="mt-6 space-y-3 text-[14px] text-slate-700">
                 <Bullet>Unlimited photos per property — all rooms, exterior, garage</Bullet>
-                <Bullet>5,000–7,000 line items per property, on average</Bullet>
+                <Bullet>3,000–5,000 line items per property, on average</Bullet>
                 <Bullet>All 9 fields on every line, including Xactimate code</Bullet>
                 <Bullet>Claims from $50K to $5M</Bullet>
                 <Bullet>Up to 3 revision passes included</Bullet>

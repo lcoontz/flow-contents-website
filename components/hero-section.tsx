@@ -2,12 +2,9 @@
 
 import Link from "next/link"
 import { Wordmark } from "@/components/logo"
-import { useSampleReport } from "@/components/providers"
 import { HeroMatrixBg } from "@/components/hero-matrix-bg"
 
 export function HeroSection() {
-  const { open: openReport } = useSampleReport()
-
   return (
     <>
       {/* ── Top nav ─────────────────────────────────────────────── */}
@@ -56,7 +53,7 @@ export function HeroSection() {
 
             <p className="fc-lead mx-auto mt-6 max-w-2xl">
               You want the maximum settlement and the no-hassle list to back it up. Our
-              in-house contents specialists plus our AI inventory engine return 5,000–7,000
+              in-house contents specialists plus our AI inventory engine return 3,000–5,000
               line items, each with replacement product link, RCV, ACV.
             </p>
             <p className="mx-auto mt-4 max-w-2xl text-[16px] font-semibold text-slate-900">
@@ -64,17 +61,15 @@ export function HeroSection() {
             </p>
 
             <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
-              <button
-                type="button"
-                onClick={openReport}
+              <Link
+                href="#sample"
                 className="inline-flex items-center justify-center gap-2 rounded-md bg-blue-600 px-7 py-4 text-[15px] font-semibold text-white shadow-sm transition-all hover:bg-blue-700 hover:shadow-md"
               >
-                View Sample Report
+                Get the sample report
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
-                  <circle cx="12" cy="12" r="3" />
+                  <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
-              </button>
+              </Link>
               <Link
                 href="#cta"
                 className="inline-flex items-center justify-center gap-2 rounded-md border border-slate-300 bg-white px-7 py-4 text-[15px] font-semibold text-slate-900 transition-colors hover:border-slate-400 hover:bg-slate-50"
