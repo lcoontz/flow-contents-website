@@ -6,13 +6,13 @@ const steps = [
   },
   {
     n: "Hour 0–48",
-    title: "AI drafts every line",
+    title: "AI builds the 95% baseline",
     body: "Our inventory engine detects every visible item, extracts feature attributes from photo metadata, matches to a replacement product, and computes ACV / RCV against current vendor pricing.",
   },
   {
     n: "Hour 24–60",
-    title: "Reviewers finalize",
-    body: "A trained Flow Contents reviewer walks every line — correcting wrong matches, adding the items the AI missed, locking in Xactimate codes, and confirming age and condition.",
+    title: "Content specialists finalize",
+    body: "A Flow Contents specialist walks every line — correcting wrong matches, adding the items the AI missed, locking in Xactimate codes, and confirming age and condition.",
   },
   {
     n: "Hour 72",
@@ -31,7 +31,7 @@ export function ProcessSection() {
             From photos to filed in 72 hours.
           </h2>
           <p className="fc-lead mt-5">
-            One handoff. One delivery. The hours between are ours to manage.
+            Nothing to chase, nothing to coordinate.
           </p>
         </div>
 

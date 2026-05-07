@@ -40,14 +40,10 @@ export function SampleReportSection() {
         <div className="mx-auto max-w-2xl text-center">
           <div className="fc-eyebrow">Sample Report</div>
           <h2 className="fc-section-title mt-4">
-            See what your client&apos;s report will look like.
+            See a real sample report
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-[18px] font-semibold leading-snug text-slate-900">
-            ~3,000 items. Every line priced, sourced, and depreciated. Audited by humans.
-          </p>
-          <p className="fc-lead mx-auto mt-4 max-w-xl">
-            Drop your name and email and we&apos;ll send you the live spreadsheet plus the
-            PDF. Same format your clients will receive.
+          <p className="fc-lead mx-auto mt-5 max-w-xl">
+            Anonymized excerpt from a real claim. Drop your email and we&apos;ll send the spreadsheet and PDF.
           </p>
         </div>
 

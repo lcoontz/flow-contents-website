@@ -12,8 +12,8 @@ const problems = [
     body: "If a line item doesn't have a comparable replacement, a real product link, and quantifiable features, the carrier values it at the lowest match in the database. Then they push back when you challenge it.",
   },
   {
-    title: "Documentation caps your capacity",
-    body: "Every claim you take on means weeks of contents work — yours or someone else's. The bottleneck isn't demand. It's how long it takes to produce a defensible list.",
+    title: "The task usually lands on the homeowner",
+    body: "Contents claims take weeks. It's not unusual for the homeowner to be left with the impossible task — one nobody wants to take. Send it to us instead. Your clients get a more complete, defensible list than anyone could have built alone. You get your time back, and a higher fee on the overall total payout.",
   },
 ]
 
@@ -27,8 +27,7 @@ export function ProblemSection() {
             Contents claims are the bottleneck no one has solved.
           </h2>
           <p className="fc-lead mt-5">
-            You can read damage. You can negotiate scope. The thing eating your week is the
-            list of every item the homeowner ever owned.
+            Reading damage is your job. Pricing 5,000 items shouldn&apos;t be.
           </p>
         </div>
 

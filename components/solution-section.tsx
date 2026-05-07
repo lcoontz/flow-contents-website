@@ -5,10 +5,10 @@ export function SolutionSection() {
         <div className="mx-auto max-w-2xl text-center">
           <div className="fc-eyebrow">The Solution</div>
           <h2 className="fc-section-title mt-4">
-            Trained humans. Tuned AI. The only system that runs both.
+            We turn your photos into a finished, priced contents report in 72 hours.
           </h2>
           <p className="fc-lead mt-5">
-            Send us your photos. Our input clerks build the list in 72 hours. You review and deliver.
+            You upload the photos. We send back the finished report in 72 hours, ready to submit.
           </p>
         </div>
 
@@ -19,15 +19,15 @@ export function SolutionSection() {
             body="Smoke, water, contamination, fire. Phone photos, drone shots, walk-through video stills. We accept what your team or your client already has — no on-site visit required, no protocol training, no proprietary capture rig."
           />
           <Pillar
-            kicker="02 — Engine + reviewers"
-            title="Our AI engine drafts. Our team finalizes."
-            body="Our AI detects every item, extracts features, and proposes a replacement product with ACV and RCV. Our trained input clerks then walk every line — correcting matches, catching the items the AI missed, and locking in the Xactimate code."
+            kicker="02 — Engine + specialists"
+            title="AI does the volume. People handle the accuracy."
+            body="Our AI detects every item, extracts features, and proposes a replacement product with ACV and RCV. Our content specialists then walk every line — correcting matches, catching the items the AI missed, and locking in the Xactimate code."
             featured
           />
           <Pillar
             kicker="03 — Speed"
             title="72 hours. Not 3 weeks."
-            body="Same property. Same depth. What used to be three weeks of contents work, finished in 72 hours. The hybrid process is the only way it's possible — and the guarantee sits on us, not your client."
+            body="A property that used to take three weeks of contents work, finished in 72 hours at the same depth — and the accuracy guarantee sits on us, not your client."
           />
         </div>
 
@@ -42,11 +42,13 @@ export function SolutionSection() {
               <div className="text-[11px] font-semibold uppercase tracking-wider text-blue-700">
                 Why this matters
               </div>
-              <p className="mt-2 text-[16px] leading-relaxed text-slate-700">
-                The AI alone is wrong often enough to be a liability. A pure human shop is
-                slow enough to lose the claim. Combined, the same property goes from a
-                4–5 week document drag to a <strong className="text-slate-900">72-hour deliverable</strong> —
-                with higher quality than either approach produces alone.
+              <p className="mt-2 text-[16px] font-semibold leading-snug text-slate-900">
+                We believe in AI, but we don&apos;t depend on it.
+              </p>
+              <p className="mt-3 text-[15px] leading-relaxed text-slate-700">
+                In insurance you have to aim for perfect to land on good. A human-only inventory costs more than
+                the claim is worth and still won&apos;t get you there. An AI-only inventory is wrong often enough to be
+                a liability. AI builds the 95% baseline; our content specialists close the gap.
               </p>
             </div>
           </div>
