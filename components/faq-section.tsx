@@ -16,10 +16,6 @@ const faqs = [
     a: "Most don't, and that's fine. We work from post-loss photos plus structured client interviews. For total losses, we can also pull comparable rooms from real estate listings, social media archives, and prior insurance documentation to reconstruct the inventory.",
   },
   {
-    q: "Will the report import directly into Xactimate or Symbility?",
-    a: "Every line item carries the correct Xactimate contents code. The spreadsheet is column-mapped for direct import — no manual code lookup, no reformatting. Symbility-compatible export is on request.",
-  },
-  {
     q: "What's your turnaround on revisions?",
     a: "Up to three revision passes are included in the base fee, each turned in 24–48 hours. Beyond that, $1 per item revised. Most claims close inside the included revisions.",
   },
