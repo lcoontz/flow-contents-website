@@ -43,7 +43,7 @@ export function SampleReportSection() {
             See a real sample report
           </h2>
           <p className="fc-lead mx-auto mt-5 max-w-xl">
-            Anonymized excerpt from a real claim. Drop your email and we&apos;ll send the spreadsheet and PDF.
+            Anonymized excerpt from a real claim. Drop your email and we&apos;ll send you the live spreadsheet.
           </p>
         </div>
 
