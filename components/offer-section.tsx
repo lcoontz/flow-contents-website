@@ -79,12 +79,12 @@ export function OfferSection() {
             <div className="space-y-5">
               <div className="relative rounded-xl border border-slate-200 bg-white p-7 shadow-sm">
                 {/* Launch banner */}
-                <div className="absolute -right-2 -top-3 z-10 rotate-1 transform">
-                  <div className="rounded-md bg-red-700 px-3.5 py-2 text-white shadow-md">
-                    <div className="text-[10px] font-medium tracking-wide text-red-100">
+                <div className="absolute -right-3 -top-4 z-10 rotate-2 transform">
+                  <div className="rounded-lg bg-[radial-gradient(circle_at_30%_25%,#fbbf24,#ea580c_55%,#b91c1c)] px-4 py-2 text-white shadow-lg ring-2 ring-white">
+                    <div className="text-[10px] font-medium tracking-wide text-amber-100">
                       May offer
                     </div>
-                    <div className="text-[12px] font-semibold leading-snug">
+                    <div className="text-[13px] font-semibold leading-snug">
                       First 10 claims get 50% off
                     </div>
                   </div>
