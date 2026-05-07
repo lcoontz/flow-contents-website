@@ -16,12 +16,16 @@ const faqs = [
     a: "Most don't, and that's fine. We work from post-loss photos plus structured client interviews. For total losses, we can also pull comparable rooms from real estate listings, social media archives, and prior insurance documentation to reconstruct the inventory.",
   },
   {
-    q: "What's your turnaround on revisions?",
-    a: "Up to three revision passes are included in the base fee, each turned in 24–48 hours. Beyond that, $1 per item revised. Most claims close inside the included revisions.",
+    q: "How accurate is the AI? Won't it hallucinate items?",
+    a: "Our content specialists review every single line before it leaves the building — that's the whole point of the hybrid process. We don't promise 100% accuracy, but our reports have fewer duplicates and errors than any other AI-generated report we've tested. If you find a more accurate one elsewhere, we'll refund your fee.",
   },
   {
-    q: "How is this different from Enservio or ITEL?",
-    a: "Enservio and ITEL are carrier-side vendors — they work for the insurance company. We work for you. Our engine and review process is calibrated to extract every defensible attribute that drives the line item up the LKQ ladder, not down it.",
+    q: "What's your turnaround on revisions?",
+    a: "Up to three revision passes are included in the base fee, each turned in 24–48 hours. Most claims close inside the included revisions.",
+  },
+  {
+    q: "How is this different from Enservio or Exact Contents?",
+    a: "Enservio and Exact Contents are carrier-side vendors — they work for the insurance company. We work for you. Our engine and review process is calibrated to extract every defensible attribute that drives the line item up the LKQ ladder, not down it.",
   },
   {
     q: "What kinds of claims do you take?",
