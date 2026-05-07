@@ -5,7 +5,7 @@ import { useState } from "react"
 const faqs = [
   {
     q: "How does pricing actually work on a real claim?",
-    a: "Flat $2,000 base fee plus 1% of documented value above $200,000. So a $400,000 claim is $2,000 + $2,000 = $4,000 total. A $1M claim is $2,000 + $8,000 = $10,000. Only the $2,000 base is due upfront — the performance bonus is invoiced on delivery, after you've seen the report. No hidden per-item charges, no per-room charges, no overages.",
+    a: "Flat $2,000 base fee plus 1% of documented value above $200,000. So a $400,000 claim is $2,000 + $2,000 = $4,000 total. A $1M claim is $2,000 + $8,000 = $10,000. Only the $2,000 base is due upfront — the performance bonus is invoiced on delivery, after you've seen the report. No hidden per-item charges, no per-room charges, no overages. For our May launch, the first 10 claims booked this month are at 50% off — $1,000 base plus 0.5% above $200K.",
   },
   {
     q: "What photos do you actually need?",

@@ -79,6 +79,14 @@ export function OfferSection() {
             {/* Right: pricing card + examples */}
             <div className="space-y-5">
               <div className="rounded-xl border border-slate-200 bg-white p-7 shadow-sm">
+                <div className="mb-5 rounded-md border border-amber-300 bg-amber-50 px-4 py-3">
+                  <div className="font-mono text-[10px] font-semibold uppercase tracking-wider text-amber-800">
+                    May launch offer
+                  </div>
+                  <p className="mt-1 text-[13px] font-semibold leading-snug text-slate-900">
+                    First 10 claims booked this May at 50% off — $1,000 base + 0.5% above $200K.
+                  </p>
+                </div>
                 <div className="flex items-baseline gap-2">
                   <span className="text-[44px] font-bold leading-none tracking-tight text-slate-900">
                     $2,000
