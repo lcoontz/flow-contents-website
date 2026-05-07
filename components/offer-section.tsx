@@ -24,10 +24,10 @@ export function OfferSection() {
         <div className="mx-auto max-w-2xl text-center">
           <div className="fc-eyebrow">What You Get</div>
           <h2 className="fc-section-title mt-4">
-            Every line. Nine fields. Every claim.
+            What every report includes
           </h2>
           <p className="fc-lead mt-5">
-            One report. One fee. Built for a public adjuster's claim file — not a homeowner's
+            One report. One fee. Built for a public adjuster&apos;s claim file — not a homeowner&apos;s
             Google Sheet.
           </p>
         </div>
@@ -57,13 +57,13 @@ export function OfferSection() {
             <div>
               <div className="fc-eyebrow">Pricing</div>
               <h3 className="mt-3 text-[28px] font-bold tracking-tight text-slate-900 sm:text-[32px]">
-                One tier. One fee. No surprises.
+                Our fee pays for itself, or you don&apos;t pay it.
               </h3>
               <p className="mt-4 text-[14px] leading-relaxed text-slate-600">
                 Flat <strong className="text-slate-900">$2,000 base fee</strong> plus{" "}
                 <strong className="text-slate-900">1% of documented value above $200,000</strong>.
-                You only pay the base upfront — the performance bonus comes due on delivery,
-                after you've seen the report.
+                If we don&apos;t recover more than we charge in additional documented value, the
+                fee is on us.
               </p>
               <ul className="mt-6 space-y-3 text-[14px] text-slate-700">
                 <Bullet>Unlimited photos per property — all rooms, exterior, garage</Bullet>
@@ -147,6 +147,35 @@ export function OfferSection() {
                   </tbody>
                 </table>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Challenge offer */}
+        <div className="mt-10 rounded-2xl border border-blue-200 bg-blue-50/40 p-8 sm:p-10">
+          <div className="grid gap-6 sm:grid-cols-[auto_1fr] sm:items-center">
+            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-600 text-white">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-[20px] font-semibold tracking-tight text-slate-900 sm:text-[22px]">
+                Don&apos;t believe us? Pick a claim you&apos;ve already closed.
+              </h3>
+              <p className="mt-2 text-[15px] leading-relaxed text-slate-700">
+                Send us the photos and we&apos;ll redo the contents work. If our report doesn&apos;t
+                surface more documented value than your existing one, you owe us nothing.
+              </p>
+              <a
+                href="#cta"
+                className="mt-4 inline-flex items-center gap-1.5 text-[14px] font-semibold text-blue-700 hover:text-blue-800"
+              >
+                Send us a closed claim
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
             </div>
           </div>
         </div>
