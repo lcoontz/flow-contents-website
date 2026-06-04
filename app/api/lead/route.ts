@@ -40,19 +40,21 @@ export async function POST(req: Request) {
   const text = [
     greeting,
     "",
-    "Leland here. Thanks for requesting our sample report — here it is. Open the live spreadsheet to see every line item, fully filterable and priced:",
+    "Leland here. Thanks for requesting our sample report. Open the live spreadsheet to see every line item, fully filterable and priced:",
     "",
     sheetUrl,
     "",
     "How it works",
     "",
-    "Once we receive your photos, our pipeline runs them through a multi-step identification process where we extract LKQ features and details, then identify approximate age and condition. From there we price each item against live retail data — no outdated database.",
+    "Once we receive your photos, our pipeline runs them through a multi-step identification process where we extract LKQ features and details, then identify approximate age and condition. From there we price each item against live retail data, not an outdated database.",
     "",
     "Then every single item is reviewed by our content specialists.",
     "",
     "We offer priority 72-hour turnaround. Normal processing is one week, audit included. Our average list size runs about 3,000 items.",
     "",
     "I'd love your honest feedback on the report. If you have an active claim or know someone who does, just hit reply — this email goes straight to me.",
+    "",
+    "As part of our May launch, our normal pricing is 50% off for the first 10 clients.",
     "",
     "Best,",
     "Leland Coontz IV",
@@ -63,15 +65,16 @@ export async function POST(req: Request) {
   const html = `<!doctype html>
 <html><body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#0f172a;line-height:1.55;font-size:15px;max-width:600px">
   <p>${greeting}</p>
-  <p>Leland here. Thanks for requesting our sample report — here it is. Open the live spreadsheet to see every line item, fully filterable and priced:</p>
+  <p>Leland here. Thanks for requesting our sample report. Open the live spreadsheet to see every line item, fully filterable and priced:</p>
   <p style="margin:18px 0">
     <a href="${sheetUrl}" style="display:inline-block;background:#1d4ed8;color:#fff;text-decoration:none;font-weight:600;padding:10px 18px;border-radius:6px">Open the sample report →</a>
   </p>
   <h3 style="margin-top:24px;margin-bottom:8px;font-size:16px">How it works</h3>
-  <p>Once we receive your photos, our pipeline runs them through a multi-step identification process where we extract LKQ features and details, then identify approximate age and condition. From there we price each item against live retail data — no outdated database.</p>
+  <p>Once we receive your photos, our pipeline runs them through a multi-step identification process where we extract LKQ features and details, then identify approximate age and condition. From there we price each item against live retail data, not an outdated database.</p>
   <p>Then every single item is reviewed by our content specialists.</p>
   <p>We offer <strong>priority 72-hour turnaround</strong>. Normal processing is one week, audit included. Our average list size runs about <strong>3,000 items</strong>.</p>
   <p>I'd love your honest feedback on the report. If you have an active claim or know someone who does, just hit reply — this email goes straight to me.</p>
+  <p>As part of our May launch, our normal pricing is 50% off for the first 10 clients.</p>
   <p style="margin-top:24px">Best,<br>
   Leland Coontz IV<br>
   Flow Contents<br>

@@ -1,0 +1,1318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Preliminary Inventory Estimate — Sample Property</title>
+<style>
+  @page { size: letter; margin: 0; }
+  html, body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
+    color: #1c1f23;
+    background: #f5f5f7;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .page {
+    width: 850px;
+    min-height: 1100px;
+    margin: 24px auto;
+    background: #fff;
+    padding: 60px 70px 80px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    page-break-after: always;
+    position: relative;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* Brand row */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 80px;
+  }
+  .brand .logo {
+    width: 48px;
+    height: 48px;
+    background: #2563eb;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+  }
+  .brand .name {
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #1c1f23;
+  }
+
+  h1.report-title {
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 6px;
+    color: #1c1f23;
+  }
+  .report-sub {
+    color: #6b7280;
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  hr.rule {
+    border: none;
+    border-top: 1px solid #d4d4d8;
+    margin: 24px 0;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px 60px;
+    margin-bottom: 40px;
+  }
+  .meta-grid .label {
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 10.5px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .meta-grid .val {
+    font-size: 17px;
+    color: #1c1f23;
+    font-weight: 500;
+  }
+
+  /* 4-stat panel */
+  .stat-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background: #f1f5f9;
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin: 30px 0 50px;
+    column-gap: 16px;
+  }
+  .stat-panel .col {
+    border-right: 1px solid #cbd5e1;
+    padding-right: 16px;
+  }
+  .stat-panel .col:last-child { border-right: none; }
+  .stat-panel .label {
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 10.5px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .stat-panel .big {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #1c1f23;
+    line-height: 1.05;
+    white-space: nowrap;
+  }
+  .stat-panel .big.range { font-size: 22px; }
+  /* Redacted stat (tax+shipping): match the range column's size + height so
+     the hatched bar sits on a single line, aligned with its neighbours. */
+  .stat-panel .big.redacted { font-size: 22px; line-height: 1.2; }
+  .stat-panel .big.redacted .redact-bar { vertical-align: middle; }
+  .stat-panel .sub {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 6px;
+  }
+
+  /* Items by room — bar chart */
+  .section-title {
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 8px 0 20px;
+  }
+  .room-bar-list { margin-bottom: 16px; }
+  .room-bar-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 60px 90px;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 0;
+  }
+  .room-bar-row .room {
+    font-size: 14px;
+    color: #1c1f23;
+  }
+  .room-bar-row .bar-track {
+    background: #eef2f7;
+    border-radius: 999px;
+    height: 18px;
+    overflow: hidden;
+    position: relative;
+  }
+  .room-bar-row .bar-fill {
+    background: #2563eb;
+    height: 100%;
+    border-radius: 999px;
+  }
+  .room-bar-row .count {
+    text-align: right;
+    color: #1c1f23;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .room-bar-row .rcv {
+    text-align: right;
+    color: #2563eb;
+    font-size: 13.5px;
+  }
+  .room-bar-row .rcv.redact { color: transparent; }
+
+  /* Summary table */
+  .summary-h1 {
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 4px;
+  }
+  .summary-sub { color: #6b7280; margin-bottom: 30px; font-size: 16px; }
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+  }
+  .summary-table thead th {
+    text-align: left;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 10px 0;
+    border-bottom: 1px solid #cbd5e1;
+  }
+  .summary-table thead th.num { text-align: right; }
+  .summary-table tbody td {
+    padding: 14px 0;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 15px;
+  }
+  .summary-table tbody td.num {
+    text-align: right;
+    color: #2563eb;
+  }
+  .summary-table tr.total td {
+    font-weight: 700;
+    border-top: 2px solid #1c1f23;
+    border-bottom: none;
+    padding-top: 18px;
+    color: #1c1f23;
+  }
+  .summary-table tr.total td.num { color: #1c1f23; }
+  .summary-extras tr td {
+    padding: 10px 0;
+    font-size: 14px;
+  }
+  .summary-extras tr td.num { text-align: right; }
+
+  /* Cards (line items) */
+  .room-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #1c1f23;
+    padding-bottom: 14px;
+    margin: 16px 0 24px;
+  }
+  .room-header h2 {
+    font-size: 40px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+  .room-header .meta {
+    font-size: 14px;
+    color: #6b7280;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .card {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 14px;
+    background: #fff;
+    page-break-inside: avoid;
+  }
+  .card img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+  }
+  .card .body { min-width: 0; }
+  .card .item-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1c1f23;
+    margin-bottom: 4px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 36px;  /* ~2 lines */
+  }
+  .card .item-desc {
+    color: #6b7280;
+    font-size: 12px;
+    line-height: 1.4;
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card .meta-line {
+    color: #6b7280;
+    font-size: 11.5px;
+    margin-bottom: 8px;
+  }
+  .card .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+  }
+  .card .bucket {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .card .retailer {
+    color: #2563eb;
+    font-size: 11.5px;
+    text-decoration: none;
+  }
+
+  /* Redaction bar generic */
+  .redact-bar {
+    display: inline-block;
+    background: repeating-linear-gradient(
+      45deg, #e4e4e7 0, #e4e4e7 4px, #f4f4f5 4px, #f4f4f5 8px
+    );
+    color: transparent;
+    border-radius: 3px;
+    padding: 2px 12px;
+    user-select: none;
+    border: 1px solid #d4d4d8;
+    min-width: 70px;
+    text-align: center;
+  }
+  .redact-bar::after {
+    content: "$ ████";
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .redact-bar.pct::after { content: "███%"; }
+
+  /* Page footer */
+  .page-footer {
+    position: absolute;
+    bottom: 30px;
+    left: 70px;
+    right: 70px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #9ca3af;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 12px;
+  }
+
+  /* Preview badge */
+  .preview-badge {
+    display: inline-block;
+    background: #fef3c7;
+    color: #b45309;
+    border: 1px solid #fcd34d;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+
+  /* Unlock CTA */
+  .unlock-wrap {
+    background: #f8fafc;
+    border: 2px solid #2563eb;
+    border-radius: 16px;
+    padding: 48px 40px;
+    margin-top: 80px;
+    text-align: center;
+  }
+  .unlock-wrap h2 {
+    font-size: 32px;
+    margin: 0 0 12px;
+    color: #1c1f23;
+    letter-spacing: -0.02em;
+  }
+  .unlock-wrap .price {
+    font-size: 42px;
+    font-weight: 700;
+    color: #2563eb;
+    margin: 16px 0;
+  }
+  .unlock-wrap .price .strike {
+    color: #9ca3af;
+    text-decoration: line-through;
+    font-size: 20px;
+    margin-right: 12px;
+    font-weight: 500;
+  }
+  .unlock-wrap p {
+    color: #374151;
+    font-size: 15px;
+    max-width: 460px;
+    margin: 16px auto;
+    line-height: 1.6;
+  }
+  .unlock-wrap ul {
+    text-align: left;
+    max-width: 440px;
+    margin: 24px auto;
+    padding-left: 20px;
+    list-style: none;
+  }
+  .unlock-wrap ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 14px;
+    color: #1c1f23;
+    position: relative;
+    padding-left: 22px;
+  }
+  .unlock-wrap ul li::before {
+    content: "✓";
+    color: #2563eb;
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+  }
+  .unlock-wrap .cta { margin-top: 24px; font-size: 15px; color: #1c1f23; }
+  .unlock-wrap .cta strong { color: #2563eb; }
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1: COVER ================= -->
+<div class="page">
+  <div class="brand">
+    <div class="logo">F</div>
+    <div class="name">FLOW CONTENTS</div>
+  </div>
+
+  <div class="preview-badge">Preliminary estimate · Not for filing</div>
+  <h1 class="report-title">Inventory Report</h1>
+  <div class="report-sub">Sample Property</div>
+
+  <hr class="rule">
+
+  <div class="meta-grid">
+    <div><div class="label">DATE OF LOSS</div><div class="val">May 13, 2026</div></div>
+    <div><div class="label">REPORT DATE</div><div class="val">May 29, 2026</div></div>
+    <div><div class="label">PREPARED BY</div><div class="val">Flow Contents · AI estimate</div></div>
+    <div><div class="label">STAGE</div><div class="val">Preview · awaiting full audit</div></div>
+  </div>
+
+  <div class="stat-panel">
+    <div class="col">
+      <div class="label">ITEMS</div>
+      <div class="big">1,249</div>
+      <div class="sub">AI-classified final</div>
+    </div>
+    <div class="col">
+      <div class="label">ROOMS</div>
+      <div class="big">3</div>
+    </div>
+    <div class="col">
+      <div class="label">REPLACEMENT VALUE</div>
+      <div class="big range">$157K – $190K</div>
+      <div class="sub">estimated range</div>
+    </div>
+    <div class="col">
+      <div class="label">TAX + SHIPPING</div>
+      <div class="big redacted"><span class="redact-bar"></span></div>
+      <div class="sub">unlock to compute</div>
+    </div>
+  </div>
+
+  <div class="section-title">Items by room</div>
+  <div class="room-bar-list">
+    <div class="room-bar-row"><div class="room">Upstair Balcony</div><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><div class="count">541</div><div class="rcv redact"><span class="redact-bar"></span></div></div>
+<div class="room-bar-row"><div class="room">Living room</div><div class="bar-track"><div class="bar-fill" style="width:93.5%"></div></div><div class="count">506</div><div class="rcv redact"><span class="redact-bar"></span></div></div>
+<div class="room-bar-row"><div class="room">Bedroom</div><div class="bar-track"><div class="bar-fill" style="width:37.3%"></div></div><div class="count">202</div><div class="rcv redact"><span class="redact-bar"></span></div></div>
+  </div>
+
+  <div class="page-footer">
+    <div>Sample Property · Preview · May 29, 2026</div>
+    <div>Page 1</div>
+  </div>
+</div>
+
+<!-- ================= PAGE 2: SUMMARY ================= -->
+<div class="page">
+  <h1 class="summary-h1">Summary</h1>
+  <div class="summary-sub">Totals by room · preview values shown as ranges</div>
+
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>ROOM</th>
+        <th class="num">ITEMS</th>
+        <th class="num">EST. RCV</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Upstair Balcony</td><td class="num">541</td><td class="num">$66,599 – $80,620</td></tr>
+<tr><td>Living room</td><td class="num">506</td><td class="num">$45,841 – $55,492</td></tr>
+<tr><td>Bedroom</td><td class="num">202</td><td class="num">$44,302 – $53,628</td></tr>
+      <tr class="total">
+        <td>GRAND TOTAL</td>
+        <td class="num">1,249</td>
+        <td class="num">$156,741 – $189,740</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="summary-extras">
+    <tr><td>Tax (8.25%)</td><td class="num">$12,931 – $15,654</td></tr>
+    <tr><td>Shipping (15%)</td><td class="num">$23,511 – $28,461</td></tr>
+    <tr class="total"><td><strong>TOTAL WITH FEES</strong></td><td class="num"><span class="redact-bar"></span></td></tr>
+  </table>
+
+  <h2 style="font-size:24px; font-weight:700; letter-spacing:-0.02em; margin: 40px 0 4px;">By category</h2>
+  <div class="summary-sub">Top categories by estimated value</div>
+
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>CATEGORY</th>
+        <th class="num">ITEMS</th>
+        <th class="num">EST. RCV</th>
+        <th class="num">% OF TOTAL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Furniture</td><td class="num">64</td><td class="num">$41,541 – $50,287</td><td class="num">26.5%</td></tr>
+<tr><td>Home Decor</td><td class="num">376</td><td class="num">$29,706 – $35,959</td><td class="num">19.0%</td></tr>
+<tr><td>Clothing</td><td class="num">195</td><td class="num">$26,731 – $32,358</td><td class="num">17.1%</td></tr>
+<tr><td>Books</td><td class="num">121</td><td class="num">$11,220 – $13,583</td><td class="num">7.2%</td></tr>
+<tr><td>Accessories</td><td class="num">34</td><td class="num">$10,599 – $12,830</td><td class="num">6.8%</td></tr>
+<tr><td>Footwear</td><td class="num">14</td><td class="num">$6,475 – $7,838</td><td class="num">4.1%</td></tr>
+<tr><td>Food & Beverage</td><td class="num">90</td><td class="num">$5,806 – $7,028</td><td class="num">3.7%</td></tr>
+<tr><td>Electronics</td><td class="num">34</td><td class="num">$5,460 – $6,610</td><td class="num">3.5%</td></tr>
+<tr><td>Linens & Textiles</td><td class="num">75</td><td class="num">$4,697 – $5,686</td><td class="num">3.0%</td></tr>
+<tr><td>Tableware</td><td class="num">49</td><td class="num">$3,578 – $4,331</td><td class="num">2.3%</td></tr>
+<tr><td>Uncategorized</td><td class="num">36</td><td class="num">$3,270 – $3,958</td><td class="num">2.1%</td></tr>
+<tr><td>Lighting</td><td class="num">19</td><td class="num">$1,432 – $1,733</td><td class="num">0.9%</td></tr>
+    </tbody>
+  </table>
+
+  <p style="color:#6b7280; font-size:12px; font-style:italic; margin-top:30px;">
+    Preview totals are computed from AI-classified items prior to a human audit. Final audited values, tax, shipping, and net claim payable available in the full report.
+  </p>
+
+  <div class="page-footer">
+    <div>Sample Property · Preview · May 29, 2026</div>
+    <div>Page 2</div>
+  </div>
+</div>
+
+<!-- ================= PAGE 3: LINE ITEMS (top 50) ================= -->
+<div class="page">
+  <div class="room-header">
+    <h2>Top items</h2>
+    <div class="meta">50 of 1,249 shown · sorted by value</div>
+  </div>
+
+  <div class="card-grid">
+    
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FgYOVvnprVxNch7JPxpiY.jpg?alt=media&token=gYOVvnprVxNch7JPxpiY" alt="">
+            <div class="body">
+              <div class="item-name">Chanel Quilted Caviar Leather Handbag</div>
+              <div class="item-desc">Light blue quilted caviar leather handbag with gold-tone hardware, chain-link drawstring closure, and iconic CC logo charm.</div>
+              <div class="meta-line">Excellent Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $2,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Chanel+Quilted+Caviar+Leather+Handbag+Medium&prds=localAnnotatedOfferId:1,catalogid:15017545953278674272,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Fashionphile">Fashionphile</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FpkHA5JZDZYxdMxOlcp1q.jpg?alt=media&token=pkHA5JZDZYxdMxOlcp1q" alt="">
+            <div class="body">
+              <div class="item-name">Objets d'Art in Amber Exhibition Catalogue</div>
+              <div class="item-desc">A softcover exhibition catalogue titled 'Objets d'Art in Amber' featuring items from the Catherine Palace Museum collection (17th-early 20th centuries).</div>
+              <div class="meta-line">Good Condition · 15 years</div>
+              <div class="price-row">
+                <span class="bucket">above $2,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Objets+d'Art+in+Amber+Exhibition+Catalogue&prds=localAnnotatedOfferId:1,productid:6324774557654401462,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Artemest">Artemest</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2Fyl35E5gmxaZX6ZNqvjnG.jpg?alt=media&token=yl35E5gmxaZX6ZNqvjnG" alt="">
+            <div class="body">
+              <div class="item-name">Beautyrest Platinum BackCare 3X Mattress</div>
+              <div class="item-desc">A premium Beautyrest Platinum series mattress featuring BackCare 3X technology for enhanced support and comfort.</div>
+              <div class="meta-line">Excellent Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $2,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Beautyrest+Platinum+BackCare+3X+Mattress&prds=localAnnotatedOfferId:1,catalogid:13448952107386601855,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Beautyrest">Beautyrest</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2F7ymN6pOcLmOJX9EZDxG0.jpg?alt=media&token=7ymN6pOcLmOJX9EZDxG0" alt="">
+            <div class="body">
+              <div class="item-name">Honeycomb Patterned Black and Gold Sideboard</div>
+              <div class="item-desc">A modern sideboard featuring a high-gloss black finish with decorative gold-toned honeycomb geometric overlays on the cabinet doors.</div>
+              <div class="meta-line">Excellent Condition · 3.5 years</div>
+              <div class="price-row">
+                <span class="bucket">above $2,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Honeycomb+Patterned+Black+and+Gold+Sideboard+Approx+72+inches+wide&prds=localAnnotatedOfferId:1,catalogid:8294902584665141799,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Edward Martin">Edward Martin</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FOsprxsE1iTb7iC8qgOnJ.jpg?alt=media&token=OsprxsE1iTb7iC8qgOnJ" alt="">
+            <div class="body">
+              <div class="item-name">Large Flat Screen Smart Television</div>
+              <div class="item-desc">Large flat-screen smart television with a thin bezel, mounted on a wall above a soundbar.</div>
+              <div class="meta-line">Excellent Condition · 3.5 years</div>
+              <div class="price-row">
+                <span class="bucket">above $2,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Sony+Large+Flat+Screen+Smart+Television+65-75+inch+class&prds=localAnnotatedOfferId:1,catalogid:10044445473101440168,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Electronic Express">Electronic Express</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2Fz1z3VSsV7IgkFOcmzfTr.jpg?alt=media&token=z1z3VSsV7IgkFOcmzfTr" alt="">
+            <div class="body">
+              <div class="item-name">Large Modular Fabric Sectional Sofa</div>
+              <div class="item-desc">A large, modular, low-profile sectional sofa with deep seating and five back cushions, upholstered in a light-colored fabric.</div>
+              <div class="meta-line">Good Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $2,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Large+Modular+Fabric+Sectional+Sofa&prds=localAnnotatedOfferId:1,catalogid:10972720079714098204,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Staples">Staples</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2F5lGJaJr9JvoOCVAw1GLt.jpg?alt=media&token=5lGJaJr9JvoOCVAw1GLt" alt="">
+            <div class="body">
+              <div class="item-name">Balenciaga Paris Sleeveless Shift Dress</div>
+              <div class="item-desc">A sleeveless, cream-colored shift dress with a subtle textured finish and a full-length back zipper.</div>
+              <div class="meta-line">Excellent Condition · 6 years</div>
+              <div class="price-row">
+                <span class="bucket">above $2,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Balenciaga+Paris+Sleeveless+Shift+Dress&prds=localAnnotatedOfferId:1,catalogid:2191188214832505816,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="farfetch.com">farfetch.com</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2F9FKFPqc3vXHslVWm2cCM.jpg?alt=media&token=9FKFPqc3vXHslVWm2cCM" alt="">
+            <div class="body">
+              <div class="item-name">Louis XVI Style Gilded Armchair</div>
+              <div class="item-desc">A classic Louis XVI style armchair featuring a carved, distressed-finish wooden frame with fluted legs and mustard yellow velvet upholstery.</div>
+              <div class="meta-line">Very Good Condition · 25 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Louis+XVI+Style+Gilded+Armchair&prds=localAnnotatedOfferId:1,productid:10076212935299261357,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Bone Inlay Furnitures">Bone Inlay Furnitu…</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FgUgZpDUAvmHqTBfHqcTI.jpg?alt=media&token=gUgZpDUAvmHqTBfHqcTI" alt="">
+            <div class="body">
+              <div class="item-name">Louis XVI Style Gilded Armchair</div>
+              <div class="item-desc">A classic Louis XVI style armchair featuring a carved wooden frame with a distressed finish and vibrant yellow velvet upholstery.</div>
+              <div class="meta-line">Very Good Condition · 30 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Louis+XVI+Style+Gilded+Armchair&prds=localAnnotatedOfferId:1,productid:10076212935299261357,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Bone Inlay Furnitures">Bone Inlay Furnitu…</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FJ6qGaQUfuVzRGgFV4KOO.jpg?alt=media&token=J6qGaQUfuVzRGgFV4KOO" alt="">
+            <div class="body">
+              <div class="item-name">Balenciaga Sleeveless Silk Evening Dress</div>
+              <div class="item-desc">A sleeveless, high-quality silk evening dress featuring a minimalist design and the Balenciaga Paris label.</div>
+              <div class="meta-line">Excellent Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Balenciaga+Sleeveless+Silk+Evening+Dress&prds=localAnnotatedOfferId:1,catalogid:6863800711161478978,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="farfetch.com">farfetch.com</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FRBwDd0hzHJU4ukTJBOBM.jpg?alt=media&token=RBwDd0hzHJU4ukTJBOBM" alt="">
+            <div class="body">
+              <div class="item-name">Hermès 100% Cashmere Ribbed Sweater</div>
+              <div class="item-desc">A luxury ribbed knit sweater crafted from 100% cashmere, featuring the iconic Hermès brand label.</div>
+              <div class="meta-line">Very Good Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Herm%C3%A8s+100%25+Cashmere+Ribbed+Sweater&prds=localAnnotatedOfferId:1,catalogid:522616516677876029,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Hermès">Hermès</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FZqXI2UUQN5QsOC74rdMw.jpg?alt=media&token=ZqXI2UUQN5QsOC74rdMw" alt="">
+            <div class="body">
+              <div class="item-name">Upholstered Living Room Sofa</div>
+              <div class="item-desc">A modern, low-profile upholstered sofa with a neutral gray fabric finish and block-style feet.</div>
+              <div class="meta-line">Very Good Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Upholstered+Living+Room+Sofa&prds=localAnnotatedOfferId:1,catalogid:6375303892792973850,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="AllModern">AllModern</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FVgxFHqfVifONyj4hezZI.jpg?alt=media&token=VgxFHqfVifONyj4hezZI" alt="">
+            <div class="body">
+              <div class="item-name">Upholstered Sofa with Rounded Arm</div>
+              <div class="item-desc">A modern sofa featuring soft, light green or gray velvet-like upholstery and a rounded, curved arm profile.</div>
+              <div class="meta-line">Very Good Condition · 3 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Upholstered+Sofa+with+Rounded+Arm&prds=localAnnotatedOfferId:1,catalogid:15895373296277387929,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Quince">Quince</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FZWUO86qt4Emeb2PWh9XN.jpg?alt=media&token=ZWUO86qt4Emeb2PWh9XN" alt="">
+            <div class="body">
+              <div class="item-name">sofa</div>
+              
+              <div class="meta-line">Unknown · Unknown</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=sofa&prds=localAnnotatedOfferId:1,catalogid:10437596331071044384,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="west elm">west elm</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FLBAQkv9tRo658gSdt8MT.jpg?alt=media&token=LBAQkv9tRo658gSdt8MT" alt="">
+            <div class="body">
+              <div class="item-name">Textured Fabric Upholstered Sofa</div>
+              <div class="item-desc">A neutral-toned, textured fabric sofa with rounded armrests and a simple, modern silhouette.</div>
+              <div class="meta-line">Fair Condition – Average Wear · 5 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Textured+Fabric+Upholstered+Sofa&prds=localAnnotatedOfferId:1,catalogid:5145242653755316065,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Pottery Barn">Pottery Barn</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FJSGhd0P5bp7RZHeXyfZA.jpg?alt=media&token=JSGhd0P5bp7RZHeXyfZA" alt="">
+            <div class="body">
+              <div class="item-name">Fluted Pedestal Round Dining Table</div>
+              <div class="item-desc">A round dining or accent table featuring a thick, fluted cylindrical pedestal base and a matching fluted edge tabletop in a matte white finish.</div>
+              <div class="meta-line">Like New / Near New · 3 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Fluted+Pedestal+Round+Dining+Table+Approx+48-54+inch+diameter&prds=localAnnotatedOfferId:1,catalogid:11783367293082378031,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Beloved Furniture Co.">Beloved Furniture …</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FnOkIZKWprHQQA1I9R0di.jpg?alt=media&token=nOkIZKWprHQQA1I9R0di" alt="">
+            <div class="body">
+              <div class="item-name">Shagreen Textured Console Table</div>
+              <div class="item-desc">A modern console table featuring a faux shagreen textured finish in a neutral gray tone with gold-toned hardware.</div>
+              <div class="meta-line">Excellent Condition · 3 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Shagreen+Textured+Console+Table+30+inches+high&prds=localAnnotatedOfferId:1,productid:12857067461327203426,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="LuxeDecor">LuxeDecor</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FwvEdFrTwmCzBG1YmzCQZ.jpg?alt=media&token=wvEdFrTwmCzBG1YmzCQZ" alt="">
+            <div class="body">
+              <div class="item-name">Shagreen Texture Console Table</div>
+              <div class="item-desc">A rectangular console table featuring a faux-shagreen textured finish in a gray tone with three drawers and gold-toned hardware, supported by a lower display shelf.</div>
+              <div class="meta-line">Excellent Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Shagreen+Texture+Console+Table+approx+60+inches+wide&prds=localAnnotatedOfferId:1,productid:14869300152065357417,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="France & Son">France & Son</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FXUt9qb2EM20ukoqRz4K6.jpg?alt=media&token=XUt9qb2EM20ukoqRz4K6" alt="">
+            <div class="body">
+              <div class="item-name">Upholstered Fabric Sofa with Piping</div>
+              <div class="item-desc">A neutral-colored upholstered sofa featuring clean lines and piping detail along the armrest seams.</div>
+              <div class="meta-line">Very Good Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Upholstered+Fabric+Sofa+with+Piping&prds=localAnnotatedOfferId:1,catalogid:12168957975585423719,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="west elm">west elm</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2Fu4RQE0Vn71H0ztdgZWBJ.jpg?alt=media&token=u4RQE0Vn71H0ztdgZWBJ" alt="">
+            <div class="body">
+              <div class="item-name">French Provincial Style Three-Drawer Nightstand</div>
+              <div class="item-desc">A three-drawer wooden nightstand featuring a curved serpentine front, cabriole-style legs, and dark finish hardware.</div>
+              <div class="meta-line">Very Good Condition · 7 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=French+Provincial+Style+Three-Drawer+Nightstand+approx+30+inches+wide&prds=localAnnotatedOfferId:1,productid:4748911047475682915,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Modern Bungalow">Modern Bungalow</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FE9hy7X7ylcK2wXmKnmFc.jpg?alt=media&token=E9hy7X7ylcK2wXmKnmFc" alt="">
+            <div class="body">
+              <div class="item-name">Beautyrest Platinum Mattress Bed Frame</div>
+              <div class="item-desc">A wooden bed frame featuring decorative carved molding with a leaf motif, paired with a Beautyrest Platinum mattress.</div>
+              <div class="meta-line">Very Good Condition · 6 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Beautyrest+Platinum+Mattress+Bed+Frame&prds=localAnnotatedOfferId:1,productid:10615872980676173381,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Bedplanet.com">Bedplanet.com</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FNacPmQhcdMdnAJXMSMgx.jpg?alt=media&token=NacPmQhcdMdnAJXMSMgx" alt="">
+            <div class="body">
+              <div class="item-name">Valentino Garavani High Heel Pumps</div>
+              <div class="item-desc">Valentino Garavani women's high heel pumps with a size 40.5, featuring a leather sole and visible signs of wear.</div>
+              <div class="meta-line">Fair Condition – Average Wear · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Valentino+Garavani+High+Heel+Pumps+40.5&prds=localAnnotatedOfferId:1,productid:4855045195498855844,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Neiman Marcus">Neiman Marcus</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2F8HWwB8nsfNlGGpQbalKU.jpg?alt=media&token=8HWwB8nsfNlGGpQbalKU" alt="">
+            <div class="body">
+              <div class="item-name">Valentino Garavani Pointed Toe Pumps</div>
+              <div class="item-desc">Valentino Garavani pointed-toe pumps featuring a tri-color design with clear PVC side panels and leather accents.</div>
+              <div class="meta-line">Fair Condition – Above Average Wear · 5 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Valentino+Garavani+Pointed+Toe+Pumps+40.5&prds=localAnnotatedOfferId:1,catalogid:3448199265728515009,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Bloomingdale's">Bloomingdale's</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FkJaDirgRJtvLJkpQMKfQ.jpg?alt=media&token=kJaDirgRJtvLJkpQMKfQ" alt="">
+            <div class="body">
+              <div class="item-name">Valentino Garavani Women's Designer Shoe</div>
+              <div class="item-desc">A single women's designer shoe with a red leather heel and clear paneling, accompanied by its original red Valentino Garavani branded box.</div>
+              <div class="meta-line">Fair Condition – Average Wear · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Valentino+Garavani+Women's+Designer+Shoe+40.5&prds=localAnnotatedOfferId:1,catalogid:1178080088005541530,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Neiman Marcus">Neiman Marcus</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2F1vsrfyTcdF0Jo9Ste1vj.jpg?alt=media&token=1vsrfyTcdF0Jo9Ste1vj" alt="">
+            <div class="body">
+              <div class="item-name">Beige Upholstered Two-Cushion Sofa</div>
+              <div class="item-desc">A neutral-toned, two-cushion sofa with a simple, modern silhouette and plush upholstery.</div>
+              <div class="meta-line">Very Good Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Beige+Upholstered+Two-Cushion+Sofa+approx+72-80+inches+wide&prds=localAnnotatedOfferId:1,catalogid:4621081727556627931,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="English Elm">English Elm</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FDjdftoiZruOR1mJx3FHd.jpg?alt=media&token=DjdftoiZruOR1mJx3FHd" alt="">
+            <div class="body">
+              <div class="item-name">Modern High-Gloss Dining Table</div>
+              <div class="item-desc">A modern dining table featuring a high-gloss black finish with a distinctive geometric gold-tone metal X-frame base.</div>
+              <div class="meta-line">Very Good Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Modern+High-Gloss+Dining+Table&prds=localAnnotatedOfferId:1,catalogid:2572616061859532619,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Emma Mason">Emma Mason</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FYDgTJzsihoZGSYCoNWjq.jpg?alt=media&token=YDgTJzsihoZGSYCoNWjq" alt="">
+            <div class="body">
+              <div class="item-name">Shagreen Textured Three-Drawer Nightstand</div>
+              <div class="item-desc">A modern three-drawer nightstand featuring a faux-shagreen textured finish and circular brass-toned hardware.</div>
+              <div class="meta-line">Excellent Condition · 3.5 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Shagreen+Textured+Three-Drawer+Nightstand&prds=localAnnotatedOfferId:1,catalogid:12841105020562299492,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="One Kings Lane">One Kings Lane</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2F6hAtSswek38WAnLI5PV7.jpg?alt=media&token=6hAtSswek38WAnLI5PV7" alt="">
+            <div class="body">
+              <div class="item-name">Hermes Ribbed Cashmere Scarf</div>
+              <div class="item-desc">A luxury ribbed knit scarf made from 100% cashmere with a subtle H logo pattern.</div>
+              <div class="meta-line">Excellent Condition · 3.5 years</div>
+              <div class="price-row">
+                <span class="bucket">above $1,000</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Hermes+Ribbed+Cashmere+Scarf&prds=localAnnotatedOfferId:1,catalogid:14847813058711515072,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Hermès">Hermès</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2F0EjGXy5nSFEnm0d7fGiT.jpg?alt=media&token=0EjGXy5nSFEnm0d7fGiT" alt="">
+            <div class="body">
+              <div class="item-name">Modern Glamour by Kelly Wearstler</div>
+              <div class="item-desc">A hardcover interior design book by Kelly Wearstler showcasing her signature glamorous and eclectic style.</div>
+              <div class="meta-line">Excellent Condition · 8 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Harper+Design+Modern+Glamour+by+Kelly+Wearstler&prds=localAnnotatedOfferId:1,productid:6683497960023338343,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Kneen & Co">Kneen & Co</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2F2RsMBUAgbX4wJJTyyMKp.jpg?alt=media&token=2RsMBUAgbX4wJJTyyMKp" alt="">
+            <div class="body">
+              <div class="item-name">Upholstered Armchair with Rolled Arms</div>
+              <div class="item-desc">A neutral-toned upholstered armchair featuring rolled arms and a plush seat cushion, positioned near a sheer curtain.</div>
+              <div class="meta-line">Very Good Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Upholstered+Armchair+with+Rolled+Arms&prds=localAnnotatedOfferId:1,catalogid:14084993402094685780,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Pottery Barn">Pottery Barn</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2Fqw1rL6vzsBFvH5d9kLXI.jpg?alt=media&token=qw1rL6vzsBFvH5d9kLXI" alt="">
+            <div class="body">
+              <div class="item-name">Chanel Slingback Sandal</div>
+              <div class="item-desc">A pair of luxury designer slingback sandals featuring the iconic Chanel logo embossed on the insole.</div>
+              <div class="meta-line">Good Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Chanel+Slingback+Sandal&prds=localAnnotatedOfferId:1,catalogid:11690332661703103724,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="The RealReal">The RealReal</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FxsW703n5Px0yh6P3aLtP.jpg?alt=media&token=xsW703n5Px0yh6P3aLtP" alt="">
+            <div class="body">
+              <div class="item-name">Four-Panel Mother of Pearl Wall Art</div>
+              <div class="item-desc">A four-panel wall art set featuring an underwater coral reef scene with fish, crabs, and shrimp, crafted with inlaid mother-of-pearl elements on a dark lacquered background.</div>
+              <div class="meta-line">Excellent Condition · 8 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Four-Panel+Mother+of+Pearl+Wall+Art+Large+wall+display&prds=localAnnotatedOfferId:1,productid:11749683722324480332,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="eBay - 61gary61">eBay - 61gary61</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FmMPMwq0RiUP1KJ9CUGco.jpg?alt=media&token=mMPMwq0RiUP1KJ9CUGco" alt="">
+            <div class="body">
+              <div class="item-name">Burberry Brit Knit Sweater</div>
+              <div class="item-desc">A gray knit sweater from the Burberry Brit line, size small petite.</div>
+              <div class="meta-line">Very Good Condition · 6 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Burberry+Brit+Knit+Sweater+Small+Petite&prds=localAnnotatedOfferId:1,catalogid:5875706876321709470,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Burberry">Burberry</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2Fdg7zIn8hHtTEWjgSVaEa.jpg?alt=media&token=dg7zIn8hHtTEWjgSVaEa" alt="">
+            <div class="body">
+              <div class="item-name">Etro Milano Floral Silk Blouse</div>
+              <div class="item-desc">A luxury Etro Milano floral print blouse featuring a signature paisley-inspired botanical pattern on silk fabric.</div>
+              <div class="meta-line">Excellent Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Etro+Milano+Floral+Silk+Blouse&prds=localAnnotatedOfferId:1,productid:8930269818400857090,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Neiman Marcus">Neiman Marcus</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FxxnhoY0L1qP0v2OUzwST.jpg?alt=media&token=xxnhoY0L1qP0v2OUzwST" alt="">
+            <div class="body">
+              <div class="item-name">Petrified Wood Slab Side Table</div>
+              <div class="item-desc">A natural petrified wood slab side table featuring a raw, organic live-edge top supported by a black metal geometric base.</div>
+              <div class="meta-line">Excellent Condition · 3 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Petrified+Wood+Slab+Side+Table+Approx+20-24+inches+diameter&prds=localAnnotatedOfferId:1,catalogid:10367594824649350922,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="west elm">west elm</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FyFqaF0BcQQ503Zqw5qk0.jpg?alt=media&token=yFqaF0BcQQ503Zqw5qk0" alt="">
+            <div class="body">
+              <div class="item-name">Givenchy Floral Print Silk Jacket</div>
+              <div class="item-desc">A luxury designer jacket featuring a vibrant purple and blue floral or galaxy-inspired print on high-quality fabric.</div>
+              <div class="meta-line">Excellent Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Givenchy+Floral+Print+Silk+Jacket&prds=localAnnotatedOfferId:1,catalogid:9843086997313537515,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="farfetch.com">farfetch.com</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FcPZDroFVQaRCm4KocU9o.jpg?alt=media&token=cPZDroFVQaRCm4KocU9o" alt="">
+            <div class="body">
+              <div class="item-name">Make It Fabulous William T. Georgis</div>
+              <div class="item-desc">A hardcover coffee table book featuring the architectural and interior design work of William T. Georgis.</div>
+              <div class="meta-line">Excellent Condition · 7 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=The+Monacelli+Press+Make+It+Fabulous+William+T.+Georgis+Large+format&prds=localAnnotatedOfferId:1,productid:15828918790449108465,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="BookPal">BookPal</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FEjHrx255mOVaOqAGdvPN.jpg?alt=media&token=EjHrx255mOVaOqAGdvPN" alt="">
+            <div class="body">
+              <div class="item-name">Bottega Veneta Leather Bi-fold Wallet</div>
+              <div class="item-desc">A luxury leather bi-fold wallet featuring the signature Bottega Veneta fabric interior label.</div>
+              <div class="meta-line">Excellent Condition · 2.5 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Bottega+Veneta+Leather+Bi-fold+Wallet&prds=localAnnotatedOfferId:1,catalogid:17061436885701837980,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Bottega Veneta">Bottega Veneta</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FO1q04PKHTbsfJd0zgWOP.jpg?alt=media&token=O1q04PKHTbsfJd0zgWOP" alt="">
+            <div class="body">
+              <div class="item-name">Chanel Women's Wedge Sandals</div>
+              <div class="item-desc">Black leather wedge sandals with a small CC logo detail on the heel, presented with the original Chanel branded box.</div>
+              <div class="meta-line">Fair Condition – Average Wear · 6 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Chanel+Women's+Wedge+Sandals+41&prds=localAnnotatedOfferId:1,catalogid:630132300342268039,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Vestiaire Collective">Vestiaire Collecti…</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FQ0trSHLPUK88yyXAYiZS.jpg?alt=media&token=Q0trSHLPUK88yyXAYiZS" alt="">
+            <div class="body">
+              <div class="item-name">Chanel Women's Wedge Sandals</div>
+              <div class="item-desc">Black leather wedge sandals with gold-tone hardware and Chanel branding on the sole and heel.</div>
+              <div class="meta-line">Fair Condition – Average Wear · 5 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Chanel+Women's+Wedge+Sandals+41&prds=localAnnotatedOfferId:1,catalogid:8112565270756270312,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Vestiaire Collective">Vestiaire Collecti…</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FsYrKrbF9eYk9ORduIwVd.jpg?alt=media&token=sYrKrbF9eYk9ORduIwVd" alt="">
+            <div class="body">
+              <div class="item-name">Balenciaga Women's Black Skirt</div>
+              <div class="item-desc">A black Balenciaga skirt featuring a size 42 tag and internal care labels indicating Italian manufacture.</div>
+              <div class="meta-line">Excellent Condition · 10 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Balenciaga+Women's+Black+Skirt+42&prds=localAnnotatedOfferId:1,catalogid:16481986895117594189,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Vestiaire Collective">Vestiaire Collecti…</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2F4PAE12fxCV5IZgxLFzFI.jpg?alt=media&token=4PAE12fxCV5IZgxLFzFI" alt="">
+            <div class="body">
+              <div class="item-name">Bottega Veneta Leather Bi-Fold Wallet</div>
+              <div class="item-desc">A luxury leather bi-fold wallet featuring the signature Bottega Veneta interior fabric label.</div>
+              <div class="meta-line">Excellent Condition · 2.5 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Bottega+Veneta+Leather+Bi-Fold+Wallet+Standard+bi-fold&prds=localAnnotatedOfferId:1,catalogid:16103732238642590795,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Bottega Veneta">Bottega Veneta</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FQllFTLVw8z2PGWoZUM19.jpg?alt=media&token=QllFTLVw8z2PGWoZUM19" alt="">
+            <div class="body">
+              <div class="item-name">Frette Cotton Bed Pillowcases</div>
+              <div class="item-desc">A pair of yellow cotton pillowcases featuring white horizontal accent stripes and the Frette logo embroidered on each.</div>
+              <div class="meta-line">Excellent Condition · 3 years · Qty 2</div>
+              <div class="price-row">
+                <span class="bucket">above $100</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Frette+Cotton+Bed+Pillowcases&prds=localAnnotatedOfferId:1,catalogid:12342432938619477258,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Woods Fine Linens">Woods Fine Linens</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FqElAcYJZPrU5J3wkIQQe.jpg?alt=media&token=qElAcYJZPrU5J3wkIQQe" alt="">
+            <div class="body">
+              <div class="item-name">Intrecciato Woven Leather Bi-fold Wallet</div>
+              <div class="item-desc">A bi-fold wallet featuring the signature Intrecciato woven leather pattern in a two-tone black and mint green colorway.</div>
+              <div class="meta-line">Very Good Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Bottega+Veneta+Intrecciato+Woven+Leather+Bi-fold+Wallet+Standard+bi-fold&prds=localAnnotatedOfferId:1,catalogid:16383578934141705045,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Bottega Veneta">Bottega Veneta</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FDLBwvERyjoTtCKBfWOpT.jpg?alt=media&token=DLBwvERyjoTtCKBfWOpT" alt="">
+            <div class="body">
+              <div class="item-name">New Year's Eve Dog Napkins</div>
+              <div class="item-desc">A stack of disposable paper napkins featuring a festive New Year's Eve theme with illustrations of dogs in party hats and balloons.</div>
+              <div class="meta-line">Like New / Near New · 1 year · Qty 15</div>
+              <div class="price-row">
+                <span class="bucket">above $10</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=New+Year's+Eve+Dog+Napkins&prds=localAnnotatedOfferId:1,productid:9091795141032722629,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Zazzle">Zazzle</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FVPlv4l7NSrLQR6GSSwbO.jpg?alt=media&token=VPlv4l7NSrLQR6GSSwbO" alt="">
+            <div class="body">
+              <div class="item-name">Bytes Raccoon Fur Vest</div>
+              <div class="item-desc">A sleeveless vest made of genuine raccoon fur with a dark, possibly dyed, finish.</div>
+              <div class="meta-line">Like New / Near New · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Bytes+Raccoon+Fur+Vest&prds=localAnnotatedOfferId:1,catalogid:16825643362935808905,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="C.T.plage">C.T.plage</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2Fk5S3UT5kd5fwCJBFE8YK.jpg?alt=media&token=k5S3UT5kd5fwCJBFE8YK" alt="">
+            <div class="body">
+              <div class="item-name">Cyclone Sentry K4 Air Mover</div>
+              <div class="item-desc">Professional-grade portable air mover fan used for carpet drying and water damage restoration.</div>
+              <div class="meta-line">Good Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Cyclone+Sentry+K4+Air+Mover&prds=localAnnotatedOfferId:1,productid:6058484173171114620,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="CleanCo">CleanCo</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2Fnax1mK7loimaJLCYJkHB.jpg?alt=media&token=nax1mK7loimaJLCYJkHB" alt="">
+            <div class="body">
+              <div class="item-name">Chanel Chain-Trimmed Leather Sandals</div>
+              <div class="item-desc">Beige leather flat sandals featuring multiple delicate chain-link straps and an ankle strap closure.</div>
+              <div class="meta-line">Fair Condition – Above Average Wear · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Chanel+Chain-Trimmed+Leather+Sandals+41&prds=localAnnotatedOfferId:1,catalogid:13102051611588465765,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="Vestiaire Collective">Vestiaire Collecti…</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FrktdysfqWLOhDjyvxPiQ.jpg?alt=media&token=rktdysfqWLOhDjyvxPiQ" alt="">
+            <div class="body">
+              <div class="item-name">Gucci Graphic Print Cotton T-Shirt</div>
+              <div class="item-desc">A blue cotton crewneck t-shirt featuring a surrealist graphic print of two figures in a landscape.</div>
+              <div class="meta-line">Very Good Condition · 4 years</div>
+              <div class="price-row">
+                <span class="bucket">above $500</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Gucci+Graphic+Print+Cotton+T-Shirt&prds=localAnnotatedOfferId:1,catalogid:7568477073598007523,pvo:2,pvt:hg,rds:PC_6027158597472037202%7CPROD_PC_6027158597472037202&gl=us&udm=28&pvorigin=2" title="GUCCI">GUCCI</a>
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="card">
+            <img src="https://firebasestorage.googleapis.com/v0/b/flow-contents.firebasestorage.app/o/users%2Fpreview-test-runner%2Fjobs%2FnC0TfT3r6zcDzpcxSXkB%2Fcrops%2FQglWn71HIgsZTo16EUlC.jpg?alt=media&token=QglWn71HIgsZTo16EUlC" alt="">
+            <div class="body">
+              <div class="item-name">Modern Upholstered Dining Chair</div>
+              <div class="item-desc">Modern dining chair with a neutral-toned upholstered seat and backrest featuring a quilted pattern, supported by tapered black legs.</div>
+              <div class="meta-line">Very Good Condition · 3.5 years · Qty 2</div>
+              <div class="price-row">
+                <span class="bucket">above $100</span>
+                <a class="retailer" href="https://www.google.com/search?ibp=oshop&q=Modern+Petal+Fully+Upholstered+Dining+ChairModern+Petal+Fully+Upholstered+Dining+Chair&prds=catalogid%3A15700532348799086590%2Cgpcid%3A8906210808552043565%2CimageDocid%3A7413709819708547459%2Cproductid%3A4693014249257300699&pvorigin=25&hl=en&gl=us&udm=28&shndl=37&shem=pvflt%2Cshrtsdl&source=sh%2Fx%2Fprdct%2Fhdr%2Fm1%2F1&utm_source=pvflt%2Cshrtsdl%2Csh%2Fx%2Fprdct%2Fhdr%2Fm1%2F1" title="west elm">west elm</a>
+              </div>
+            </div>
+          </div>
+        
+  </div>
+
+  <p style="color:#6b7280; font-size:12px; font-style:italic; margin-top:30px;">
+    Exact per-item replacement cost, retailer source, depreciation, and ACV redacted in preview. Full audited values delivered in the paid report.
+  </p>
+
+  <div class="page-footer">
+    <div>Sample Property · Preview · May 29, 2026</div>
+    <div>Top items</div>
+  </div>
+</div>
+
+<!-- ================= PAGE 4: UNLOCK CTA ================= -->
+<div class="page">
+  <div class="brand">
+    <div class="logo">F</div>
+    <div class="name">FLOW CONTENTS</div>
+  </div>
+
+  <div class="unlock-wrap">
+    <h2>Unlock the full report</h2>
+    <div class="price"><span class="strike">$1,700</span>$900</div>
+    <div style="font-size:13px; color:#6b7280; margin:-8px 0 18px;">estimated price · 50% first-report promotion applied</div>
+    <p>You're looking at a preview. The full audited report includes every line item, exact replacement and ACV values, retailer sources, depreciation, and tax + shipping computed.</p>
+
+    <ul>
+      <li>All 1,249 items audited (not just the 50 shown)</li>
+      <li>Exact replacement cost &amp; ACV per item</li>
+      <li>Retailer sources linked on every priced item</li>
+      <li>Sales tax + shipping computed; total payable</li>
+      <li>Photo-backed inventory grouped by room</li>
+      <li>Carrier-ready Excel + PDF deliverables</li>
+    </ul>
+
+    <div class="cta">
+      <strong>Reply to this email</strong> to book your full report, or schedule a 15-minute call at <strong>flowcontents.com/book</strong>.
+    </div>
+  </div>
+
+  <p style="color:#9ca3af; font-size:11px; text-align:center; margin-top:24px; font-style:italic;">
+    Your estimated price is calculated as a percentage of the total contents value we document for your claim. First-time customers receive 50% off, rounded to the nearest $100. Promotional price valid for claims booked within 30 days of this preview.
+  </p>
+
+  <div class="page-footer">
+    <div>Sample Property · Preview · May 29, 2026</div>
+    <div>Unlock</div>
+  </div>
+</div>
+
+</body>
+</html>
