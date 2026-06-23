@@ -36,9 +36,21 @@ export const HOME_HTML = String.raw`
     </div>
 
     <div class="hero-visual">
-      <!-- Borderless frame. Video goes here — left intentionally blank. -->
+      <!-- Borderless frame. Hero promo video. -->
       <div class="player">
-        <div class="screen"></div>
+        <div class="screen">
+          <video
+            class="hero-video"
+            src="/flow-contents-promo.mp4"
+            poster="/flow-contents-promo-poster.jpg"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            controls
+          ></video>
+        </div>
       </div>
     </div>
   </div>

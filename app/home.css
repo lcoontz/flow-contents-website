@@ -58,6 +58,8 @@
     border:1px solid var(--slate-200);overflow:hidden;}
 .fc-home .player .screen{position:relative;aspect-ratio:16/10.2;
     background:linear-gradient(180deg,#fff,var(--slate-100));}
+.fc-home .player .screen .hero-video{position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;display:block;background:#000;}
 .fc-home .trust{border-bottom:1px solid var(--slate-200);background:#fff;padding:22px 0;}
 .fc-home .trust-inner{display:flex;align-items:center;justify-content:center;gap:34px;flex-wrap:wrap;}
 .fc-home .trust .stat{display:flex;align-items:baseline;gap:8px;}
