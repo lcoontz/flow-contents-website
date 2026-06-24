@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server"
 import { Resend } from "resend"
+import { adminDb } from "@/lib/firebase-admin"
+import { FieldValue } from "firebase-admin/firestore"
+import { appendLeadToSheet, notifyWhatsApp } from "@/lib/lead-notify"
 
 interface LeadPayload {
   source?: string
@@ -19,6 +22,7 @@ export async function POST(req: Request) {
 
   const email = body.email?.trim()
   const name = body.name?.trim() || ""
+  const source = body.source?.trim() || "sample-report"
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return NextResponse.json({ ok: false, error: "email_required" }, { status: 400 })
@@ -32,6 +36,27 @@ export async function POST(req: Request) {
   if (!apiKey || !from || !sheetUrl) {
     console.error("[lead] missing config", { hasKey: !!apiKey, hasFrom: !!from, hasSheet: !!sheetUrl })
     return NextResponse.json({ ok: false, error: "server_misconfigured" }, { status: 500 })
+  }
+
+  // 1) Durable record FIRST, capturing the lead no matter what happens with the
+  // email or alert channels. This is the system of record (mirrors to BigQuery).
+  let leadId: string | null = null
+  try {
+    const ref = await adminDb()
+      .collection("websiteLeads")
+      .add({
+        source,
+        name: name || null,
+        email,
+        status: "new",
+        userAgent: req.headers.get("user-agent") || null,
+        referer: req.headers.get("referer") || null,
+        createdAt: FieldValue.serverTimestamp(),
+      })
+    leadId = ref.id
+  } catch (err) {
+    // Don't fail the request — the visitor still gets their sample below.
+    console.error("[lead] firestore write failed", err)
   }
 
   const greeting = name ? `Hi ${name.split(" ")[0]},` : "Hi,"
@@ -97,8 +122,30 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 })
     }
 
-    console.log("[lead] sent", { id: data?.id, source: body.source, email, name })
-    return NextResponse.json({ ok: true, id: data?.id })
+    console.log("[lead] sent", { id: data?.id, source, email, name, leadId })
+
+    // 3) Internal alerts, best-effort. Awaited (so they actually run in the
+    // serverless function) but never allowed to fail the visitor response.
+    const notifyEmail = process.env.LEAD_NOTIFY_EMAIL || replyTo
+    const when = new Date().toISOString()
+    const summary = `New ${source} lead\nEmail: ${email}\nName: ${name || "(none)"}\nTime: ${when}\nLead ID: ${leadId || "(not saved)"}`
+    const channels = await Promise.allSettled([
+      resend.emails.send({
+        from,
+        to: notifyEmail,
+        replyTo: email,
+        subject: `New sample-report lead: ${email}`,
+        text: summary,
+      }),
+      notifyWhatsApp(summary),
+      appendLeadToSheet([when, email, name, source, leadId || "", req.headers.get("referer") || ""]),
+    ])
+    const channelNames = ["notify-email", "whatsapp", "sheet"]
+    channels.forEach((r, i) => {
+      if (r.status === "rejected") console.error(`[lead] alert ${channelNames[i]} failed`, r.reason)
+    })
+
+    return NextResponse.json({ ok: true, id: data?.id, leadId })
   } catch (err) {
     console.error("[lead] resend exception", err)
     return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 })
