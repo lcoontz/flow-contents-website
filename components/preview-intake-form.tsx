@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { convertHeicToJpeg, isHeic } from "./heic-client"
 
 interface UploadTarget {
   uploadUrl: string
@@ -22,6 +23,8 @@ export function PreviewIntakeForm() {
   const [files, setFiles] = useState<File[]>([])
   const [sessionId, setSessionId] = useState<string | null>(null)
   const [uploadedCount, setUploadedCount] = useState(0)
+  const [convertDone, setConvertDone] = useState(0)
+  const [convertTotal, setConvertTotal] = useState(0)
   const [uploadError, setUploadError] = useState<string | null>(null)
   const [showDetails, setShowDetails] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
@@ -30,12 +33,16 @@ export function PreviewIntakeForm() {
   const [submitFailed, setSubmitFailed] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  // Auto-upload effect: whenever the picked file list changes, kick off a
-  // fresh prepare + parallel PUTs to GCS in the background.
+  // Auto-upload effect: whenever the picked file list changes, convert any HEIC
+  // photos to JPEG, then kick off a fresh prepare + parallel PUTs to GCS in the
+  // background. The CONVERTED files are what we both prepare and PUT — uploading
+  // raw .heic breaks the admin <img> render and the app's `sharp` decode.
   useEffect(() => {
     if (files.length === 0) {
       setSessionId(null)
       setUploadedCount(0)
+      setConvertDone(0)
+      setConvertTotal(0)
       setUploadError(null)
       return
     }
@@ -47,16 +54,41 @@ export function PreviewIntakeForm() {
     let cancelled = false
     setSessionId(null)
     setUploadedCount(0)
+    setConvertDone(0)
+    setConvertTotal(files.filter(isHeic).length)
     setUploadError(null)
 
     void (async () => {
+      // 1. Convert HEIC/HEIF → JPEG client-side. Each picked file maps to exactly
+      //    one upload file (HEIC → .jpg, everything else passes through), so the
+      //    index alignment prepare/PUT relies on is preserved.
+      let uploadFiles: File[]
+      try {
+        uploadFiles = []
+        for (const f of files) {
+          if (cancelled) return
+          if (isHeic(f)) {
+            uploadFiles.push(await convertHeicToJpeg(f))
+            if (!cancelled) setConvertDone((n) => n + 1)
+          } else {
+            uploadFiles.push(f)
+          }
+        }
+      } catch {
+        if (!cancelled) setUploadError("convert_failed")
+        return
+      }
+      if (cancelled) return
+
+      // 2. Prepare signed upload URLs for the CONVERTED files (names/sizes/types
+      //    must match what we PUT so the server signs the right .jpg objects).
       try {
         const prepRes = await fetch("/api/preview", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             action: "prepare",
-            files: files.map((f) => ({
+            files: uploadFiles.map((f) => ({
               name: f.name,
               size: f.size,
               contentType: f.type || "application/octet-stream",
@@ -71,7 +103,7 @@ export function PreviewIntakeForm() {
         }
         setSessionId(prep.sessionId)
 
-        const queue = prep.uploads.map((u, i) => ({ u, file: files[i] }))
+        const queue = prep.uploads.map((u, i) => ({ u, file: uploadFiles[i] }))
         let done = 0
         async function worker() {
           for (;;) {
@@ -177,6 +209,7 @@ export function PreviewIntakeForm() {
   const overlayOpen = snapshot !== null
   const allUploaded = files.length > 0 && uploadedCount === files.length
   const progressPct = files.length ? Math.round((uploadedCount / files.length) * 100) : 0
+  const converting = convertTotal > 0 && convertDone < convertTotal && !sessionId
 
   return (
     <>
@@ -224,7 +257,7 @@ export function PreviewIntakeForm() {
               <input
                 ref={fileInputRef}
                 type="file"
-                accept="image/*,.pdf,.xlsx,.xls,.csv"
+                accept="image/*,.heic,.heif,image/heic,image/heif,.pdf,.xlsx,.xls,.csv"
                 multiple
                 onChange={onPick}
                 className="hidden"
@@ -251,7 +284,15 @@ export function PreviewIntakeForm() {
               </span>
             )}
             {files.length > 0 && !uploadError && (
-              <UploadStatus current={uploadedCount} total={files.length} pct={progressPct} done={allUploaded} />
+              <UploadStatus
+                current={uploadedCount}
+                total={files.length}
+                pct={progressPct}
+                done={allUploaded}
+                converting={converting}
+                convertDone={convertDone}
+                convertTotal={convertTotal}
+              />
             )}
             {uploadError && (
               <span className="mt-1.5 block text-[12px] font-medium text-red-600">
@@ -288,6 +329,7 @@ export function PreviewIntakeForm() {
           totalCount={files.length}
           progressPct={progressPct}
           uploadError={uploadError}
+          converting={converting}
         />
       )}
     </>
@@ -299,12 +341,37 @@ function UploadStatus({
   total,
   pct,
   done,
+  converting,
+  convertDone,
+  convertTotal,
 }: {
   current: number
   total: number
   pct: number
   done: boolean
+  converting: boolean
+  convertDone: number
+  convertTotal: number
 }) {
+  // While iPhone (HEIC) photos are being converted to JPEG, show that phase
+  // instead of a stuck 0% upload bar.
+  if (converting) {
+    const convertPct = convertTotal ? Math.round((convertDone / convertTotal) * 100) : 0
+    return (
+      <div className="mt-2">
+        <div className="flex items-center justify-between text-[12px]">
+          <span className="text-slate-500">Optimizing iPhone photos…</span>
+          <span className="font-medium text-slate-700">
+            {convertDone.toLocaleString()} of {convertTotal.toLocaleString()} ({convertPct}%)
+          </span>
+        </div>
+        <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
+          <div className="h-full bg-blue-600 transition-[width] duration-300" style={{ width: `${convertPct}%` }} />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="mt-2">
       <div className="flex items-center justify-between text-[12px]">
@@ -329,6 +396,7 @@ function SubmitOverlay({
   totalCount,
   progressPct,
   uploadError,
+  converting,
 }: {
   done: boolean
   failed: boolean
@@ -336,6 +404,7 @@ function SubmitOverlay({
   totalCount: number
   progressPct: number
   uploadError: string | null
+  converting: boolean
 }) {
   useEffect(() => {
     const prev = document.body.style.overflow
@@ -394,7 +463,7 @@ function SubmitOverlay({
             </p>
             <div className="mt-6">
               <div className="flex items-center justify-between text-[12px]">
-                <span className="text-slate-500">Uploading…</span>
+                <span className="text-slate-500">{converting ? "Optimizing photos…" : "Uploading…"}</span>
                 <span className="font-medium text-slate-700">
                   {uploadedCount.toLocaleString()} of {totalCount.toLocaleString()} ({progressPct}%)
                 </span>
