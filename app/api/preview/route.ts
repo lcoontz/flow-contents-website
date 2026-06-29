@@ -40,6 +40,26 @@ interface SubmitBody {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+// This is a PUBLIC, unauthenticated endpoint. Gate uploads by file EXTENSION
+// (not content-type — browsers send application/octet-stream / "" for CSV/XLS,
+// so a content-type allow-list would reject legitimate inventory lists). HEIC is
+// converted to JPEG client-side before upload, but we still permit heic/heif here
+// as defense-in-depth. Everything else — executables, scripts, archives — is
+// rejected. The ~25 MB/file cap is enforced separately below.
+const ALLOWED_EXTENSIONS = new Set([
+  "jpg", "jpeg", "png", "gif", "webp", "bmp", "tif", "tiff", "heic", "heif", // images
+  "pdf", "xls", "xlsx", "csv", // documents / inventory lists
+])
+
+function extensionOf(name: string): string {
+  const match = /\.([a-zA-Z0-9]+)$/.exec(name || "")
+  return match ? match[1].toLowerCase() : ""
+}
+
+function isAllowedFile(name: string): boolean {
+  return ALLOWED_EXTENSIONS.has(extensionOf(name))
+}
+
 function safeName(name: string): string {
   return name.replace(/[^a-zA-Z0-9._-]/g, "_").slice(0, 120) || "photo.jpg"
 }
@@ -70,6 +90,9 @@ async function prepare(body: PrepareBody) {
   for (const f of files) {
     if ((f.size ?? 0) > MAX_FILE_BYTES) {
       return NextResponse.json({ ok: false, error: "file_too_large", max: MAX_FILE_BYTES }, { status: 400 })
+    }
+    if (!isAllowedFile(f.name || "")) {
+      return NextResponse.json({ ok: false, error: "file_type_not_allowed" }, { status: 400 })
     }
   }
 
