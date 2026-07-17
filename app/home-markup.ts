@@ -30,7 +30,7 @@ export const HOME_HTML = String.raw`
         <a class="btn btn-primary btn-lg" href="#sample">Get the sample report
           <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a class="btn btn-secondary btn-lg" href="#book">Book a 15-min call</a>
+        <a class="btn btn-secondary btn-lg" href="https://tidycal.com/leland/intro-call-flow-contents-ai-w-leland" target="_blank" rel="noopener">Book a 15-min call</a>
       </div>
       <p class="hero-note"><b>Guaranteed in 72 hours</b>, or your money back.</p>
     </div>
@@ -241,7 +241,7 @@ export const HOME_HTML = String.raw`
             <div class="kv"><div class="k">Depreciation</div><div class="v">−$42</div></div>
             <div class="kv"><div class="k">ACV</div><div class="v" style="color:#1d4ed8">$79</div></div>
           </div>
-          <a class="btn btn-primary" href="#">Use this price</a>
+          <span class="btn btn-primary" aria-hidden="true">Use this price</span>
         </div>
       </div>
     </div>
@@ -305,9 +305,9 @@ export const HOME_HTML = String.raw`
           <p>Open an anonymized sample report in your browser, then drop your email and we'll send the PDF and Excel to keep.</p>
           <div class="spacer"></div>
           <a class="btn btn-secondary" href="/sample-report.html" style="margin-bottom:14px;justify-content:center;">Preview the sample report</a>
-          <form class="email-form" onsubmit="return false;">
-            <div class="efield"><input type="email" placeholder="you@firm.com" aria-label="Work email" /><button class="btn btn-primary" type="submit">Email it to me</button></div>
-            <p class="fineprint">We'll send it within seconds. No spam — just the sample and a brief note.</p>
+          <form class="email-form" id="sampleForm">
+            <div class="efield"><input type="email" name="email" placeholder="you@firm.com" aria-label="Work email" required /><button class="btn btn-primary" type="submit">Email it to me</button></div>
+            <p class="fineprint" id="sampleStatus">We'll send it within seconds. No spam — just the sample and a brief note.</p>
           </form>
         </div>
       </div>
@@ -412,7 +412,7 @@ export const HOME_HTML = String.raw`
     <p>Send us the photos from one claim. We'll send back a real report so you can see the difference for yourself.</p>
     <div class="row">
       <a class="btn btn-primary btn-lg" href="#sample">Get the sample report</a>
-      <a class="btn btn-ghost-light btn-lg" href="#book">Book a 15-min call</a>
+      <a class="btn btn-ghost-light btn-lg" href="https://tidycal.com/leland/intro-call-flow-contents-ai-w-leland" target="_blank" rel="noopener">Book a 15-min call</a>
     </div>
   </div>
 </section>

@@ -8,9 +8,50 @@ import { HOME_HTML } from "./home-markup"
  * Flow Contents marketing homepage.
  * Markup + styles are the approved design from homepage-draft/, scoped under
  * `.fc-home` so nothing leaks into /preview or /whitepaper. The format carousel
- * is driven here (the only interactive piece); FAQ uses native <details>.
+ * and the sample-report email form are driven here; FAQ uses native <details>.
  */
 export default function Home() {
+  useEffect(() => {
+    const form = document.getElementById("sampleForm") as HTMLFormElement | null
+    const status = document.getElementById("sampleStatus")
+    if (!form || !status) return
+
+    const input = form.querySelector<HTMLInputElement>("input[type=email]")
+    const button = form.querySelector<HTMLButtonElement>("button[type=submit]")
+
+    const onSubmit = async (e: Event) => {
+      e.preventDefault()
+      const email = input?.value.trim() ?? ""
+      if (!email) return
+      if (button) {
+        button.disabled = true
+        button.textContent = "Sending..."
+      }
+      status.textContent = "Sending your copy..."
+      try {
+        const res = await fetch("/api/lead", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, source: "sample-report" }),
+        })
+        const data = (await res.json().catch(() => ({}))) as { ok?: boolean }
+        if (!res.ok || !data.ok) throw new Error("send_failed")
+        status.textContent = "Sent. Check your inbox for the sample report."
+        if (button) button.textContent = "Sent"
+        if (input) input.value = ""
+      } catch {
+        status.textContent = "Something went wrong on our end. Please try again in a minute."
+        if (button) {
+          button.disabled = false
+          button.textContent = "Email it to me"
+        }
+      }
+    }
+
+    form.addEventListener("submit", onSubmit)
+    return () => form.removeEventListener("submit", onSubmit)
+  }, [])
+
   useEffect(() => {
     const track = document.getElementById("fmtTrack")
     const dots = Array.from(
