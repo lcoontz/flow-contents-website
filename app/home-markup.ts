@@ -59,9 +59,9 @@ export const HOME_HTML = String.raw`
 <!-- ============ TRUST STRIP ============ -->
 <div class="trust">
   <div class="wrap trust-inner">
-    <span class="stat"><b>$2M+</b><span>additional value recovered <em style="color:#cbd5e1">[TBD]</em></span></span>
+    <span class="stat"><b>$12M+</b><span>in contents value documented</span></span>
     <span class="divider"></span>
-    <span class="stat"><b>31,000+</b><span>items documented <em style="color:#cbd5e1">[TBD]</em></span></span>
+    <span class="stat"><b>70,000+</b><span>items inventoried</span></span>
     <span class="divider"></span>
     <span class="stat"><b>72hr</b><span>guaranteed turnaround</span></span>
     <span class="divider"></span>
