@@ -416,10 +416,10 @@ export default function WhitepaperPage() {
               className="border-navy text-navy hover:bg-navy/5 bg-transparent"
               asChild
             >
-              <a href="mailto:leland.coontz.iv@gmail.com">Email Directly</a>
+              <a href="mailto:leland@flowcontents.com">Email Directly</a>
             </Button>
           </div>
-          <p className="mt-6 text-sm text-navy/60">Email: leland.coontz.iv@gmail.com | Phone: (714) 675-2710</p>
+          <p className="mt-6 text-sm text-navy/60">Email: leland@flowcontents.com | Phone: (714) 675-2710</p>
         </section>
       </article>
     </div>

@@ -441,8 +441,8 @@ function SubmitOverlay({
             <h2 className="mt-4 text-[20px] font-semibold tracking-tight text-slate-900">Something went wrong.</h2>
             <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
               Please refresh and try again, or email{" "}
-              <a className="text-blue-700 underline" href="mailto:leland.coontz.iv@gmail.com">
-                leland.coontz.iv@gmail.com
+              <a className="text-blue-700 underline" href="mailto:leland@flowcontents.com">
+                leland@flowcontents.com
               </a>
               .
             </p>

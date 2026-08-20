@@ -30,7 +30,7 @@ export async function POST(req: Request) {
 
   const apiKey = process.env.RESEND_API_KEY
   const from = process.env.RESEND_FROM
-  const replyTo = process.env.LEAD_REPLY_TO || "leland.coontz.iv@gmail.com"
+  const replyTo = process.env.LEAD_REPLY_TO || "leland@flowcontents.com"
   const sheetUrl = process.env.SAMPLE_SHEET_URL
 
   if (!apiKey || !from || !sheetUrl) {

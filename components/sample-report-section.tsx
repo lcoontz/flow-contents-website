@@ -28,7 +28,7 @@ export function SampleReportSection() {
       }
       setSubmitted(true)
     } catch {
-      setError("Something went wrong. Try again, or email leland.coontz.iv@gmail.com directly.")
+      setError("Something went wrong. Try again, or email leland@flowcontents.com directly.")
     } finally {
       setSubmitting(false)
     }
@@ -61,8 +61,8 @@ export function SampleReportSection() {
               <p className="mt-2 text-[13px] leading-relaxed text-slate-600">
                 The sample report is on its way. If it doesn&apos;t arrive in a few minutes,
                 check spam or email{" "}
-                <a href="mailto:leland.coontz.iv@gmail.com" className="font-medium text-blue-700 underline-offset-2 hover:underline">
-                  leland.coontz.iv@gmail.com
+                <a href="mailto:leland@flowcontents.com" className="font-medium text-blue-700 underline-offset-2 hover:underline">
+                  leland@flowcontents.com
                 </a>
                 .
               </p>
