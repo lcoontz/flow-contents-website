@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 const siteUrl = "https://www.flowcontents.com"
 const siteTitle = "Flow Contents | 72-Hour Contents Lists for Public Adjusters"
 const siteDescription =
-  "AI-powered forensic contents documentation for public adjusters. Send us photos. Get a Xactimate-ready report in 72 hours — guaranteed better than any list you've seen, or your money back."
+  "AI-powered forensic contents documentation for public adjusters. Send us photos. Get a Xactimate-ready report in 72 hours, guaranteed better than any list you've seen, or your money back."
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og"
 
-export const alt = "Flow Contents — 72-Hour Contents Lists for Public Adjusters"
+export const alt = "Flow Contents: 72-Hour Contents Lists for Public Adjusters"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -85,7 +85,7 @@ export default function OpengraphImage() {
               maxWidth: "920px",
             }}
           >
-            Send us photos. Get a Xactimate-ready report — guaranteed better
+            Send us photos. Get a Xactimate-ready report, guaranteed better
             than any list you&apos;ve seen, or your money back.
           </div>
         </div>
