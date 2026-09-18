@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { Tracking } from "@/components/tracking"
 import "./globals.css"
 
 const geist = Geist({
@@ -51,6 +52,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         {children}
         <Analytics />
+        <Tracking />
       </body>
     </html>
   )

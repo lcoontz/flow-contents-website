@@ -3,6 +3,7 @@
 import { useEffect } from "react"
 import "./home.css"
 import { HOME_HTML } from "./home-markup"
+import { trackLead } from "@/components/tracking"
 
 /**
  * Flow Contents marketing homepage.
@@ -36,6 +37,7 @@ export default function Home() {
         })
         const data = (await res.json().catch(() => ({}))) as { ok?: boolean }
         if (!res.ok || !data.ok) throw new Error("send_failed")
+        trackLead(email, "sample-report")
         status.textContent = "Sent. Check your inbox for the sample report."
         if (button) button.textContent = "Sent"
         if (input) input.value = ""

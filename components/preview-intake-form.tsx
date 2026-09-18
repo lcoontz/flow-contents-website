@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { convertHeicToJpeg, isHeic } from "./heic-client"
+import { trackLead } from "./tracking"
 
 interface UploadTarget {
   uploadUrl: string
@@ -164,8 +165,10 @@ export function PreviewIntakeForm() {
           }),
         })
         const data = (await res.json()) as { ok: boolean; error?: string }
-        if (res.ok && data.ok) setSubmitDone(true)
-        else setSubmitFailed(true)
+        if (res.ok && data.ok) {
+          trackLead(snapshot.email, "preview")
+          setSubmitDone(true)
+        } else setSubmitFailed(true)
       } catch {
         setSubmitFailed(true)
       }
