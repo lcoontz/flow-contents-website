@@ -22,8 +22,8 @@ export const HOME_HTML = String.raw`
       <span class="eyebrow"><span class="dot"></span> State-of-the-art contents inventory for claims</span>
       <h1 class="hero-h">Every item documented and priced accurately.</h1>
       <p class="hero-sub">
-        You want the maximum settlement — and the list to back it up. Our in-house contents
-        specialists return 3,000–5,000 line items per claim, each with a replacement product
+        You want the maximum settlement and the list to back it up. Our in-house contents
+        specialists return 3,000 to 5,000 line items per claim, each with a replacement product
         link, RCV, and ACV. Filed in 72 hours.
       </p>
       <div class="hero-ctas">
@@ -73,9 +73,9 @@ export const HOME_HTML = String.raw`
 <section class="block" id="formats">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-eyebrow"><span class="dot"></span> the deliverable</span>
-      <h2 class="sec-h">One upload, multiple formats.</h2>
-      <p class="sec-sub">Send the photos once. Get the same audited inventory back in whatever form the claim needs.</p>
+      <span class="sec-eyebrow"><span class="dot"></span> what you get</span>
+      <h2 class="sec-h">We turn one set of photos into every report the claim needs.</h2>
+      <p class="sec-sub">You send the photos once, and we send the same reviewed inventory back as PDF reports and an Excel workbook.</p>
     </div>
 
     <div class="fmt-viewport">
@@ -87,7 +87,7 @@ export const HOME_HTML = String.raw`
           <div class="report-desc">
             <span class="rtag">PDF · settlement report</span>
             <h3>Carrier-ready settlement report</h3>
-            <p>The classic deliverable — a cover page, full settlement summary, and section-numbered line-item detail, formatted to hold up under carrier review.</p>
+            <p>This is the classic deliverable. It has a cover page, a full settlement summary, and section-numbered line-item detail, formatted to hold up under carrier review.</p>
             <ul>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> RCV, sales tax, depreciation, ACV, and net claim</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Section-numbered line-item detail</li>
@@ -102,7 +102,7 @@ export const HOME_HTML = String.raw`
           <div class="report-desc">
             <span class="rtag">PDF · photo-backed</span>
             <h3>Photo-backed inventory</h3>
-            <p>Every line ranked by value and backed by the photo that proves the item was there — the version a carrier can't wave away.</p>
+            <p>Every line is ranked by value and backed by the photo that proves the item was there, which makes it hard for a carrier to wave away.</p>
             <ul>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> A photo on every line item</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Ranked by total replacement value</li>
@@ -117,7 +117,7 @@ export const HOME_HTML = String.raw`
           <div class="report-desc">
             <span class="rtag">PDF · coverage &amp; category</span>
             <h3>Coverage &amp; category breakdown</h3>
-            <p>The analysis adjusters respond to — coverage sublimits, category and room distribution, and age-bracket depreciation, all computed from the inventory.</p>
+            <p>This is the analysis adjusters respond to. It shows coverage sublimits, category and room distribution, and age-bracket depreciation, all computed from the inventory.</p>
             <ul>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Coverage sublimits vs. claim totals</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Category &amp; room distribution</li>
@@ -132,7 +132,7 @@ export const HOME_HTML = String.raw`
           <div class="report-desc">
             <span class="rtag">Excel · workbook</span>
             <h3>Editable line-item workbook</h3>
-            <p>The whole claim as a spreadsheet — one tab per room, every line sortable, with live RCV / ACV formulas you can reprice on the spot.</p>
+            <p>This is the whole claim as a spreadsheet. Each room has its own tab, every line is sortable, and the live RCV / ACV formulas let you reprice on the spot.</p>
             <ul>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> One sheet per room, plus summary tabs</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Live RCV / ACV formulas</li>
@@ -157,15 +157,15 @@ export const HOME_HTML = String.raw`
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-eyebrow"><span class="dot"></span> live dashboard</span>
-      <h2 class="sec-h">Edit every item. Pick every price.</h2>
-      <p class="sec-sub">Clients and adjusters log in to the same workspace our specialists use — review the inventory item by item, correct any line, and choose the replacement product from ranked candidates.</p>
+      <h2 class="sec-h">You can edit any item and choose its price.</h2>
+      <p class="sec-sub">You and your client log in to the same workspace our specialists use, where you can correct any line and choose the replacement product from a ranked list.</p>
     </div>
 
     <div class="dash">
       <!-- editor -->
       <div class="dash-pane editor">
         <div class="dash-label">Item · editing</div>
-        <div class="item-photo"><img src="/home/source-photo.jpg" alt="Source photo — detected item" />
+        <div class="item-photo"><img src="/home/source-photo.jpg" alt="Source photo with detected items" />
           <div class="det" style="left:6.2%;top:7.2%;width:26.3%;height:44.5%"></div>
           <div class="det" style="left:34.5%;top:8.5%;width:5%;height:26%"></div>
           <div class="det" style="left:43.5%;top:5.2%;width:12.7%;height:16.3%"></div>
@@ -198,7 +198,7 @@ export const HOME_HTML = String.raw`
         </div>
       </div>
 
-      <!-- price picker — scrolling matrix of platform-style cards, pinned foot -->
+      <!-- price picker: scrolling matrix of platform-style cards, pinned foot -->
       <div class="dash-pane picker">
         <div class="picker-head"><span class="t">Replacement price</span><span class="n">6 candidates</span></div>
         <div class="pscroll">
@@ -250,79 +250,74 @@ export const HOME_HTML = String.raw`
 
 <!-- ============ HOW IT WORKS ============ -->
 <section class="block" id="how">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-eyebrow"><span class="dot"></span> how it works</span>
-      <h2 class="sec-h">From a photo to a price report in 72 hours.</h2>
-      <p class="sec-sub">Nothing to chase, nothing to coordinate. Send the photos and review the result.</p>
+  <div class="wrap how">
+    <div class="how-head">
+      <h2 class="sec-h">How it works</h2>
+      <p class="sec-sub">You send us the photos and we return a finished, priced report within 72 hours.</p>
     </div>
-    <div class="steps">
-      <div class="step">
-        <div class="sviz"><img src="/home/broll/step1.jpg" alt="Photographing household contents" /><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4m0 0L8 8m4-4l4 4"/><path d="M20 16v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2"/></svg></div></div>
+    <ol class="steps">
+      <li class="step">
+        <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L8 8m4-4l4 4"/><path d="M20 16v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2"/></svg></div>
         <div class="sbody">
-          <div class="sn">STEP 01 · HOUR 0–48</div>
-          <h4>Upload your photos. AI detects and prices.</h4>
-          <p>Drag in whatever your team or client captured. The engine detects every visible item, matches a replacement product, and computes RCV and ACV.</p>
-          <div class="hr">phone photos · video stills · walk-throughs · drone</div>
+          <div class="sn">Step 1 · Hours 0 to 48</div>
+          <h4>You upload your photos.</h4>
+          <p>Send whatever your team or client captured, including phone photos, video stills, walk-throughs, and drone footage. Our software finds every visible item, matches it to a replacement product, and calculates RCV and ACV.</p>
         </div>
-      </div>
-      <div class="step">
-        <div class="sviz"><img src="/home/broll/step2.jpg" alt="Specialist reviewing the inventory" /><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div></div>
+      </li>
+      <li class="step">
+        <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
         <div class="sbody">
-          <div class="sn">STEP 02 · HOUR 24–60</div>
-          <h4>Our Flow Contents team reviews every single item and approves it.</h4>
-          <p>A specialist walks every line — correcting matches, adding what was missed, confirming age and condition. Nothing leaves the building unreviewed.</p>
-          <div class="hr">100% human-reviewed before delivery</div>
+          <div class="sn">Step 2 · Hours 24 to 60</div>
+          <h4>Our team reviews every item.</h4>
+          <p>A specialist checks each line, corrects the matches, adds anything the software missed, and confirms age and condition. No report goes out until a person has reviewed all of it.</p>
         </div>
-      </div>
-      <div class="step">
-        <div class="sviz"><img src="/home/broll/step3.jpg" alt="Finished report ready to download" /><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg></div></div>
+      </li>
+      <li class="step">
+        <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg></div>
         <div class="sbody">
-          <div class="sn">STEP 03 · HOUR 72</div>
-          <h4>Download the report.</h4>
-          <p>A carrier-ready PDF and Excel workbook — formatted to drop straight into your claim file. Filed the same day.</p>
-          <div class="hr">PDF · Excel · categories · classic</div>
+          <div class="sn">Step 3 · Hour 72</div>
+          <h4>You download the report.</h4>
+          <p>You get a carrier-ready PDF and an Excel workbook, formatted to go straight into your claim file.</p>
         </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ SAMPLE REPORT (emailed) ============ -->
+<section class="block alt" id="sample">
+  <div class="wrap">
+    <div class="offer">
+      <div class="offer-copy">
+        <span class="sec-eyebrow"><span class="dot"></span> sample report</span>
+        <h2 class="sec-h">Get a sample report emailed to you.</h2>
+        <p class="sec-sub">This is an anonymized report from a real claim. Enter your email and we'll send you the PDF and the Excel workbook to keep.</p>
+        <form class="email-form" id="sampleForm">
+          <div class="efield"><input type="email" name="email" placeholder="you@firm.com" aria-label="Work email" required /><button class="btn btn-primary" type="submit">Email it to me</button></div>
+          <p class="fineprint" id="sampleStatus">We'll send it within seconds, and we won't send you spam.</p>
+        </form>
+        <a class="textlink" href="/sample-report.html">Or open the sample in your browser first
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
+      <div class="offer-viz"><img src="/home/broll/sample1.jpg" alt="Reviewing the sample report" /></div>
     </div>
   </div>
 </section>
 
-<!-- ============ SAMPLE REPORT FLOW ============ -->
-<section class="block alt" id="sample">
+<!-- ============ BUILD YOUR OWN PREVIEW ============ -->
+<section class="block own" id="preview">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-eyebrow"><span class="dot"></span> sample report</span>
-      <h2 class="sec-h">See a real report — two ways.</h2>
-      <p class="sec-sub">Preview an anonymized claim and have a copy emailed to you, or upload your own photos and get a real preview built from your loss.</p>
-    </div>
-    <div class="paths">
-      <div class="path">
-        <div class="pviz"><img src="/home/broll/sample1.jpg" alt="Reviewing the sample report" /></div>
-        <div class="pbody">
-          <span class="pk">Preview the sample</span>
-          <h3>Email me a copy</h3>
-          <p>Open an anonymized sample report in your browser, then drop your email and we'll send the PDF and Excel to keep.</p>
-          <div class="spacer"></div>
-          <a class="btn btn-secondary" href="/sample-report.html" style="margin-bottom:14px;justify-content:center;">Preview the sample report</a>
-          <form class="email-form" id="sampleForm">
-            <div class="efield"><input type="email" name="email" placeholder="you@firm.com" aria-label="Work email" required /><button class="btn btn-primary" type="submit">Email it to me</button></div>
-            <p class="fineprint" id="sampleStatus">We'll send it within seconds. No spam — just the sample and a brief note.</p>
-          </form>
-        </div>
-      </div>
-      <div class="path feature">
-        <div class="pviz"><img src="/home/broll/sample2.jpg" alt="Uploading your claim photos" /></div>
-        <div class="pbody">
-          <span class="pk">Use your own photos</span>
-          <h3>Estimate your photos, get a real report preview</h3>
-          <p>Upload photos from one of your claims. We'll build a real preview from your actual loss — itemized, priced, and emailed back to you.</p>
-          <div class="spacer"></div>
-          <a class="btn btn-primary btn-lg" href="/preview" style="justify-content:center;">Estimate your photos
-            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <p class="fineprint" style="margin-top:12px;">Photos stay private. You get a real estimate — no obligation.</p>
-        </div>
+    <div class="offer">
+      <div class="offer-viz"><img src="/home/broll/sample2.jpg" alt="Uploading your claim photos" /></div>
+      <div class="offer-copy">
+        <span class="sec-eyebrow"><span class="dot"></span> use your own photos</span>
+        <h2 class="sec-h">Want to build your own report?</h2>
+        <p class="sec-sub">Upload photos from one of your claims and we'll build a real preview from that loss. We itemize and price what's in your photos, then email the preview back to you.</p>
+        <a class="btn btn-white btn-lg" href="/preview">Get a preview from your photos
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <p class="fineprint">Your photos stay private, and there's no obligation.</p>
       </div>
     </div>
   </div>
@@ -338,7 +333,7 @@ export const HOME_HTML = String.raw`
     <div class="faq">
       <details class="qa" open>
         <summary>What photos do you actually need?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="ans">Whatever you or your client already have. iPhone walk-throughs, drone footage, individual room photos, video stills — we work with all of it. The denser the coverage, the more items we can extract, but there's no proprietary capture protocol to learn.</div>
+        <div class="ans">We need whatever you or your client already have. iPhone walk-throughs, drone footage, individual room photos, and video stills all work. The denser the coverage, the more items we can extract, but there's no proprietary capture protocol to learn.</div>
       </details>
       <details class="qa">
         <summary>What if my client doesn't have pre-loss photos?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
@@ -346,19 +341,19 @@ export const HOME_HTML = String.raw`
       </details>
       <details class="qa">
         <summary>How accurate is the inventory? Won't it invent items?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="ans">Our content specialists review every single line before it leaves the building — that's the whole point of the hybrid process. We don't promise 100% accuracy, but our reports have fewer duplicates and errors than any other report we've tested. If you find a more accurate one elsewhere, we'll make it right.</div>
+        <div class="ans">Our content specialists review every single line before it leaves the building, which is the whole point of the hybrid process. We don't promise 100% accuracy, but our reports have fewer duplicates and errors than any other report we've tested. If you find a more accurate one elsewhere, we'll make it right.</div>
       </details>
       <details class="qa">
         <summary>What's your turnaround on revisions?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="ans">Up to three revision passes are included, each turned in 24–48 hours. Most claims close inside the included revisions.</div>
+        <div class="ans">Up to three revision passes are included, each turned in 24 to 48 hours. Most claims close inside the included revisions.</div>
       </details>
       <details class="qa">
         <summary>How is this different from Enservio or Exact Contents?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="ans">Enservio and Exact Contents are carrier-side vendors — they work for the insurance company. We work for you. Our engine and review process are calibrated to extract every defensible attribute that drives the line item up the LKQ ladder, not down it.</div>
+        <div class="ans">Enservio and Exact Contents are carrier-side vendors, so they work for the insurance company. We work for you. Our engine and review process are calibrated to extract every defensible attribute that drives the line item up the LKQ ladder, not down it.</div>
       </details>
       <details class="qa">
         <summary>What kinds of claims do you take?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="ans">Smoke, water, fire, contamination, mold, vandalism — any first-party residential contents claim. Commercial claims case-by-case.</div>
+        <div class="ans">We take any first-party residential contents claim, including smoke, water, fire, contamination, mold, and vandalism. We take commercial claims case by case.</div>
       </details>
       <details class="qa">
         <summary>Who owns the data and the report?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
@@ -377,10 +372,10 @@ export const HOME_HTML = String.raw`
       <p class="sec-sub">Reading damage is your job. Pricing 5,000 items shouldn't be.</p>
     </div>
     <div class="probs">
-      <div class="prob"><h3>Generic lists, minimum payouts</h3><p>Carrier software values "toaster" at $4.88 and "Breville Smart Toaster (BTA840XL)" at $149.95. Your client's list looks like the first one — and they leave 70% on the table without ever knowing.</p></div>
-      <div class="prob"><h3>Weeks to compile, days to file</h3><p>A traditional contents list takes 4–5 weeks to assemble. Meanwhile your client is sleeping on a friend's couch and the carrier is asking why nothing has been submitted.</p></div>
-      <div class="prob"><h3>Carriers reject unverified lines</h3><p>If a line item doesn't have a comparable replacement, a real product link, and quantifiable features, the carrier values it at the lowest match in the database — then pushes back when you challenge it.</p></div>
-      <div class="prob"><h3>The task usually lands on the homeowner</h3><p>Contents claims take weeks, and the impossible task often falls to the homeowner. Send it to us instead — your clients get a more complete, defensible list than anyone could build alone, and you get your time back.</p></div>
+      <div class="prob"><h3>Generic lists, minimum payouts</h3><p>Carrier software values "toaster" at $4.88 and "Breville Smart Toaster (BTA840XL)" at $149.95. Your client's list looks like the first one, and they leave 70% on the table without ever knowing.</p></div>
+      <div class="prob"><h3>Weeks to compile, days to file</h3><p>A traditional contents list takes 4 to 5 weeks to assemble. Meanwhile your client is sleeping on a friend's couch and the carrier is asking why nothing has been submitted.</p></div>
+      <div class="prob"><h3>Carriers reject unverified lines</h3><p>If a line item doesn't have a comparable replacement, a real product link, and quantifiable features, the carrier values it at the lowest match in the database, then pushes back when you challenge it.</p></div>
+      <div class="prob"><h3>The task usually lands on the homeowner</h3><p>Contents claims take weeks, and the impossible task often falls to the homeowner. Send it to us instead. Your clients get a more complete, defensible list than anyone could build alone, and you get your time back.</p></div>
     </div>
   </div>
 </section>
@@ -398,7 +393,7 @@ export const HOME_HTML = String.raw`
       </div>
       <div class="gcards">
         <div class="gcard"><h4>Late = full refund</h4><p>If we don't deliver your complete, carrier-ready report within 72 hours of photo handoff, you get every dollar back. No prorating. No clauses.</p></div>
-        <div class="gcard"><h4>Not the best list you've seen?</h4><p>Open the file. If it isn't sharper, more complete, and more defensible than any contents list you've ever filed, tell us how to make it better. We fix it — or refund it. Your sole judgment.</p></div>
+        <div class="gcard"><h4>Not the best list you've seen?</h4><p>Open the file. If it isn't sharper, more complete, and more defensible than any contents list you've ever filed, tell us how to make it better. We fix it or refund it. Your sole judgment.</p></div>
       </div>
     </div>
   </div>
