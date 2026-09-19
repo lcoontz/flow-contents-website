@@ -22,9 +22,9 @@ export const HOME_HTML = String.raw`
       <span class="eyebrow"><span class="dot"></span> State-of-the-art contents inventory for claims</span>
       <h1 class="hero-h">Every item documented and priced accurately.</h1>
       <p class="hero-sub">
-        You want the maximum settlement and the list to back it up. Our in-house contents
-        specialists return 3,000 to 5,000 line items per claim, each with a replacement product
-        link, RCV, and ACV. Filed in 72 hours.
+        You want the maximum settlement and the list to back it up. Our in-house specialists
+        return 3,000 to 5,000 line items per claim, each with a replacement link, RCV, and ACV,
+        within 72 hours.
       </p>
       <div class="hero-ctas">
         <a class="btn btn-primary btn-lg" href="#sample">Get the sample report
