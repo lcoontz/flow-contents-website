@@ -6,6 +6,7 @@ export const HOME_HTML = String.raw`
   <div class="wrap nav-inner">
     <a class="wordmark" href="#top"><span class="fc">FC</span><span class="name">Flow Contents</span></a>
     <nav class="nav-links">
+      <a class="link" href="/homeowners">For homeowners</a>
       <a class="link" href="#how">How it works</a>
       <a class="link" href="#formats">Reports</a>
       <a class="link" href="#sample">Sample report</a>
@@ -22,17 +23,17 @@ export const HOME_HTML = String.raw`
       <span class="eyebrow"><span class="dot"></span> State-of-the-art contents inventory for claims</span>
       <h1 class="hero-h">Every item documented and priced accurately.</h1>
       <p class="hero-sub">
-        You want the maximum settlement and the list to back it up. Our in-house specialists
-        return 3,000 to 5,000 line items per claim, each with a replacement link, RCV, and ACV,
-        within 72 hours.
+        We build the itemized contents list a claim needs, for families and for the public
+        adjusters who represent them. Every item gets a replacement link, RCV and ACV, and a
+        specialist reviews every line.
       </p>
       <div class="hero-ctas">
-        <a class="btn btn-primary btn-lg" href="#sample">Get the sample report
+        <a class="btn btn-primary btn-lg" href="/homeowners">I'm a homeowner
           <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a class="btn btn-secondary btn-lg" href="https://tidycal.com/leland/intro-call-flow-contents-ai-w-leland" target="_blank" rel="noopener">Book a 15-min call</a>
+        <a class="btn btn-secondary btn-lg" href="#formats">I'm a public adjuster</a>
       </div>
-      <p class="hero-note"><b>Guaranteed in 72 hours</b>, or your money back.</p>
+      <p class="hero-note">Not sure where to start? <a href="https://tidycal.com/leland/intro-call-flow-contents-ai-w-leland" target="_blank" rel="noopener">Book a 15-minute call</a> with Leland.</p>
     </div>
 
     <div class="hero-visual">
@@ -59,13 +60,13 @@ export const HOME_HTML = String.raw`
 <!-- ============ TRUST STRIP ============ -->
 <div class="trust">
   <div class="wrap trust-inner">
-    <span class="stat"><b>$12M+</b><span>in contents value documented</span></span>
+    <span class="stat"><b>$21M+</b><span>in contents value documented</span></span>
     <span class="divider"></span>
-    <span class="stat"><b>70,000+</b><span>items inventoried</span></span>
+    <span class="stat"><b>100,000+</b><span>items inventoried</span></span>
     <span class="divider"></span>
-    <span class="stat"><b>72hr</b><span>guaranteed turnaround</span></span>
+    <span class="stat"><b>92%</b><span>of delivered claims paid out</span></span>
     <span class="divider"></span>
-    <span class="stat"><b>100%</b><span>specialist-reviewed</span></span>
+    <span class="stat"><b>Every line</b><span>reviewed by a specialist</span></span>
   </div>
 </div>
 
@@ -253,7 +254,7 @@ export const HOME_HTML = String.raw`
   <div class="wrap how">
     <div class="how-head">
       <h2 class="sec-h">How it works</h2>
-      <p class="sec-sub">You send us the photos and we return a finished, priced report within 72 hours.</p>
+      <p class="sec-sub">You send us the photos, and we return a finished, priced report in as little as 72 hours.</p>
     </div>
     <ol class="steps">
       <li class="step">
@@ -294,6 +295,7 @@ export const HOME_HTML = String.raw`
         <p class="sec-sub">This is an anonymized report from a real claim. Enter your email and we'll send you the PDF and the Excel workbook to keep.</p>
         <form class="email-form" id="sampleForm">
           <div class="efield"><input type="email" name="email" placeholder="you@firm.com" aria-label="Work email" required /><button class="btn btn-primary" type="submit">Email it to me</button></div>
+          <div class="efield"><input type="text" name="referral" placeholder="Who told you about us? (optional)" aria-label="Who told you about us?" maxlength="200" /></div>
           <p class="fineprint" id="sampleStatus">We'll send it within seconds, and we won't send you spam.</p>
         </form>
         <a class="textlink" href="/sample-report.html">Or open the sample in your browser first
@@ -318,6 +320,22 @@ export const HOME_HTML = String.raw`
           <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <p class="fineprint">Your photos stay private, and there's no obligation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO WE ARE ============ -->
+<section class="block alt" id="about">
+  <div class="wrap">
+    <div class="founder">
+      <div class="founder-photo"><img src="/home/leland.jpg" alt="Leland Coontz IV, founder of Flow Contents" /></div>
+      <div class="founder-copy">
+        <span class="sec-eyebrow"><span class="dot"></span> who we are</span>
+        <h2 class="sec-h">We started in a public adjuster's office.</h2>
+        <p>My dad was an adjuster for the insurance companies for 10 years, and for the last 10 he's been a public adjuster. After the January 2025 fires he had more families than hours, and every one of them needed the same thing: a list of everything they'd lost.</p>
+        <p>I came from building technology products, and I thought I could help. The first family's list took four months, because doing it right takes far more detail than anyone expects. Since then our content specialists have built inventories for more than 30 families in Los Angeles and for public adjusters in five other states.</p>
+        <p class="founder-sign">Leland Coontz IV, founder</p>
       </div>
     </div>
   </div>
@@ -372,7 +390,7 @@ export const HOME_HTML = String.raw`
       <p class="sec-sub">Reading damage is your job. Pricing 5,000 items shouldn't be.</p>
     </div>
     <div class="probs">
-      <div class="prob"><h3>Generic lists, minimum payouts</h3><p>Carrier software values "toaster" at $4.88 and "Breville Smart Toaster (BTA840XL)" at $149.95. Your client's list looks like the first one, and they leave 70% on the table without ever knowing.</p></div>
+      <div class="prob"><h3>Generic lists get generic prices</h3><p>Carrier software values "toaster" at $4.88 and "Breville Smart Toaster (BTA840XL)" at $149.95. Most client lists look like the first one.</p></div>
       <div class="prob"><h3>Weeks to compile, days to file</h3><p>A traditional contents list takes 4 to 5 weeks to assemble. Meanwhile your client is sleeping on a friend's couch and the carrier is asking why nothing has been submitted.</p></div>
       <div class="prob"><h3>Carriers reject unverified lines</h3><p>If a line item doesn't have a comparable replacement, a real product link, and quantifiable features, the carrier values it at the lowest match in the database, then pushes back when you challenge it.</p></div>
       <div class="prob"><h3>The task usually lands on the homeowner</h3><p>Contents claims take weeks, and the impossible task often falls to the homeowner. Send it to us instead. Your clients get a more complete, defensible list than anyone could build alone, and you get your time back.</p></div>
@@ -403,8 +421,8 @@ export const HOME_HTML = String.raw`
 <section class="closer" id="book">
   <div class="wrap">
     <div class="kicker">Made for public adjusters</div>
-    <h2>Stop leaving money off the claim.</h2>
-    <p>Send us the photos from one claim. We'll send back a real report so you can see the difference for yourself.</p>
+    <h2>See what a complete list looks like.</h2>
+    <p>Send us the photos from one claim, and we'll send back a real report so you can see the difference for yourself.</p>
     <div class="row">
       <a class="btn btn-primary btn-lg" href="#sample">Get the sample report</a>
       <a class="btn btn-ghost-light btn-lg" href="https://tidycal.com/leland/intro-call-flow-contents-ai-w-leland" target="_blank" rel="noopener">Book a 15-min call</a>
@@ -416,7 +434,7 @@ export const HOME_HTML = String.raw`
 <footer class="site">
   <div class="wrap foot-inner">
     <a class="wordmark" href="#top"><span class="fc">FC</span><span class="name">Flow Contents</span></a>
-    <div class="foot-meta"><a href="https://flowcontents.com">flowcontents.com</a> &nbsp;·&nbsp; contents settlement reports, made for public adjusters</div>
+    <div class="foot-meta"><a href="https://flowcontents.com">flowcontents.com</a> &nbsp;·&nbsp; contents inventories for homeowners and public adjusters</div>
   </div>
 </footer>
 `;

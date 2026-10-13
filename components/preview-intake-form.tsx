@@ -14,6 +14,7 @@ interface Snapshot {
   propertyName: string
   email: string
   phone: string
+  referral: string
   extras: Record<string, string>
 }
 
@@ -159,6 +160,7 @@ export function PreviewIntakeForm() {
             propertyName: snapshot.propertyName,
             email: snapshot.email,
             phone: snapshot.phone,
+            referral: snapshot.referral,
             extras: snapshot.extras,
             photoCount: files.length,
             uploadedCount,
@@ -205,6 +207,7 @@ export function PreviewIntakeForm() {
       propertyName: String(fd.get("propertyName") ?? "").trim(),
       email: String(fd.get("email") ?? "").trim(),
       phone: String(fd.get("phone") ?? "").trim(),
+      referral: String(fd.get("referral") ?? "").trim(),
       extras,
     })
   }
@@ -223,6 +226,7 @@ export function PreviewIntakeForm() {
             <Field name="email" type="email" label="Email" placeholder="you@firm.com" required />
             <Field name="phone" type="tel" label="Phone" placeholder="(555) 123-4567" required />
           </div>
+          <Field name="referral" label="Who told you about us?" placeholder="Optional" />
 
           <button
             type="button"

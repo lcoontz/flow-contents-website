@@ -8,7 +8,10 @@ interface LeadPayload {
   source?: string
   name?: string
   email?: string
+  referral?: string
 }
+
+const BOOKING_URL = "https://tidycal.com/leland/intro-call-flow-contents-ai-w-leland"
 
 export const runtime = "nodejs"
 
@@ -23,6 +26,9 @@ export async function POST(req: Request) {
   const email = body.email?.trim()
   const name = body.name?.trim() || ""
   const source = body.source?.trim() || "sample-report"
+  // "Who told you about us?" is asked on every form instead of tracking links.
+  const referral = body.referral?.trim().slice(0, 200) || ""
+  const isWaitlist = source === "jogger-waitlist"
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return NextResponse.json({ ok: false, error: "email_required" }, { status: 400 })
@@ -48,6 +54,7 @@ export async function POST(req: Request) {
         source,
         name: name || null,
         email,
+        referral: referral || null,
         status: "new",
         userAgent: req.headers.get("user-agent") || null,
         referer: req.headers.get("referer") || null,
@@ -106,15 +113,30 @@ export async function POST(req: Request) {
   <a href="https://flowcontents.com" style="color:#1d4ed8">flowcontents.com</a></p>
 </body></html>`
 
+  // Memory Jogger waitlist sign-ups get a waitlist confirmation, not the sample report.
+  const waitlistText = [
+    greeting,
+    "",
+    "Thanks for joining the Memory Jogger waitlist. It's our room-by-room checklist of more than 12,000 household items, built from real fire claims, and your whole family can work on it from their own phones. I'll email you as soon as it opens.",
+    "",
+    `If you'd like help with your contents list before then, just reply to this email or book a 15-minute call: ${BOOKING_URL}`,
+    "",
+    "Best,",
+    "Leland Coontz IV",
+    "Flow Contents",
+    "flowcontents.com",
+  ].join("\n")
+  const waitlistHtml = `<div dir="ltr">${greeting}<br><br>Thanks for joining the Memory Jogger waitlist. It's our room-by-room checklist of more than 12,000 household items, built from real fire claims, and your whole family can work on it from their own phones. I'll email you as soon as it opens.<br><br>If you'd like help with your contents list before then, just reply to this email or <a href="${BOOKING_URL}">book a 15-minute call</a>.<br><br>Best,<br>Leland Coontz IV<br>Flow Contents<br><a href="https://flowcontents.com">flowcontents.com</a></div>`
+
   const resend = new Resend(apiKey)
   try {
     const { data, error } = await resend.emails.send({
       from,
       to: email,
       replyTo,
-      subject,
-      text,
-      html,
+      subject: isWaitlist ? "You're on the Memory Jogger waitlist" : subject,
+      text: isWaitlist ? waitlistText : text,
+      html: isWaitlist ? waitlistHtml : html,
     })
 
     if (error) {
@@ -122,19 +144,19 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 })
     }
 
-    console.log("[lead] sent", { id: data?.id, source, email, name, leadId })
+    console.log("[lead] sent", { id: data?.id, source, email, name, referral, leadId })
 
     // 3) Internal alerts, best-effort. Awaited (so they actually run in the
     // serverless function) but never allowed to fail the visitor response.
     const notifyEmail = process.env.LEAD_NOTIFY_EMAIL || replyTo
     const when = new Date().toISOString()
-    const summary = `New ${source} lead\nEmail: ${email}\nName: ${name || "(none)"}\nTime: ${when}\nLead ID: ${leadId || "(not saved)"}`
+    const summary = `New ${source} lead\nEmail: ${email}\nName: ${name || "(none)"}\nWho told them: ${referral || "(not answered)"}\nTime: ${when}\nLead ID: ${leadId || "(not saved)"}`
     const channels = await Promise.allSettled([
       resend.emails.send({
         from,
         to: notifyEmail,
         replyTo: email,
-        subject: `New sample-report lead: ${email}`,
+        subject: `New ${source} lead: ${email}`,
         text: summary,
       }),
       notifyWhatsApp(summary),

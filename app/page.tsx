@@ -18,11 +18,13 @@ export default function Home() {
     if (!form || !status) return
 
     const input = form.querySelector<HTMLInputElement>("input[type=email]")
+    const referralInput = form.querySelector<HTMLInputElement>("input[name=referral]")
     const button = form.querySelector<HTMLButtonElement>("button[type=submit]")
 
     const onSubmit = async (e: Event) => {
       e.preventDefault()
       const email = input?.value.trim() ?? ""
+      const referral = referralInput?.value.trim() ?? ""
       if (!email) return
       if (button) {
         button.disabled = true
@@ -33,7 +35,7 @@ export default function Home() {
         const res = await fetch("/api/lead", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, source: "sample-report" }),
+          body: JSON.stringify({ email, referral, source: "sample-report" }),
         })
         const data = (await res.json().catch(() => ({}))) as { ok?: boolean }
         if (!res.ok || !data.ok) throw new Error("send_failed")
@@ -41,6 +43,7 @@ export default function Home() {
         status.textContent = "Sent. Check your inbox for the sample report."
         if (button) button.textContent = "Sent"
         if (input) input.value = ""
+        if (referralInput) referralInput.value = ""
       } catch {
         status.textContent = "Something went wrong on our end. Please try again in a minute."
         if (button) {

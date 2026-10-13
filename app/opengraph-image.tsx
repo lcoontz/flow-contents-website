@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og"
 
-export const alt = "Flow Contents: 72-Hour Contents Lists for Public Adjusters"
+export const alt = "Flow Contents: contents inventories for homeowners and public adjusters"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -63,7 +63,7 @@ export default function OpengraphImage() {
               fontWeight: 600,
             }}
           >
-            72-hour turnaround
+            Every line reviewed by a specialist
           </div>
           <div
             style={{
@@ -75,7 +75,7 @@ export default function OpengraphImage() {
               maxWidth: "1000px",
             }}
           >
-            Forensic contents lists for public adjusters
+            Contents inventories for homeowners and public adjusters
           </div>
           <div
             style={{
@@ -85,8 +85,8 @@ export default function OpengraphImage() {
               maxWidth: "920px",
             }}
           >
-            Send us photos. Get a Xactimate-ready report, guaranteed better
-            than any list you&apos;ve seen, or your money back.
+            Every item documented and priced accurately, from your photos,
+            records and memory.
           </div>
         </div>
 
@@ -101,7 +101,7 @@ export default function OpengraphImage() {
         >
           <span>flowcontents.com</span>
           <span style={{ color: "#2563eb", fontWeight: 600 }}>
-            AI-powered · Auditor-reviewed
+            AI-powered · Specialist-reviewed
           </span>
         </div>
       </div>

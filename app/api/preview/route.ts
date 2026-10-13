@@ -33,6 +33,7 @@ interface SubmitBody {
   propertyName?: string
   email?: string
   phone?: string
+  referral?: string
   extras?: Record<string, string>
   photoCount?: number
   uploadedCount?: number
@@ -125,6 +126,7 @@ async function submit(body: SubmitBody) {
   const propertyName = body.propertyName?.trim()
   const email = body.email?.trim()
   const phone = body.phone?.trim()
+  const referral = body.referral?.trim().slice(0, 200) || null
 
   if (!sessionId) return NextResponse.json({ ok: false, error: "session_id_required" }, { status: 400 })
   if (!propertyName) return NextResponse.json({ ok: false, error: "property_name_required" }, { status: 400 })
@@ -140,6 +142,7 @@ async function submit(body: SubmitBody) {
       propertyName,
       email,
       phone,
+      referral,
       extras: body.extras ?? {},
       photoCount: body.photoCount ?? null,
       uploadedCount: body.uploadedCount ?? null,

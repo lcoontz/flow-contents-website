@@ -208,7 +208,7 @@ export default function WhitepaperPage() {
                     Adjuster Software Selection
                   </th>
                   <th className="border border-navy/20 px-4 py-3 text-left font-semibold text-navy">
-                    Estimated Payout
+                    Estimated Price
                   </th>
                   <th className="border border-navy/20 px-4 py-3 text-left font-semibold text-navy">
                     Why This Happens
@@ -280,7 +280,7 @@ export default function WhitepaperPage() {
             <li>
               <strong>Scenario A (Generic):</strong> The homeowner lists "Bicycle."
               <br />
-              <span className="text-navy/60">Result: The adjuster selects a standard cruiser. Payout: $150.</span>
+              <span className="text-navy/60">Result: The adjuster selects a standard cruiser, priced at $150.</span>
             </li>
             <li>
               <strong>Scenario B (Flow Contents Approach):</strong> Our photos identify the technical specifications. We
@@ -288,7 +288,7 @@ export default function WhitepaperPage() {
               <br />
               <span className="text-teal font-medium">
                 Result: The mention of "Carbon Fiber" and "Shimano" forces the software to reject steel-frame bikes.
-                Payout: $1,800+.
+                Priced at $1,800+.
               </span>
             </li>
           </ul>
@@ -296,10 +296,10 @@ export default function WhitepaperPage() {
           <h3 className="text-xl font-semibold text-navy mt-6 mb-3">Real-World Application: Furniture</h3>
           <ul className="list-disc pl-6 space-y-3 text-navy/80">
             <li>
-              <strong>Generic:</strong> "Dining Table." Payout: $200 (Particle board/Veneer).
+              <strong>Generic:</strong> "Dining Table." Priced at $200 (Particle board/Veneer).
             </li>
             <li>
-              <strong>Specific:</strong> "Solid Cherry Dining Table, Hand-Carved Legs." Payout: $2,500+.
+              <strong>Specific:</strong> "Solid Cherry Dining Table, Hand-Carved Legs." Priced at $2,500+.
               <br />
               <span className="text-navy/60">
                 Key Insight: Words like "Solid Wood," "Dovetail Joints," and "Top-Grain Leather" are algorithmic
@@ -313,8 +313,8 @@ export default function WhitepaperPage() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-navy mb-4">6. Strategic Categories and Hidden Value</h2>
           <p className="text-navy/80 leading-relaxed mb-4">
-            Homeowners frequently leave money on the table by ignoring "invisible" assets or failing to document the
-            density of small items.
+            Homeowners frequently miss "invisible" assets or fail to document the density of small
+            items.
           </p>
 
           <h3 className="text-xl font-semibold text-navy mt-6 mb-3">The "Junk Drawer" Aggregate</h3>
@@ -325,8 +325,8 @@ export default function WhitepaperPage() {
           <ul className="list-disc pl-6 space-y-3 text-navy/80 mb-6">
             <li>
               <strong>The Pantry:</strong> A collection of gourmet spices, baking supplies, and vinegars can easily
-              exceed $1,000. Our detailed photography allows us to count the density of items on a shelf to negotiate
-              "bulk" settlements if individual itemization is too slow.
+              exceed $1,000. Our detailed photography allows us to count the density of items on a shelf and list them as
+              grouped lines if individual itemization is too slow.
             </li>
             <li>
               <strong>The Bathroom:</strong> A master bath containing designer makeup (e.g., MAC, Sephora) can total
