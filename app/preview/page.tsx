@@ -6,7 +6,7 @@ import { FooterSection } from "@/components/footer-section"
 export const metadata: Metadata = {
   title: "Free quote and sample report — Flow Contents",
   description:
-    "Upload your photos to get a priced estimate. We'll price and estimate your list in 24 hours. Free, no account.",
+    "Upload your photos to get a priced estimate. We'll price and estimate your list in 72 hours. Free, no account.",
 }
 
 export default function PreviewPage() {
@@ -20,7 +20,7 @@ export default function PreviewPage() {
               Free Quote — And Sample Report
             </h1>
             <p className="fc-lead mx-auto mt-5 max-w-xl">
-              Upload your photos to get a priced estimate. We&apos;ll price and estimate your list in 24 hours.
+              Upload your photos to get a priced estimate. We&apos;ll price and estimate your list in 72 hours.
             </p>
             <div className="mt-10 flex justify-center">
               <SampleReportButton />

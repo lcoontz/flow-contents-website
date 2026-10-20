@@ -323,7 +323,7 @@ export function PreviewIntakeForm() {
 
           {formError && <p className="text-center text-[12px] text-red-600">{formError}</p>}
           <p className="text-center text-[11px] text-slate-500">
-            We email your estimated report within 24 hours — that&apos;s why we ask for your email and phone. No account needed, no spam.
+            We email your estimated report within 72 hours, which is why we ask for your email and phone. No account needed, no spam.
           </p>
         </form>
       </div>
@@ -435,7 +435,7 @@ function SubmitOverlay({
             </div>
             <h2 className="mt-4 text-[20px] font-semibold tracking-tight text-slate-900">You&apos;re all set.</h2>
             <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
-              Your photos are uploaded. We&apos;ll email your preliminary contents report within 24 hours.
+              Your photos are uploaded. We&apos;ll email your preliminary contents report within 72 hours.
             </p>
           </>
         ) : showError ? (
@@ -466,7 +466,7 @@ function SubmitOverlay({
             </h2>
             <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
               Your photos are currently uploading. Wait a moment for that to finish and then
-              we&apos;ll send you your report within 24 hours.
+              we&apos;ll send you your report within 72 hours.
             </p>
             <div className="mt-6">
               <div className="flex items-center justify-between text-[12px]">
