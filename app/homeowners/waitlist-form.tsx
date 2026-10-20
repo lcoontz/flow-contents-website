@@ -3,8 +3,12 @@
 import { useState } from "react"
 import { trackLead } from "@/components/tracking"
 
-/** Memory Jogger waitlist sign-up. Posts to /api/lead with source "jogger-waitlist". */
-export function WaitlistForm() {
+/** Memory Jogger waitlist sign-up. Posts to /api/lead with source "jogger-waitlist".
+ *  `cta` and `buttonClass` let a light section use a primary button (the default suits dark sections). */
+export function WaitlistForm({
+  cta = "Join the waitlist",
+  buttonClass = "btn-white",
+}: { cta?: string; buttonClass?: string } = {}) {
   const [state, setState] = useState<"idle" | "sending" | "done" | "error">("idle")
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -42,8 +46,8 @@ export function WaitlistForm() {
       </div>
       <div className="efield">
         <input type="email" name="email" placeholder="you@email.com" aria-label="Email" required />
-        <button className="btn btn-white" type="submit" disabled={state === "sending" || state === "done"}>
-          {state === "sending" ? "Joining..." : state === "done" ? "You're on the list" : "Join the waitlist"}
+        <button className={`btn ${buttonClass}`} type="submit" disabled={state === "sending" || state === "done"}>
+          {state === "sending" ? "Joining..." : state === "done" ? "You're on the list" : cta}
         </button>
       </div>
       <div className="efield">

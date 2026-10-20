@@ -239,6 +239,9 @@ export default function HomeownersPage() {
                 it does.
               </p>
               <WaitlistForm />
+              <a className="textlink" href="/memory-jogger">
+                See everything the Memory Jogger does <Arrow />
+              </a>
             </div>
           </div>
         </div>
