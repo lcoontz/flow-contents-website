@@ -31,7 +31,7 @@ export default function PrivacyPage() {
         <p className="updated">Last updated: October 20, 2026</p>
 
         <p>
-          Flow Contents builds itemized contents inventories after a fire or other loss, for families and for the
+          Flow Contents Services LLC (&quot;Flow Contents,&quot; &quot;we&quot; or &quot;us&quot;) builds itemized contents inventories after a fire or other loss, for families and for the
           public adjusters, attorneys and other professionals who represent them. This policy explains what we collect
           and what we do with it. It covers our website (flowcontents.com), our web app (app.flowcontents.com), the
           Memory Jogger checklist, and our iOS and Android apps.
@@ -237,7 +237,7 @@ export default function PrivacyPage() {
 
         <h2>Contact us</h2>
         <p>
-          Flow Contents
+          Flow Contents Services LLC
           <br />
           Email: <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
           <br />

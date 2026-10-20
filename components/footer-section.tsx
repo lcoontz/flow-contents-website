@@ -37,7 +37,7 @@ export function FooterSection() {
         </div>
 
         <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-slate-200 pt-6 sm:flex-row sm:items-center">
-          <span className="text-[12px] text-slate-500">© 2026 Flow Contents. All rights reserved.</span>
+          <span className="text-[12px] text-slate-500">© 2026 Flow Contents Services LLC. All rights reserved.</span>
           <div className="flex gap-5 text-[12px] text-slate-500">
             <a href="mailto:leland@flowcontents.com" className="transition-colors hover:text-slate-900">
               leland@flowcontents.com
