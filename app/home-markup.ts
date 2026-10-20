@@ -434,7 +434,7 @@ export const HOME_HTML = String.raw`
 <footer class="site">
   <div class="wrap foot-inner">
     <a class="wordmark" href="#top"><span class="fc">FC</span><span class="name">Flow Contents</span></a>
-    <div class="foot-meta"><a href="https://flowcontents.com">flowcontents.com</a> &nbsp;·&nbsp; contents inventories for homeowners and public adjusters</div>
+    <div class="foot-meta"><a href="https://flowcontents.com">flowcontents.com</a> &nbsp;·&nbsp; contents inventories for homeowners and public adjusters &nbsp;·&nbsp; <a href="/privacy">Privacy</a></div>
   </div>
 </footer>
 `;

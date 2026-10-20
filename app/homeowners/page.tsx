@@ -344,7 +344,7 @@ export default function HomeownersPage() {
           </a>
           <div className="foot-meta">
             <a href="/">flowcontents.com</a> &nbsp;·&nbsp; contents inventories for homeowners and{" "}
-            <a href="/">public adjusters</a>
+            <a href="/">public adjusters</a> &nbsp;·&nbsp; <a href="/privacy">Privacy</a>
           </div>
         </div>
       </footer>

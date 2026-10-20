@@ -30,6 +30,9 @@ export function FooterSection() {
             <Link href="/whitepaper" className="text-slate-600 transition-colors hover:text-slate-900">
               Whitepaper
             </Link>
+            <Link href="/privacy" className="text-slate-600 transition-colors hover:text-slate-900">
+              Privacy
+            </Link>
           </div>
         </div>
 
