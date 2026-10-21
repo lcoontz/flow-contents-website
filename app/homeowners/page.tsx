@@ -5,7 +5,7 @@ import { WaitlistForm } from "./waitlist-form"
 export const metadata: Metadata = {
   title: "Contents inventories for homeowners | Flow Contents",
   description:
-    "After a fire or other total loss, we build your itemized contents list with you, item by item, and a specialist reviews every line. More than 30 Los Angeles families have trusted us with their contents.",
+    "After a fire or other total loss, we build your itemized contents list with you, item by item, and a contents specialist reviews every line. More than 30 Los Angeles families have trusted us with their contents.",
 }
 
 const BOOKING_URL = "https://tidycal.com/leland/intro-call-flow-contents-ai-w-leland"
@@ -41,7 +41,7 @@ const HELP = [
   },
   {
     h: "You owned art, antiques or designer pieces",
-    p: "A generic list can't price them properly, so our specialists price those pieces one at a time.",
+    p: "A generic list can't price them properly, so our contents specialists price those pieces one at a time.",
   },
 ]
 
@@ -55,8 +55,8 @@ const STEPS = [
     p: "The Memory Jogger is our room-by-room checklist of more than 12,000 household items. We check off everything we already found in your photos and records, so you only add what's missing.",
   },
   {
-    h: "Our specialists build the list.",
-    p: "A trained specialist goes through every line and writes down exactly what each item is, with the brand, model and size whenever we can find them. Then they price a replacement of the same kind and quality, with a link to a comparable product.",
+    h: "Our contents specialists build the list.",
+    p: "A trained contents specialist goes through every line and writes down exactly what each item is, with the brand, model and size whenever we can find them. Then they price a replacement of the same kind and quality, with a link to a comparable product.",
   },
   {
     h: "You review it.",
@@ -70,8 +70,8 @@ const STEPS = [
 
 const WHY = [
   {
-    h: "Every line reviewed by a specialist",
-    p: "AI helps us work quickly, but a trained specialist goes through every item on your list.",
+    h: "Every line reviewed by a contents specialist",
+    p: "AI helps us work quickly, but a trained contents specialist goes through every item on your list.",
   },
   {
     h: "Built from both sides of the claim",
@@ -178,7 +178,7 @@ export default function HomeownersPage() {
           <span className="divider" />
           <span className="stat"><b>92%</b><span>of delivered claims paid out</span></span>
           <span className="divider" />
-          <span className="stat"><b>Every line</b><span>reviewed by a specialist</span></span>
+          <span className="stat"><b>Every line</b><span>reviewed by a contents specialist</span></span>
         </div>
       </div>
 

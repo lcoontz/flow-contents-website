@@ -25,7 +25,7 @@ export const HOME_HTML = String.raw`
       <p class="hero-sub">
         We build the itemized contents list a claim needs, for families and for the public
         adjusters who represent them. Every item gets a replacement link, RCV and ACV, and a
-        specialist reviews every line.
+        contents specialist reviews every line.
       </p>
       <div class="hero-ctas">
         <a class="btn btn-primary btn-lg" href="/homeowners">I'm a homeowner
@@ -66,7 +66,7 @@ export const HOME_HTML = String.raw`
     <span class="divider"></span>
     <span class="stat"><b>92%</b><span>of delivered claims paid out</span></span>
     <span class="divider"></span>
-    <span class="stat"><b>Every line</b><span>reviewed by a specialist</span></span>
+    <span class="stat"><b>Every line</b><span>reviewed by a contents specialist</span></span>
   </div>
 </div>
 
@@ -159,7 +159,7 @@ export const HOME_HTML = String.raw`
     <div class="sec-head">
       <span class="sec-eyebrow"><span class="dot"></span> live dashboard</span>
       <h2 class="sec-h">You can edit any item and choose its price.</h2>
-      <p class="sec-sub">You and your client log in to the same workspace our specialists use, where you can correct any line and choose the replacement product from a ranked list.</p>
+      <p class="sec-sub">You and your client log in to the same workspace our contents specialists use, where you can correct any line and choose the replacement product from a ranked list.</p>
     </div>
 
     <div class="dash">
@@ -270,7 +270,7 @@ export const HOME_HTML = String.raw`
         <div class="sbody">
           <div class="sn">Step 2 · Hours 24 to 60</div>
           <h4>Our team reviews every item.</h4>
-          <p>A specialist checks each line, corrects the matches, adds anything the software missed, and confirms age and condition. No report goes out until a person has reviewed all of it.</p>
+          <p>A contents specialist checks each line, corrects the matches, adds anything the software missed, and confirms age and condition. No report goes out until a person has reviewed all of it.</p>
         </div>
       </li>
       <li class="step">
@@ -334,7 +334,7 @@ export const HOME_HTML = String.raw`
         <span class="sec-eyebrow"><span class="dot"></span> who we are</span>
         <h2 class="sec-h">We started in a public adjuster's office.</h2>
         <p>My dad was an adjuster for the insurance companies for 10 years, and for the last 10 he's been a public adjuster. After the January 2025 fires he had more families than hours, and every one of them needed the same thing: a list of everything they'd lost.</p>
-        <p>I came from building technology products, and I thought I could help. The first family's list took four months, because doing it right takes far more detail than anyone expects. Since then our content specialists have built inventories for more than 30 families in Los Angeles and for public adjusters in five other states.</p>
+        <p>I came from building technology products, and I thought I could help. The first family's list took four months, because doing it right takes far more detail than anyone expects. Since then our contents specialists have built inventories for more than 30 families in Los Angeles and for public adjusters in five other states.</p>
         <p class="founder-sign">Leland Coontz IV, founder</p>
       </div>
     </div>
@@ -359,7 +359,7 @@ export const HOME_HTML = String.raw`
       </details>
       <details class="qa">
         <summary>How accurate is the inventory? Won't it invent items?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="ans">Our content specialists review every single line before it leaves the building, which is the whole point of the hybrid process. We don't promise 100% accuracy, but our reports have fewer duplicates and errors than any other report we've tested. If you find a more accurate one elsewhere, we'll make it right.</div>
+        <div class="ans">Our contents specialists review every single line before it leaves the building, which is the whole point of the hybrid process. We don't promise 100% accuracy, but our reports have fewer duplicates and errors than any other report we've tested. If you find a more accurate one elsewhere, we'll make it right.</div>
       </details>
       <details class="qa">
         <summary>What's your turnaround on revisions?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>

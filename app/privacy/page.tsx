@@ -107,7 +107,7 @@ export default function PrivacyPage() {
           <li>To run your account and the Memory Jogger, including showing your family who added what.</li>
           <li>To talk with you about your claim, your account and our services.</li>
           <li>
-            To check our work, improve our tools, and train and test the specialists who build inventories, including
+            To check our work, improve our tools, and train and test the contents specialists who build inventories, including
             people applying to work with us, using examples from past inventories.
           </li>
           <li>To keep our services secure and prevent abuse.</li>
@@ -118,7 +118,7 @@ export default function PrivacyPage() {
         <h2>AI and automated tools</h2>
         <p>
           We use artificial intelligence to find the items in your photos, describe them, search for comparable products
-          and suggest prices. Our specialists review the inventory before we deliver it. To do this we send photos,
+          and suggest prices. Our contents specialists review the inventory before we deliver it. To do this we send photos,
           cropped images of items and item descriptions to these services:
         </p>
         <ul>
@@ -146,7 +146,7 @@ export default function PrivacyPage() {
             ask us to.
           </li>
           <li>
-            <strong>Our team and contractors.</strong> Our specialists, including contractors who work outside the
+            <strong>Our team and contractors.</strong> Our contents specialists, including contractors who work outside the
             United States, see your photos and documents so they can build and price your inventory.
           </li>
           <li>
@@ -226,7 +226,7 @@ export default function PrivacyPage() {
         <h2>Where your data is processed</h2>
         <p>
           We&apos;re based in the United States, and our main systems are in the US. Some of our providers process data
-          in other countries, and some of our specialists work outside the US.
+          in other countries, and some of our contents specialists work outside the US.
         </p>
 
         <h2>Changes to this policy</h2>

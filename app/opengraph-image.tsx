@@ -14,7 +14,7 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: "80px",
+          padding: "64px 80px",
           background:
             "linear-gradient(135deg, #f8fafc 0%, #ffffff 55%, #eff6ff 100%)",
           fontFamily: "system-ui, -apple-system, Segoe UI, sans-serif",
@@ -63,11 +63,11 @@ export default function OpengraphImage() {
               fontWeight: 600,
             }}
           >
-            Every line reviewed by a specialist
+            Every line reviewed by a contents specialist
           </div>
           <div
             style={{
-              fontSize: "76px",
+              fontSize: "68px",
               fontWeight: 700,
               color: "#0f172a",
               lineHeight: 1.05,
@@ -101,7 +101,7 @@ export default function OpengraphImage() {
         >
           <span>flowcontents.com</span>
           <span style={{ color: "#2563eb", fontWeight: 600 }}>
-            AI-powered · Specialist-reviewed
+            AI-powered · Reviewed by contents specialists
           </span>
         </div>
       </div>
