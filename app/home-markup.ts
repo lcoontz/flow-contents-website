@@ -297,6 +297,7 @@ export const HOME_HTML = String.raw`
           <div class="efield"><input type="email" name="email" placeholder="you@firm.com" aria-label="Work email" required /><button class="btn btn-primary" type="submit">Email it to me</button></div>
           <div class="efield"><input type="text" name="referral" placeholder="Who told you about us? (optional)" aria-label="Who told you about us?" maxlength="200" /></div>
           <p class="fineprint" id="sampleStatus">We'll send it within seconds, and we won't send you spam.</p>
+          <p class="fineprint">By submitting you agree to our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms</a>.</p>
         </form>
         <a class="textlink" href="/sample-report.html">Or open the sample in your browser first
           <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -434,7 +435,7 @@ export const HOME_HTML = String.raw`
 <footer class="site">
   <div class="wrap foot-inner">
     <a class="wordmark" href="#top"><span class="fc">FC</span><span class="name">Flow Contents</span></a>
-    <div class="foot-meta"><a href="https://flowcontents.com">flowcontents.com</a> &nbsp;·&nbsp; contents inventories for homeowners and public adjusters &nbsp;·&nbsp; <a href="/privacy">Privacy</a></div>
+    <div class="foot-meta"><a href="https://flowcontents.com">flowcontents.com</a> &nbsp;·&nbsp; contents inventories for homeowners and public adjusters &nbsp;·&nbsp; <a href="/privacy">Privacy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a></div>
   </div>
 </footer>
 `;

@@ -66,6 +66,9 @@ export function WaitlistForm({
             ? "Something went wrong on our end. Please try again in a minute."
             : "We'll only email you about the Memory Jogger and your contents list."}
       </p>
+      <p className="fineprint">
+        By submitting you agree to our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms</a>.
+      </p>
     </form>
   )
 }

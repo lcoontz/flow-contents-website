@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { convertHeicToJpeg, isHeic } from "./heic-client"
 import { trackLead } from "./tracking"
@@ -320,6 +321,17 @@ export function PreviewIntakeForm() {
           >
             Get my free report
           </button>
+          <p className="text-center text-[11px] text-slate-500">
+            By submitting you agree to our{" "}
+            <Link href="/privacy" className="underline underline-offset-2 hover:text-slate-700">
+              Privacy Policy
+            </Link>{" "}
+            and{" "}
+            <Link href="/terms" className="underline underline-offset-2 hover:text-slate-700">
+              Terms
+            </Link>
+            .
+          </p>
 
           {formError && <p className="text-center text-[12px] text-red-600">{formError}</p>}
           <p className="text-center text-[11px] text-slate-500">

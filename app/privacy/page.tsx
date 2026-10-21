@@ -28,7 +28,7 @@ export default function PrivacyPage() {
 
       <article className="legal">
         <h1>Privacy Policy</h1>
-        <p className="updated">Last updated: October 20, 2026</p>
+        <p className="updated">Last updated: October 22, 2026</p>
 
         <p>
           Flow Contents Services LLC (&quot;Flow Contents,&quot; &quot;we&quot; or &quot;us&quot;) builds itemized contents inventories after a fire or other loss, for families and for the
@@ -90,6 +90,11 @@ export default function PrivacyPage() {
             recording can show what was on your screen. We use PostHog for this, and PostHog sets a cookie so it can
             recognize your browser.
           </li>
+          <li>
+            Our website also uses the LinkedIn Insight Tag. It tells LinkedIn which of our pages you visit and sets
+            LinkedIn cookies, so we can measure our LinkedIn ads and show our ads to people who visited our site. It
+            runs only on our public website, not in our web app.
+          </li>
           <li>Vercel Analytics counts visits to our website without using cookies.</li>
           <li>
             Our mobile apps record basic usage, such as which screens you open, and keep you signed in by storing your
@@ -113,7 +118,11 @@ export default function PrivacyPage() {
           <li>To keep our services secure and prevent abuse.</li>
           <li>To meet legal obligations and to defend legal claims.</li>
         </ul>
-        <p>We don&apos;t sell your personal information, and we don&apos;t share it for targeted advertising.</p>
+        <p>
+          We don&apos;t sell your personal information. Visits to our public website, through the LinkedIn Insight Tag,
+          are the only use of your information for advertising. We never use your claim information, your photos or what
+          you enter in our forms for advertising.
+        </p>
 
         <h2>AI and automated tools</h2>
         <p>
@@ -253,7 +262,8 @@ export default function PrivacyPage() {
           </a>
           <div className="foot-meta">
             <a href="/">flowcontents.com</a> &nbsp;·&nbsp; contents inventories for homeowners and{" "}
-            <a href="/">public adjusters</a> &nbsp;·&nbsp; <a href="/privacy">Privacy</a>
+            <a href="/">public adjusters</a> &nbsp;·&nbsp; <a href="/privacy">Privacy</a> &nbsp;·&nbsp;{" "}
+            <a href="/terms">Terms</a>
           </div>
         </div>
       </footer>
