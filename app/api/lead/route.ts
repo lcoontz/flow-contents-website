@@ -82,11 +82,9 @@ export async function POST(req: Request) {
     "",
     "Then every single item is reviewed by our contents specialists.",
     "",
-    "We deliver the finished report within 72 hours of getting your photos, audit included. Our average list size runs about 3,000 items.",
+    "We offer priority 72-hour turnaround. Normal processing is one week, audit included. Our average list size runs about 3,000 items.",
     "",
     "I'd love your honest feedback on the report. If you have an active claim or know someone who does, just hit reply — this email goes straight to me.",
-    "",
-    "As part of our May launch, our normal pricing is 50% off for the first 10 clients.",
     "",
     "Best,",
     "Leland Coontz IV",
@@ -104,9 +102,8 @@ export async function POST(req: Request) {
   <h3 style="margin-top:24px;margin-bottom:8px;font-size:16px">How it works</h3>
   <p>Once we receive your photos, our pipeline runs them through a multi-step identification process where we extract LKQ features and details, then identify approximate age and condition. From there we price each item against live retail data, not an outdated database.</p>
   <p>Then every single item is reviewed by our contents specialists.</p>
-  <p>We deliver the finished report <strong>within 72 hours</strong> of getting your photos, audit included. Our average list size runs about <strong>3,000 items</strong>.</p>
+  <p>We offer <strong>priority 72-hour turnaround</strong>. Normal processing is one week, audit included. Our average list size runs about <strong>3,000 items</strong>.</p>
   <p>I'd love your honest feedback on the report. If you have an active claim or know someone who does, just hit reply — this email goes straight to me.</p>
-  <p>As part of our May launch, our normal pricing is 50% off for the first 10 clients.</p>
   <p style="margin-top:24px">Best,<br>
   Leland Coontz IV<br>
   Flow Contents<br>
