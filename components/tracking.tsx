@@ -54,6 +54,7 @@ export function Tracking() {
 
 type PostHogLike = {
   capture: (event: string, props?: Record<string, unknown>) => void
+  register: (props: Record<string, unknown>, days?: number) => void
 }
 
 /**
@@ -67,4 +68,26 @@ export function trackLead(email: string, source: string) {
   const ph = (window as unknown as { posthog?: PostHogLike }).posthog
   if (!ph) return
   ph.capture("website_lead_submitted", { source, $set: { email } })
+}
+
+/** A named PostHog event. Quietly does nothing before PostHog has loaded. */
+export function trackEvent(event: string, props?: Record<string, unknown>) {
+  if (typeof window === "undefined") return
+  const ph = (window as unknown as { posthog?: PostHogLike }).posthog
+  ph?.capture(event, props)
+}
+
+/**
+ * Attaches properties to every later PostHog event from this visitor. The inline
+ * snippet defines window.posthog during hydration, which can land just after the
+ * caller's effect, so retry for a few seconds instead of assuming it is there.
+ */
+export function registerSuperProperties(props: Record<string, unknown>, days: number, triesLeft = 20) {
+  if (typeof window === "undefined") return
+  const ph = (window as unknown as { posthog?: PostHogLike }).posthog
+  if (ph) {
+    ph.register(props, days)
+    return
+  }
+  if (triesLeft > 0) setTimeout(() => registerSuperProperties(props, days, triesLeft - 1), 250)
 }

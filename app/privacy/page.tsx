@@ -198,7 +198,9 @@ export default function PrivacyPage() {
           </li>
           <li>
             <strong>Cookies.</strong> You can block or delete cookies in your browser settings, and the website still
-            works without them. We don&apos;t currently respond to browser &quot;Do Not Track&quot; signals.
+            works without them. We don&apos;t currently respond to browser &quot;Do Not Track&quot; signals. If you
+            arrive from a link with campaign tags, such as a LinkedIn post or ad, we save those tags in a cookie for 30
+            days and keep them with any form you send us, so we know which post or ad brought you.
           </li>
           <li>
             <strong>State privacy rights.</strong> Depending on where you live, including California, you may have the

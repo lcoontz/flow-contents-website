@@ -3,12 +3,14 @@ import { Resend } from "resend"
 import { adminDb } from "@/lib/firebase-admin"
 import { FieldValue } from "firebase-admin/firestore"
 import { appendLeadToSheet, notifyWhatsApp } from "@/lib/lead-notify"
+import { sanitizeAttribution } from "@/lib/attribution"
 
 interface LeadPayload {
   source?: string
   name?: string
   email?: string
   referral?: string
+  attribution?: unknown
 }
 
 const BOOKING_URL = "https://tidycal.com/leland/intro-call-flow-contents-ai-w-leland"
@@ -28,6 +30,8 @@ export async function POST(req: Request) {
   const source = body.source?.trim() || "sample-report"
   // "Who told you about us?" is asked on every form instead of tracking links.
   const referral = body.referral?.trim().slice(0, 200) || ""
+  // Campaign tags from the link the visitor arrived on (see lib/attribution.ts).
+  const attribution = sanitizeAttribution(body.attribution)
   const isWaitlist = source === "jogger-waitlist"
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -55,6 +59,7 @@ export async function POST(req: Request) {
         name: name || null,
         email,
         referral: referral || null,
+        attribution,
         status: "new",
         userAgent: req.headers.get("user-agent") || null,
         referer: req.headers.get("referer") || null,
@@ -147,7 +152,16 @@ export async function POST(req: Request) {
     // serverless function) but never allowed to fail the visitor response.
     const notifyEmail = process.env.LEAD_NOTIFY_EMAIL || replyTo
     const when = new Date().toISOString()
-    const summary = `New ${source} lead\nEmail: ${email}\nName: ${name || "(none)"}\nWho told them: ${referral || "(not answered)"}\nTime: ${when}\nLead ID: ${leadId || "(not saved)"}`
+    // Source, medium, campaign, content, landing page.
+    const attributionValues = attribution
+      ? [attribution.utm_source, attribution.utm_medium, attribution.utm_campaign, attribution.utm_content, attribution.landing_page].map(
+          (v) => v ?? "",
+        )
+      : []
+    const attributionLine = attribution ? `\nCame from: ${attributionValues.map((v) => v || "-").join(" / ")}` : ""
+    // Sheet cells are written with USER_ENTERED, so a visitor-supplied value that starts with = + - or @ would run as a formula.
+    const sheetSafe = (v: string) => (/^[=+\-@]/.test(v) ? `'${v}` : v)
+    const summary = `New ${source} lead\nEmail: ${email}\nName: ${name || "(none)"}\nWho told them: ${referral || "(not answered)"}${attributionLine}\nTime: ${when}\nLead ID: ${leadId || "(not saved)"}`
     const channels = await Promise.allSettled([
       resend.emails.send({
         from,
@@ -157,7 +171,9 @@ export async function POST(req: Request) {
         text: summary,
       }),
       notifyWhatsApp(summary),
-      appendLeadToSheet([when, email, name, source, leadId || "", req.headers.get("referer") || ""]),
+      // Attribution goes in trailing columns G to K, and only when there is some, so rows
+      // from untagged visitors stay exactly the six columns the sheet already has.
+      appendLeadToSheet([when, email, name, source, leadId || "", req.headers.get("referer") || "", ...attributionValues.map(sheetSafe)]),
     ])
     const channelNames = ["notify-email", "whatsapp", "sheet"]
     channels.forEach((r, i) => {

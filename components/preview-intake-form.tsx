@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react"
 import { convertHeicToJpeg, isHeic } from "./heic-client"
-import { trackLead } from "./tracking"
+import { trackEvent, trackLead } from "./tracking"
+import { getAttribution, type Attribution } from "@/lib/attribution"
 
 interface UploadTarget {
   uploadUrl: string
@@ -16,6 +17,7 @@ interface Snapshot {
   phone: string
   referral: string
   extras: Record<string, string>
+  attribution: Attribution | null
 }
 
 const MAX_FILES = 1000
@@ -34,6 +36,7 @@ export function PreviewIntakeForm() {
   const [submitDone, setSubmitDone] = useState(false)
   const [submitFailed, setSubmitFailed] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const photosReportedFor = useRef<string | null>(null)
 
   // Auto-upload effect: whenever the picked file list changes, convert any HEIC
   // photos to JPEG, then kick off a fresh prepare + parallel PUTs to GCS in the
@@ -140,6 +143,15 @@ export function PreviewIntakeForm() {
     }
   }, [files])
 
+  // One PostHog event per batch, when its last photo is in Storage. Picking new
+  // photos starts a new sessionId, so a second batch reports again.
+  useEffect(() => {
+    if (!sessionId || files.length === 0 || uploadError) return
+    if (uploadedCount < files.length || photosReportedFor.current === sessionId) return
+    photosReportedFor.current = sessionId
+    trackEvent("preview_photos_uploaded", { photo_count: files.length })
+  }, [sessionId, uploadedCount, files.length, uploadError])
+
   // Submit effect: once the user has clicked "Get my free report" (snapshot
   // captured) AND uploads are complete, fire the lead-creation call.
   useEffect(() => {
@@ -162,6 +174,7 @@ export function PreviewIntakeForm() {
             phone: snapshot.phone,
             referral: snapshot.referral,
             extras: snapshot.extras,
+            attribution: snapshot.attribution,
             photoCount: files.length,
             uploadedCount,
           }),
@@ -169,6 +182,7 @@ export function PreviewIntakeForm() {
         const data = (await res.json()) as { ok: boolean; error?: string }
         if (res.ok && data.ok) {
           trackLead(snapshot.email, "preview")
+          trackEvent("preview_form_submitted", { photo_count: files.length })
           setSubmitDone(true)
         } else setSubmitFailed(true)
       } catch {
@@ -209,6 +223,7 @@ export function PreviewIntakeForm() {
       phone: String(fd.get("phone") ?? "").trim(),
       referral: String(fd.get("referral") ?? "").trim(),
       extras,
+      attribution: getAttribution(),
     })
   }
 
