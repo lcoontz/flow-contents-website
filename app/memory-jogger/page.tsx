@@ -1,5 +1,5 @@
-import type { Metadata } from "next"
 import "../home.css"
+import { pageMetadata } from "@/lib/seo"
 import { WaitlistForm } from "../homeowners/waitlist-form"
 
 // Memory Jogger lead-magnet page (founder direction 2026-10-20, docs/PRODUCT-STRATEGY.md shift log
@@ -8,12 +8,12 @@ import { WaitlistForm } from "../homeowners/waitlist-form"
 // from the approved list (docs/specs/website-stat-claims.md), "contents specialist", never bare
 // "specialist". Checklist counts come from apps/checklist/data/master/checklist.json (2026-10-20).
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Memory Jogger: a free checklist of everything in your home | Flow Contents",
   description:
     "After a fire or other total loss, the Memory Jogger walks your family through more than 12,000 household items, room by room, so your contents list includes what you'd never think to write down. Free to use.",
-  alternates: { canonical: "/memory-jogger" },
-}
+  path: "/memory-jogger",
+})
 
 const BOOKING_URL = "https://tidycal.com/leland/intro-call-flow-contents-ai-w-leland"
 

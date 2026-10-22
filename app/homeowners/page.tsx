@@ -1,12 +1,13 @@
-import type { Metadata } from "next"
 import "../home.css"
+import { pageMetadata } from "@/lib/seo"
 import { WaitlistForm } from "./waitlist-form"
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contents inventories for homeowners | Flow Contents",
   description:
     "After a fire or other total loss, we build your itemized contents list with you, item by item, and a contents specialist reviews every line. More than 30 Los Angeles families have trusted us with their contents.",
-}
+  path: "/homeowners",
+})
 
 const BOOKING_URL = "https://tidycal.com/leland/intro-call-flow-contents-ai-w-leland"
 

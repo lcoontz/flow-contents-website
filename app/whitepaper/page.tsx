@@ -1,6 +1,14 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
+import { pageMetadata } from "@/lib/seo"
+
+export const metadata = pageMetadata({
+  title: "Whitepaper and checklist for personal property claims | Flow Contents",
+  description:
+    "The Science of The List: how forensic photography and a complete, evidence-backed inventory help maximize a personal property insurance claim.",
+  path: "/whitepaper",
+})
 
 export default function WhitepaperPage() {
   return (
