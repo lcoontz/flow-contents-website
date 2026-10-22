@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { trackLead } from "@/components/tracking"
+import { trackEvent, trackLead } from "@/components/tracking"
+import { getAttribution } from "@/lib/attribution"
 
 /** Memory Jogger waitlist sign-up. Posts to /api/lead with source "jogger-waitlist".
  *  `cta` and `buttonClass` let a light section use a primary button (the default suits dark sections). */
@@ -27,11 +28,13 @@ export function WaitlistForm({
           name: String(fd.get("name") ?? "").trim(),
           referral: String(fd.get("referral") ?? "").trim(),
           source: "jogger-waitlist",
+          attribution: getAttribution(),
         }),
       })
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean }
       if (!res.ok || !data.ok) throw new Error("send_failed")
       trackLead(email, "jogger-waitlist")
+      trackEvent("jogger_signup_submitted", { page: window.location.pathname })
       form.reset()
       setState("done")
     } catch {

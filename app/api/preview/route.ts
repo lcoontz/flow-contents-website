@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { randomUUID } from "node:crypto"
 import { adminBucket, adminDb } from "@/lib/firebase-admin"
 import { FieldValue } from "firebase-admin/firestore"
+import { sanitizeAttribution } from "@/lib/attribution"
 
 export const runtime = "nodejs"
 
@@ -35,6 +36,7 @@ interface SubmitBody {
   phone?: string
   referral?: string
   extras?: Record<string, string>
+  attribution?: unknown
   photoCount?: number
   uploadedCount?: number
 }
@@ -144,6 +146,8 @@ async function submit(body: SubmitBody) {
       phone,
       referral,
       extras: body.extras ?? {},
+      // Campaign tags from the link the visitor arrived on (see lib/attribution.ts).
+      attribution: sanitizeAttribution(body.attribution),
       photoCount: body.photoCount ?? null,
       uploadedCount: body.uploadedCount ?? null,
       storagePrefix: `preview-leads/${sessionId}`,

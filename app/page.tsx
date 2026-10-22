@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import "./home.css"
 import { HOME_HTML } from "./home-markup"
 import { trackLead } from "@/components/tracking"
+import { getAttribution } from "@/lib/attribution"
 
 /**
  * Flow Contents marketing homepage.
@@ -35,7 +36,7 @@ export default function Home() {
         const res = await fetch("/api/lead", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, referral, source: "sample-report" }),
+          body: JSON.stringify({ email, referral, source: "sample-report", attribution: getAttribution() }),
         })
         const data = (await res.json().catch(() => ({}))) as { ok?: boolean }
         if (!res.ok || !data.ok) throw new Error("send_failed")

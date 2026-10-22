@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { trackEvent } from "./tracking"
 
 export function SampleReportButton() {
   const [open, setOpen] = useState(false)
@@ -23,7 +24,10 @@ export function SampleReportButton() {
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setOpen(true)
+          trackEvent("sample_report_viewed", { page: window.location.pathname, via: "modal" })
+        }}
         className="inline-flex h-[48px] items-center gap-2 rounded-lg border-2 border-blue-600 bg-white px-6 text-[15px] font-semibold text-blue-700 shadow-sm transition-colors hover:bg-blue-50 hover:text-blue-800 sm:text-[16px]"
       >
         See an example report

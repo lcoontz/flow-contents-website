@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
+import { AttributionTracker } from "@/components/attribution-tracker"
 import { Analytics } from "@vercel/analytics/next"
 import { Tracking } from "@/components/tracking"
 import { SITE_URL } from "@/lib/seo"
@@ -56,6 +57,7 @@ export default function RootLayout({
         {children}
         <Analytics />
         <Tracking />
+        <AttributionTracker />
       </body>
     </html>
   )
