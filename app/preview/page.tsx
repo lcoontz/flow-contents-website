@@ -1,13 +1,14 @@
-import type { Metadata } from "next"
 import { PreviewIntakeForm } from "@/components/preview-intake-form"
 import { SampleReportButton } from "@/components/sample-report-button"
 import { FooterSection } from "@/components/footer-section"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Free quote and sample report — Flow Contents",
+export const metadata = pageMetadata({
+  title: "Free quote and sample report | Flow Contents",
   description:
     "Upload your photos to get a priced estimate. We'll price and estimate your list in 72 hours. Free, no account.",
-}
+  path: "/preview",
+})
 
 export default function PreviewPage() {
   return (

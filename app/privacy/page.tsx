@@ -1,12 +1,12 @@
-import type { Metadata } from "next"
 import "../home.css"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Privacy Policy | Flow Contents",
   description:
     "What Flow Contents collects when you use our website, web app, Memory Jogger and mobile apps, how we use it, who we share it with, and how to delete it.",
-  alternates: { canonical: "/privacy" },
-}
+  path: "/privacy",
+})
 
 const EMAIL = "leland@flowcontents.com"
 
