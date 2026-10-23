@@ -27,6 +27,7 @@ export default function PrivacyPage() {
       </header>
 
       <article className="legal">
+        <p className="draft">Draft for legal review</p>
         <h1>Privacy Policy</h1>
         <p className="updated">Last updated: October 22, 2026</p>
 
