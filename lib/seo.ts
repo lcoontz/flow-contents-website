@@ -2,9 +2,12 @@ import type { Metadata } from "next"
 
 export const SITE_URL = "https://www.flowcontents.com"
 
-// The share image rendered by app/opengraph-image.tsx. Keep size and alt in step with that file.
-const SHARE_IMAGE = {
-  url: "/opengraph-image",
+// The share image rendered by app/share/opengraph-image.tsx. Keep size and alt in step with that file.
+// LinkedIn keeps the first copy it fetched from an image address (a 160 px one, for /, /homeowners and
+// /preview on Oct 23), so a new picture or a bad first fetch needs a new address: change this path, and
+// the two copies in public/sample-report.html, together.
+export const SHARE_IMAGE = {
+  url: "/share/opengraph-image",
   width: 1200,
   height: 630,
   alt: "Flow Contents: contents inventories for homeowners and public adjusters",
