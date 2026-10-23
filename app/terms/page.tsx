@@ -1,33 +1,12 @@
-import type { Metadata } from "next"
 import "../home.css"
+import { pageMetadata } from "@/lib/seo"
 
-const TITLE = "Terms of Use | Flow Contents"
-const DESCRIPTION =
-  "The rules for using the Flow Contents website, the free preview and sample report, and the Memory Jogger checklist."
-// A page that sets openGraph or twitter replaces the layout's copy, which is where the share image lives,
-// so the image is repeated here. Same block as pageMetadata in lib/seo.ts (the SEO PR).
-const SHARE_IMAGE = {
-  url: "/opengraph-image",
-  width: 1200,
-  height: 630,
-  alt: "Flow Contents: contents inventories for homeowners and public adjusters",
-}
-
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  alternates: { canonical: "/terms" },
-  openGraph: {
-    type: "website",
-    url: "/terms",
-    siteName: "Flow Contents",
-    title: TITLE,
-    description: DESCRIPTION,
-    locale: "en_US",
-    images: [SHARE_IMAGE],
-  },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION, images: [SHARE_IMAGE] },
-}
+export const metadata = pageMetadata({
+  title: "Terms of Use | Flow Contents",
+  description:
+    "The rules for using the Flow Contents website, the free preview and sample report, and the Memory Jogger checklist.",
+  path: "/terms",
+})
 
 const EMAIL = "leland@flowcontents.com"
 
