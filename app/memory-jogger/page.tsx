@@ -148,7 +148,7 @@ const FAQ = [
   },
   {
     q: "What does it cost if I want your help?",
-    a: "The Memory Jogger stays free. If you hire us to build your full inventory, our fee is 3% of what your insurance company pays for your contents, split into three payments.",
+    a: "The Memory Jogger stays free. If you hire us to build your full inventory, our fee is 3% of the total value of the list we build, split into three payments.",
   },
   {
     q: "Who sees my list?",
