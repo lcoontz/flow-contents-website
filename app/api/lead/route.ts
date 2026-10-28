@@ -15,6 +15,16 @@ interface LeadPayload {
 
 const BOOKING_URL = "https://tidycal.com/leland/intro-call-flow-contents-ai-w-leland"
 
+// Visitor-supplied text goes into HTML email, including the alert to Leland.
+function esc(value: string): string {
+  return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;")
+}
+
+// The inner part of a full HTML email, so a copy of it can sit inside another email.
+function bodyOf(doc: string): string {
+  return doc.replace(/^[\s\S]*?<body[^>]*>/, "").replace(/<\/body>[\s\S]*$/, "")
+}
+
 export const runtime = "nodejs"
 
 export async function POST(req: Request) {
@@ -72,6 +82,7 @@ export async function POST(req: Request) {
   }
 
   const greeting = name ? `Hi ${name.split(" ")[0]},` : "Hi,"
+  const greetingHtml = esc(greeting)
   const subject = "Flow Contents — Sample Report + How we work"
 
   const text = [
@@ -99,7 +110,7 @@ export async function POST(req: Request) {
 
   const html = `<!doctype html>
 <html><body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#0f172a;line-height:1.55;font-size:15px;max-width:600px">
-  <p>${greeting}</p>
+  <p>${greetingHtml}</p>
   <p>Leland here. Thanks for requesting our sample report. Open the live spreadsheet to see every line item, fully filterable and priced:</p>
   <p style="margin:18px 0">
     <a href="${sheetUrl}" style="display:inline-block;background:#1d4ed8;color:#fff;text-decoration:none;font-weight:600;padding:10px 18px;border-radius:6px">Open the sample report →</a>
@@ -128,7 +139,11 @@ export async function POST(req: Request) {
     "Flow Contents",
     "flowcontents.com",
   ].join("\n")
-  const waitlistHtml = `<div dir="ltr">${greeting}<br><br>Thanks for joining the Memory Jogger waitlist. It's our room-by-room checklist of more than 12,000 household items, built from real fire claims, and your whole family can work on it from their own phones. I'll email you as soon as it opens.<br><br>If you'd like help with your contents list before then, just reply to this email or <a href="${BOOKING_URL}">book a 15-minute call</a>.<br><br>Best,<br>Leland Coontz IV<br>Flow Contents<br><a href="https://flowcontents.com">flowcontents.com</a></div>`
+  const waitlistHtml = `<div dir="ltr">${greetingHtml}<br><br>Thanks for joining the Memory Jogger waitlist. It's our room-by-room checklist of more than 12,000 household items, built from real fire claims, and your whole family can work on it from their own phones. I'll email you as soon as it opens.<br><br>If you'd like help with your contents list before then, just reply to this email or <a href="${BOOKING_URL}">book a 15-minute call</a>.<br><br>Best,<br>Leland Coontz IV<br>Flow Contents<br><a href="https://flowcontents.com">flowcontents.com</a></div>`
+
+  const sent = isWaitlist
+    ? { subject: "You're on the Memory Jogger waitlist", text: waitlistText, html: waitlistHtml }
+    : { subject, text, html }
 
   const resend = new Resend(apiKey)
   try {
@@ -136,9 +151,9 @@ export async function POST(req: Request) {
       from,
       to: email,
       replyTo,
-      subject: isWaitlist ? "You're on the Memory Jogger waitlist" : subject,
-      text: isWaitlist ? waitlistText : text,
-      html: isWaitlist ? waitlistHtml : html,
+      subject: sent.subject,
+      text: sent.text,
+      html: sent.html,
     })
 
     if (error) {
@@ -161,14 +176,54 @@ export async function POST(req: Request) {
     const attributionLine = attribution ? `\nCame from: ${attributionValues.map((v) => v || "-").join(" / ")}` : ""
     // Sheet cells are written with USER_ENTERED, so a visitor-supplied value that starts with = + - or @ would run as a formula.
     const sheetSafe = (v: string) => (/^[=+\-@]/.test(v) ? `'${v}` : v)
-    const summary = `New ${source} lead\nEmail: ${email}\nName: ${name || "(none)"}\nWho told them: ${referral || "(not answered)"}${attributionLine}\nTime: ${when}\nLead ID: ${leadId || "(not saved)"}`
+    // What happened, so the alert says whether anything is waiting on us. These forms take an
+    // email only. Photo uploads go through /api/preview, which alerts from the platform instead.
+    const whatHappened = isWaitlist
+      ? "They joined the Memory Jogger waitlist and got the waitlist confirmation by email. There's nothing to approve."
+      : "They asked for the sample report and got it by email automatically. They didn't upload photos, so there's nothing to approve."
+    const whenPacific = new Date(when).toLocaleString("en-US", {
+      timeZone: "America/Los_Angeles",
+      dateStyle: "medium",
+      timeStyle: "short",
+    })
+    const summary = `New ${source} lead\n${whatHappened}\nEmail: ${email}\nName: ${name || "(none)"}\nWho told them: ${referral || "(not answered)"}${attributionLine}\nTime: ${when}\nLead ID: ${leadId || "(not saved)"}`
+    const rows: Array<[string, string]> = [
+      ["Email", email],
+      ["Name", name || "(none)"],
+      ["Who told them", referral || "(not answered)"],
+      ...(attribution ? ([["Came from", attributionValues.map((v) => v || "-").join(" / ")]] as Array<[string, string]>) : []),
+      ["Page", req.headers.get("referer") || "(unknown)"],
+      ["Time", `${whenPacific} Pacific`],
+      ["Lead ID", leadId || "(not saved)"],
+    ]
+    const notifyText = [
+      whatHappened,
+      "Reply to this email to write to them.",
+      "",
+      ...rows.map(([k, v]) => `${k}: ${v}`),
+      "",
+      `Here's the email they got ("${sent.subject}"):`,
+      "",
+      sent.text,
+    ].join("\n")
+    const notifyHtml = `<!doctype html>
+<html><body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#0f172a;line-height:1.55;font-size:15px;max-width:600px">
+  <p style="margin:0 0 8px">${esc(whatHappened)}</p>
+  <p style="margin:0 0 16px">Reply to this email to write to them.</p>
+  <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:14px">
+    ${rows.map(([k, v]) => `<tr><td style="padding:3px 16px 3px 0;color:#64748b;vertical-align:top;white-space:nowrap">${esc(k)}</td><td style="padding:3px 0">${esc(v)}</td></tr>`).join("\n    ")}
+  </table>
+  <p style="margin:24px 0 8px;color:#64748b;font-size:13px">Here's the email they got, subject "${esc(sent.subject)}":</p>
+  <div style="border:1px solid #e2e8f0;border-radius:8px;padding:16px 20px">${bodyOf(sent.html)}</div>
+</body></html>`
     const channels = await Promise.allSettled([
       resend.emails.send({
         from,
         to: notifyEmail,
         replyTo: email,
         subject: `New ${source} lead: ${email}`,
-        text: summary,
+        text: notifyText,
+        html: notifyHtml,
       }),
       notifyWhatsApp(summary),
       // Attribution goes in trailing columns G to K, and only when there is some, so rows
