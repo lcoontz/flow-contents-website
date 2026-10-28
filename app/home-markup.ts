@@ -292,7 +292,7 @@ export const HOME_HTML = String.raw`
       <div class="offer-copy">
         <span class="sec-eyebrow"><span class="dot"></span> sample report</span>
         <h2 class="sec-h">Get a sample report emailed to you.</h2>
-        <p class="sec-sub">This is an anonymized report from a real claim. Enter your email and we'll send you the PDF and the Excel workbook to keep.</p>
+        <p class="sec-sub">This is an anonymized report from a real claim. Enter your email and we'll send you the Excel workbook to keep.</p>
         <form class="email-form" id="sampleForm">
           <div class="efield"><input type="email" name="email" placeholder="you@firm.com" aria-label="Work email" required /><button class="btn btn-primary" type="submit">Email it to me</button></div>
           <div class="efield"><input type="text" name="referral" placeholder="Who told you about us? (optional)" aria-label="Who told you about us?" maxlength="200" /></div>

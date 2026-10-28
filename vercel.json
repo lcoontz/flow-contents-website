@@ -3,8 +3,29 @@
   "headers": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": { "suf": ".vercel.app" } }],
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+      "has": [
+        {
+          "type": "host",
+          "value": {
+            "suf": ".vercel.app"
+          }
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/sample/flow-contents-sample-professional-report.xlsx",
+      "headers": [
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"Flow Contents - Sample Professional Report.xlsx\""
+        }
+      ]
     }
   ]
 }

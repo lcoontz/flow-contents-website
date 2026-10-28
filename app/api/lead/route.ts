@@ -14,6 +14,9 @@ interface LeadPayload {
 }
 
 const BOOKING_URL = "https://tidycal.com/leland/intro-call-flow-contents-ai-w-leland"
+// The anonymized Professional Report workbook (the Oct 2026 prospect sample), served from public/sample.
+// It replaced the old live Google Sheet on 2026-10-28.
+const SAMPLE_REPORT_URL = "https://www.flowcontents.com/sample/flow-contents-sample-professional-report.xlsx"
 
 // Visitor-supplied text goes into HTML email, including the alert to Leland.
 function esc(value: string): string {
@@ -51,10 +54,9 @@ export async function POST(req: Request) {
   const apiKey = process.env.RESEND_API_KEY
   const from = process.env.RESEND_FROM
   const replyTo = process.env.LEAD_REPLY_TO || "leland@flowcontents.com"
-  const sheetUrl = process.env.SAMPLE_SHEET_URL
 
-  if (!apiKey || !from || !sheetUrl) {
-    console.error("[lead] missing config", { hasKey: !!apiKey, hasFrom: !!from, hasSheet: !!sheetUrl })
+  if (!apiKey || !from) {
+    console.error("[lead] missing config", { hasKey: !!apiKey, hasFrom: !!from })
     return NextResponse.json({ ok: false, error: "server_misconfigured" }, { status: 500 })
   }
 
@@ -88,9 +90,9 @@ export async function POST(req: Request) {
   const text = [
     greeting,
     "",
-    "Leland here. Thanks for requesting our sample report. Open the live spreadsheet to see every line item, fully filterable and priced:",
+    "Leland here. Thanks for requesting our sample report. It's the Excel workbook from a real claim, anonymized, with every line item priced and the settlement summary up front:",
     "",
-    sheetUrl,
+    SAMPLE_REPORT_URL,
     "",
     "How it works",
     "",
@@ -111,9 +113,9 @@ export async function POST(req: Request) {
   const html = `<!doctype html>
 <html><body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#0f172a;line-height:1.55;font-size:15px;max-width:600px">
   <p>${greetingHtml}</p>
-  <p>Leland here. Thanks for requesting our sample report. Open the live spreadsheet to see every line item, fully filterable and priced:</p>
+  <p>Leland here. Thanks for requesting our sample report. It's the Excel workbook from a real claim, anonymized, with every line item priced and the settlement summary up front:</p>
   <p style="margin:18px 0">
-    <a href="${sheetUrl}" style="display:inline-block;background:#1d4ed8;color:#fff;text-decoration:none;font-weight:600;padding:10px 18px;border-radius:6px">Open the sample report →</a>
+    <a href="${SAMPLE_REPORT_URL}" style="display:inline-block;background:#1d4ed8;color:#fff;text-decoration:none;font-weight:600;padding:10px 18px;border-radius:6px">Download the sample report →</a>
   </p>
   <h3 style="margin-top:24px;margin-bottom:8px;font-size:16px">How it works</h3>
   <p>Once we receive your photos, our pipeline runs them through a multi-step identification process where we extract LKQ features and details, then identify approximate age and condition. From there we price each item against live retail data, not an outdated database.</p>
